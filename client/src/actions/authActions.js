@@ -8,7 +8,7 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/register", userData)
-    .then(res => history.push("/"))
+    .then(res => history.push("/login"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -33,15 +33,12 @@ export const loginUser = userData => dispatch => {
       const decoded = jwt_decode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
-      console.log(res.data);
     })
-    .catch(err => {
-      console.log("Errors:" + err);
+    .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       })
-    }
     );
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
@@ -9,7 +9,8 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      name: "",
+      email: "",
       password: "",
       password2: "",
       errors: {}
@@ -39,13 +40,13 @@ class Register extends Component {
     e.preventDefault();
 
     const newUser = {
-      username: this.state.username,
+      name: this.state.name,
+      email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
     };
 
     this.props.registerUser(newUser, this.props.history);
-    // console.log(newUser);
   };
 
   render() {
@@ -55,23 +56,47 @@ class Register extends Component {
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            
+            <Link to="/" className="btn-flat waves-effect">
+              <i className="material-icons left">keyboard_backspace</i> Back to
+              home
+            </Link>
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <h4>
+                <b>Register</b> below
+              </h4>
+              <p className="grey-text text-darken-1">
+                Already have an account? <Link to="/login">Log in</Link>
+              </p>
+            </div>
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.username}
-                  error={errors.username}
-                  id="username"
+                  value={this.state.name}
+                  error={errors.name}
+                  id="name"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.username
+                    invalid: errors.name
                   })}
                 />
-                <label htmlFor="username">Username</label>
-                <span className="red-text">{errors.username}</span>
+                <label htmlFor="name">Name</label>
+                <span className="red-text">{errors.name}</span>
               </div>
-              
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="email"
+                  className={classnames("", {
+                    invalid: errors.email
+                  })}
+                />
+                <label htmlFor="email">Email</label>
+                <span className="red-text">{errors.email}</span>
+              </div>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -137,4 +162,3 @@ export default connect(
   mapStateToProps,
   { registerUser }
 )(withRouter(Register));
-// export default Register;

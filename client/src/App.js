@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./components/Main";
+import Landing from "./components/layout/Landing";
+import Navbar from "./components/Navbar";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register"
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -36,14 +39,13 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
             <Switch>
-              <Route exact path="/" component={Main} />
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              </Switch>
-              <Route exact path="/master" component={Main} />
-              <Route exact path="/player" component={Main} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
           </div>
         </Router>
