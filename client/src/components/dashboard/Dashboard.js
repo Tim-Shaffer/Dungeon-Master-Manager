@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { findUser } from "../../actions/authActions";
 import "./style.css";
+import Master from "../Master";
+import Player from "../Player";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -47,6 +49,9 @@ class Dashboard extends Component {
           </div>
         </div>
       </div>
+      { user.isMaster ? 
+        <Master />
+      : <Player />}
       </>
     );
   }
