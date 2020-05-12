@@ -17,7 +17,7 @@ router.get("/login", function(req, res) {
 
 // Register User /user/register
 router.post("/register", function(req, res) {
-  console.log("Made it to the post for the register!")
+  
     var username = req.body.username;
     var password = req.body.password;
     var password2 = req.body.password2;
