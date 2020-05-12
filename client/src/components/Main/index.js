@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Nav from "../Nav/Nav";
+import Navbar from "../Navbar/Navbar";
 import Jumbo from "../Jumbotron/Jumbotron";
 
 class Main extends Component {
@@ -15,7 +15,7 @@ class Main extends Component {
     
     return (
       <>
-        <Nav />
+        <Navbar />
         <Jumbo />
       </>
     );
