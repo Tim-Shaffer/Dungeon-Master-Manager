@@ -3,20 +3,21 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var User = require('../models/user');
+var User = require('../../models/user');
 
-// Signup
+// Signup /user/register
 router.get("/register", function(req, res) {
       res.render("register");
 });
 
-// Login
+// Login /user/login
 router.get("/login", function(req, res) {
     res.render("login");
 });
 
-// Register User
+// Register User /user/register
 router.post("/register", function(req, res) {
+  console.log("Made it to the post for the register!")
     var username = req.body.username;
     var password = req.body.password;
     var password2 = req.body.password2;
@@ -47,7 +48,7 @@ router.post("/register", function(req, res) {
 
         req.flash('success-msg', 'You are registered and can now login');
 
-        res.redirect('/users/login');
+        res.redirect('/');
     }
 });
 
@@ -83,7 +84,7 @@ passport.deserializeUser(function(id, done) {
 router.post('/login',
   passport.authenticate('local', {successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/users');
   });
 
 router.get('/logout',
