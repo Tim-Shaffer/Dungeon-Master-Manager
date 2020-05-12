@@ -4,7 +4,7 @@ import "./style.css";
 function Nav() {
   return (
       <div>
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top border-bottom border-danger" role="navigation">
         <div className="container">
             <h4>Welcome Player</h4>
             <ul className="nav navbar-nav flex-row justify-content-between ml-auto">

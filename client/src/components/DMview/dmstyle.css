@@ -1,0 +1,35 @@
+.card-header{
+    background-color: darkred;
+}
+
+.card-body {
+    background-color: gray;
+}
+
+.butt {
+    background-color: gray;
+}
+
+.playerbttn {
+    background-color: darkred;
+}
+
+#body {
+    padding-bottom: 20px;
+    padding-top: 30px;
+    border: 0;
+}
+
+#campaign{
+    text-align: center;
+}
+
+body {
+    background-image: url('https://wallpapercave.com/wp/wp2227193.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    
+    
+}

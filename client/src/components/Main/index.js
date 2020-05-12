@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Nav from "../Nav/Nav";
 import Jumbo from "../Jumbotron/Jumbotron";
+import DMview from "../DMview/DMview";
+import Playerview from "../Playerview/Playerview";
 
 class Main extends Component {
   
@@ -16,7 +18,8 @@ class Main extends Component {
     return (
       <>
         <Nav />
-        <Jumbo />
+        <br></br>
+        <DMview />
       </>
     );
   }
