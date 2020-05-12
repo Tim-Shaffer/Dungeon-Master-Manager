@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "server": "nodemon server.js",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
@@ -19,20 +20,16 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
-    "bcryptjs": "*",
-    "connect-flash": "*",
-    "cookie-parser": "*",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-handlebars": "*",
-    "express-messages": "*",
-    "express-session": "^1.17.0",
-    "express-validator": "5.3.1",
-    "if-env": "^1.0.4",
-    "mongodb": "*",
-    "mongoose": "^5.9.10",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.13",
     "passport": "^0.4.1",
-    "passport-http": "*",
-    "passport-local": "^1.0.0"
+    "passport-jwt": "^4.0.0",
+    "validator": "^13.0.0"
   }
 }
