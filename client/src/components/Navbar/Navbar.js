@@ -37,7 +37,7 @@ render() {
     <div id="createAccount" className="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div className="modal-dialog">
         <div className="modal-content">
-            <div class="modal-header">
+            <div className="modal-header">
                 <Container fluid>
                 <Row>
                     <Col size="md-12">

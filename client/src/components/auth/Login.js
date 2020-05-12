@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
-// import { loginUser } from "../../actions/authActions";
-// import classnames from "classnames";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 class Login extends Component {
   constructor() {
@@ -21,17 +21,17 @@ class Login extends Component {
   //   }
   // }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.auth.isAuthenticated) {
-  //     this.props.history.push("/dashboard");
-  //   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard"); // push user to dashboard when they login
+    }
 
-  //   if (nextProps.errors) {
-  //     this.setState({
-  //       errors: nextProps.errors
-  //     });
-  //   }
-  // }
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
 
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -45,8 +45,8 @@ class Login extends Component {
       password: this.state.password
     };
 
-    // this.props.loginUser(userData);
-    console.log(userData);
+    this.props.loginUser(userData);
+    // console.log(userData);
   };
 
   render() {
@@ -58,41 +58,39 @@ class Login extends Component {
           <div className="col s8 offset-s2">
             
             <form noValidate onSubmit={this.onSubmit}>
-              {/* <div className="input-field col s12"> */}
+         
                 <input
                   onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
+                  value={this.state.username}
+                  error={errors.username}
                   id="username"
                   type="text"
-                  // className={classnames("", {
-                  //   invalid: errors.username || errors.usernamenotfound
-                  // })}
+                  className={classnames("", {
+                    invalid: errors.username || errors.usernamenotfound
+                  })}
                 />
                 <label htmlFor="username">Username</label>
-                {/* <span className="red-text">
+                <span className="red-text">
                   {errors.username}
                   {errors.usernamenotfound}
-                </span> */}
-              {/* </div> */}
-              {/* <div className="input-field col s12"> */}
+                </span>
+ 
                 <input
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
                   id="password"
                   type="password"
-                  // className={classnames("", {
-                  //   invalid: errors.password || errors.passwordincorrect
-                  // })}
+                  className={classnames("", {
+                    invalid: errors.password || errors.passwordincorrect
+                  })}
                 />
                 <label htmlFor="password">Password</label>
-                {/* <span className="red-text">
+                <span className="red-text">
                   {errors.password}
                   {errors.passwordincorrect}
-                </span> */}
-              {/* </div> */}
-              {/* <div className="col s12" style={{ paddingLeft: "11.250px" }}> */}
+                </span>
+
                 <button
                   style={{
                     width: "150px",
@@ -105,7 +103,7 @@ class Login extends Component {
                 >
                   Login
                 </button>
-              {/* </div> */}
+              
             </form>
           </div>
         </div>
@@ -114,20 +112,20 @@ class Login extends Component {
   }
 }
 
-// Login.propTypes = {
-//   loginUser: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired,
-//   errors: PropTypes.object.isRequired
-// };
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
-// const mapStateToProps = state => ({
-//   auth: state.auth,
-//   errors: state.errors
-// });
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
 
-// export default connect(
-//   mapStateToProps,
-//   { loginUser }
-// )(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
 
-export default Login;
+// export default Login;
