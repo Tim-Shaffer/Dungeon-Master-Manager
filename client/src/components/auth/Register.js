@@ -4,15 +4,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
+import NavbarLogin from "../Navbar/NavbarLogin";
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
       name: "",
-      email: "",
+      username: "",
       password: "",
       password2: "",
+      isMaster: false,
       errors: {}
     };
   }
@@ -36,14 +38,19 @@ class Register extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  onCheck = e => {
+    this.setState({ isMaster: true });
+  };
+
   onSubmit = e => {
     e.preventDefault();
 
     const newUser = {
       name: this.state.name,
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      isMaster: this.state.isMaster
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -53,22 +60,21 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
+      <>
+      <NavbarLogin />
       <div className="container">
-        <div className="row">
+        <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
-            </Link>
+            
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <br></br>
               <h4>
-                <b>Register</b> below
+                <b>Register</b>
               </h4>
-              <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
-              </p>
             </div>
+
             <form noValidate onSubmit={this.onSubmit}>
+
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -83,20 +89,22 @@ class Register extends Component {
                 <label htmlFor="name">Name</label>
                 <span className="red-text">{errors.name}</span>
               </div>
+
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
+                  value={this.state.username}
+                  error={errors.username}
+                  id="username"
+                  type="text"
                   className={classnames("", {
-                    invalid: errors.email
+                    invalid: errors.username
                   })}
                 />
-                <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
+                <label htmlFor="username">Username</label>
+                <span className="red-text">{errors.username}</span>
               </div>
+
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -111,6 +119,7 @@ class Register extends Component {
                 <label htmlFor="password">Password</label>
                 <span className="red-text">{errors.password}</span>
               </div>
+
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -125,6 +134,12 @@ class Register extends Component {
                 <label htmlFor="password2">Confirm Password</label>
                 <span className="red-text">{errors.password2}</span>
               </div>
+
+              <div className="custom-control custom-checkbox">
+                  <input type="checkbox" className="custom-control-input" id="defaultUnchecked" value={this.state.isMaster} onChange={this.onCheck}/>
+                  <label className="custom-control-label" htmlFor="defaultUnchecked">Dungeon Master</label>
+              </div>
+
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
@@ -136,13 +151,19 @@ class Register extends Component {
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Sign up
+                  Register
                 </button>
+
+                <p className="grey-text text-darken-1">
+                Already have an account? <Link to="/login">Login</Link>
+                </p>
+
               </div>
             </form>
           </div>
         </div>
       </div>
+    </>
     );
   }
 }

@@ -42,6 +42,20 @@ export const loginUser = userData => dispatch => {
     );
 };
 
+// findUser - get user information
+export const findUser = userData => {
+  // console.log(userData); - I know I have made it here!
+  axios
+    .get("/api/users/" + userData)
+    .then(res => {
+      console.log(JSON.stringify(res));
+      return res;
+    })
+    .catch(err =>
+      console.log(err)
+    );
+};
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {
