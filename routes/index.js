@@ -1,18 +1,14 @@
 var express = require("express");
 var router = express.Router();
+const userRoutes = require("./user");
 
-router.get("/", ensureAuthenticated, function(req, res) {
-      res.render("index");
+// Routes
+router.use("/user", userRoutes);
+
+// If no API routes are hit, send the React app
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
-
-function ensureAuthenticated(req, res, next) {
-      if (req.isAuthenticated()) {
-            return next();
-      } else {
-            // req.flash('error_msg', 'You are not logged in');
-            res.redirect('/users/login');
-      }
-}
 
 // Export routes for server.js to use.
 module.exports = router;
