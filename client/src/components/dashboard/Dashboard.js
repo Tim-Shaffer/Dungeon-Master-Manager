@@ -9,19 +9,32 @@ import Player from "../Playerview/Playerview";
 // import Nav from "../Nav/Nav"
 
 class Dashboard extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      isMaster: false,
+      errors: {}
+    };
+  }
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
     this.props.history.push("/");
   };
 
-  // componentWillMount() {
-  //   const { user } = this.props.auth;
-  //   // console.log(JSON.stringify(this.props));
-  //   // console.log(user.id); -- I know I am executing this funciton!
-  //   findUser(user.id);
-  //   // console.log(JSON.stringify(findUser(user.id)));
-  // }
+  componentDidMount() {
+    //-- I know I am executing this function!
+    const { user } = this.props.auth;
+
+    // findUser(user.id);
+    findUser(user.id).then(res => {
+      this.setState({ isMaster: res.data.isMaster});
+    })
+    .catch(err => console.log(err));
+
+  }
 
 
   render() {
@@ -42,7 +55,7 @@ class Dashboard extends Component {
       </nav>
       {/* <Nav /> */}
 
-      { user.isMaster ? 
+      { this.state.isMaster ? 
         <Master />
       : <Player />}
       </>
@@ -52,6 +65,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
+  findUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -61,5 +75,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, findUser }
 )(Dashboard);
