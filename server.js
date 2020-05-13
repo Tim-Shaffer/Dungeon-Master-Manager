@@ -30,9 +30,6 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 
-// require the controller files
-require("./controllers/authuser_controller.js")(app);
-
 const PORT = process.env.PORT || 3001;
 
 // establish MongoDB var based on deployed or local
