@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { findUser } from "../../actions/authActions";
 import "./style.css";
-import Master from "../Master";
-import Player from "../Player";
+import Master from "../DMview/DMview";
+import Player from "../Playerview/Playerview";
+// import Nav from "../Nav/Nav"
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -39,16 +40,8 @@ class Dashboard extends Component {
             </button>
         </div>
       </nav>
+      {/* <Nav /> */}
 
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
-          <div className="landing-copy col s12 center-align">
-            <h4>
-            </h4>
-            
-          </div>
-        </div>
-      </div>
       { user.isMaster ? 
         <Master />
       : <Player />}

@@ -1,8 +1,10 @@
 h4 {
-    color: red;
+    color: darkred;
+    font-family: 'Rock Salt', cursive;
 }
 
 .logout-btn {
     background-color: red
 }
+
 
