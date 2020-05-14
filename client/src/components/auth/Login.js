@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import NavbarLogin from "../Navbar/NavbarLogin";
+import "./loginstyle.css";
 
 class Login extends Component {
   constructor() {
@@ -55,20 +56,24 @@ class Login extends Component {
 
     return (
       <>
-      <NavbarLogin />
-      <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
+      <body>
+
+        <NavbarLogin />
+      
+      <div className="container border rounded border-dark" id="login">
+        <div style={{ marginTop: "1rem" }} className="row">
           <div className="col s8 offset-s2">
 
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <div className="col s12" style={{ paddingBottom: "11.250px"}}>
               <br></br>
               <h4>
-                <b>Login</b>
+                <b style={{ fontSize: "50px"}}>Login</b>
               </h4>
             </div>
 
             <form noValidate onSubmit={this.onSubmit}>
               
+              <label htmlFor="username">Username</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -80,13 +85,13 @@ class Login extends Component {
                     invalid: errors.username || errors.usernamenotfound
                   })}
                 />
-                <label htmlFor="username">Username</label>
                 <span className="red-text">
                   {errors.username}
                   {errors.usernamenotfound}
                 </span>
               </div>
 
+              <label htmlFor="password">Password</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -98,7 +103,6 @@ class Login extends Component {
                     invalid: errors.password || errors.passwordincorrect
                   })}
                 />
-                <label htmlFor="password">Password</label>
                 <span className="red-text">
                   {errors.password}
                   {errors.passwordincorrect}
@@ -119,7 +123,7 @@ class Login extends Component {
                   Login
                 </button>
 
-                <p className="grey-text text-darken-1">
+                <p className="grey-text text-darken-1" style={{ paddingTop: "11.250px"}}>
                 Don't have an account? <Link to="/register">Register</Link>
                 </p>
 
@@ -128,6 +132,7 @@ class Login extends Component {
           </div>
         </div>
       </div>
+      </body>
       </>
     );
   }

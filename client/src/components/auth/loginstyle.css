@@ -1,0 +1,27 @@
+#login {
+    text-align: center;
+    background-color: gray;
+    width: 500px;
+    height: 350px;
+    margin-top: 100px;
+    opacity: 0.8;
+    
+}
+body {
+    background-image: url('https://wallpapercave.com/wp/wp2227193.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    
+    
+}
+
+#register {
+    text-align: center;
+    background-color: gray;
+    width: 500px;
+    height: 500px;
+    margin-top: 100px;
+    opacity: 0.8;
+}
