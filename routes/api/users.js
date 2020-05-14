@@ -109,4 +109,18 @@ router.post("/login", (req, res) => {
   });
 });
 
+// @route GET api/users/:id
+// @desc Get User information from id found in token!
+// @access Public
+router.get("/:id", (req, res) => {
+  // get route for the authorized user to determine if Master or Player
+  // app.get("/user/:id", function(req, res) {
+    
+  // Grab the user based on the id from the token
+  User.findOne({ _id: req.params.id })
+    .then( (dbUser) => {return res.status(200).json(dbUser)})
+    .catch( (err) => {res.json(err)})
+
+});
+
 module.exports = router;

@@ -1,6 +1,8 @@
 import React from "react";
 import "./dmstyle.css";
 
+import CreatePlyr from "../CreatePlyr/CreatePlyr";
+
 function DMview() {
 
   return (

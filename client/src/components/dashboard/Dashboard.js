@@ -4,23 +4,37 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { findUser } from "../../actions/authActions";
 import "./style.css";
-import Master from "../Master";
-import Player from "../Player";
+import Master from "../DMview/DMview";
+import Player from "../Playerview/Playerview";
+// import Nav from "../Nav/Nav"
 
 class Dashboard extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      isMaster: false,
+      errors: {}
+    };
+  }
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
     this.props.history.push("/");
   };
 
-  // componentWillMount() {
-  //   const { user } = this.props.auth;
-  //   // console.log(JSON.stringify(this.props));
-  //   // console.log(user.id); -- I know I am executing this funciton!
-  //   findUser(user.id);
-  //   // console.log(JSON.stringify(findUser(user.id)));
-  // }
+  componentDidMount() {
+    //-- I know I am executing this function!
+    const { user } = this.props.auth;
+
+    // findUser(user.id);
+    findUser(user.id).then(res => {
+      this.setState({ isMaster: res.data.isMaster});
+    })
+    .catch(err => console.log(err));
+
+  }
 
 
   render() {
@@ -39,17 +53,9 @@ class Dashboard extends Component {
             </button>
         </div>
       </nav>
+      {/* <Nav /> */}
 
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
-        <div className="row">
-          <div className="landing-copy col s12 center-align">
-            <h4>
-            </h4>
-            
-          </div>
-        </div>
-      </div>
-      { user.isMaster ? 
+      { this.state.isMaster ? 
         <Master />
       : <Player />}
       </>
@@ -59,6 +65,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
+  findUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -68,5 +75,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, findUser }
 )(Dashboard);

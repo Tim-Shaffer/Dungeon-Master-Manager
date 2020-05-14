@@ -10,7 +10,11 @@ function Playerview() {
         <div className="container-fluid" id="body">
             <div className="row">
                 <div className="col-6" id="campaign">
-                    <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Create Character</button>
+                    <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" >
+                        <a href="/create">
+                        Create Character
+                        </a>
+                        </button>
                 </div>
                 <div className="col-6" id="campaign">
                     <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Characters</button>

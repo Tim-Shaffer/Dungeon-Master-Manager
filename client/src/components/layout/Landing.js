@@ -8,7 +8,7 @@ class Landing extends Component {
     return (
       <>
         <NavbarLanding />
-        <Jumbo />
+        {/* <Jumbo /> */}
       </>
     );
   }
