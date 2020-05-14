@@ -53,7 +53,7 @@ class Register extends Component {
       password2: this.state.password2,
       isMaster: this.state.isMaster
     };
-
+    console.log (newUser);
     this.props.registerUser(newUser, this.props.history);
   };
 
@@ -76,7 +76,7 @@ class Register extends Component {
 
             <form noValidate onSubmit={this.onSubmit}>
 
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" id="lablename">Name</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -88,10 +88,11 @@ class Register extends Component {
                     invalid: errors.name
                   })}
                 />
-                <span className="red-text">{errors.name}</span>
               </div>
+                <span className="red-text">{errors.name}</span>
+                <br></br>
 
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username" id="lablename">Username</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -103,10 +104,11 @@ class Register extends Component {
                     invalid: errors.username
                   })}
                 />
-                <span className="red-text">{errors.username}</span>
               </div>
+                <span className="red-text">{errors.username}</span>
+                <br></br>
 
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password" id="lablename">Password</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -118,10 +120,11 @@ class Register extends Component {
                     invalid: errors.password
                   })}
                 />
-                <span className="red-text">{errors.password}</span>
               </div>
+                <span className="red-text">{errors.password}</span>
+                <br></br>
 
-                <label htmlFor="password2">Confirm Password</label>
+                <label htmlFor="password2" id="lablename">Confirm Password</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -133,13 +136,27 @@ class Register extends Component {
                     invalid: errors.password2
                   })}
                 />
-                <span className="red-text">{errors.password2}</span>
               </div>
+                <span className="red-text">{errors.password2}</span>
+                <br></br>
+              
+              <form>
+                    <div className="input-field col s12">
+                      <label id="checkboxlabel">Dungeon Master:
+                        <input
+                          id="isMaster"
+                          name="DM"
+                          type="checkbox"
+                          value={this.state.isMaster}
+                          onChange={this.onCheck} />
+                      </label>
+                    </div>
+              </form>
 
-              <div className="custom-control custom-checkbox">
+              {/* <div className="custom-control custom-checkbox">
                   <label className="custom-control-label" htmlFor="defaultUnchecked">Dungeon Master</label>
                   <input type="checkbox" className="custom-control-input" id="defaultUnchecked" value={this.state.isMaster} onChange={this.onCheck}/>
-              </div>
+              </div> */}
 
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -151,12 +168,13 @@ class Register extends Component {
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  id="button"
                 >
                   Register
                 </button>
 
-                <p className="grey-text text-darken-1" style={{ paddingTop: "11.250px"}}>
-                Already have an account? <Link to="/login">Login</Link>
+                <p className="grey-text text-darken-1" id="already" style={{ paddingTop: "11.250px"}}>
+                Already have an account? <Link to="/login" style={{ color: "darkred"}}>Login</Link>
                 </p>
 
               </div>

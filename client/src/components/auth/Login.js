@@ -73,7 +73,7 @@ class Login extends Component {
 
             <form noValidate onSubmit={this.onSubmit}>
               
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username" id="lablename">Username</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -85,13 +85,14 @@ class Login extends Component {
                     invalid: errors.username || errors.usernamenotfound
                   })}
                 />
+              </div>
                 <span className="red-text">
                   {errors.username}
                   {errors.usernamenotfound}
                 </span>
-              </div>
+                <br></br>
 
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" id="lablename">Password</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -103,11 +104,11 @@ class Login extends Component {
                     invalid: errors.password || errors.passwordincorrect
                   })}
                 />
+              </div>
                 <span className="red-text">
                   {errors.password}
                   {errors.passwordincorrect}
                 </span>
-              </div>
 
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -119,12 +120,13 @@ class Login extends Component {
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  id="button"
                 >
                   Login
                 </button>
 
-                <p className="grey-text text-darken-1" style={{ paddingTop: "11.250px"}}>
-                Don't have an account? <Link to="/register">Register</Link>
+                <p className="grey-text text-darken-1" id="already" style={{ paddingTop: "11.250px"}}>
+                Don't have an account? <Link to="/register" style={{ color: "darkred"}}>Register</Link>
                 </p>
 
               </div>
