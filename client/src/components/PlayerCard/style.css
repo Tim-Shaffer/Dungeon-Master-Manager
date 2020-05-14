@@ -1,0 +1,16 @@
+.list-overflow-container {
+    border: 1px gray;
+}
+
+.list-group-item {
+    background-color: gray; 
+}
+
+.attr-name {
+    color: darkred;
+}
+
+.attr-value {
+    color: black;
+}
+
