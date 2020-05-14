@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 import NavbarLogin from "../Navbar/NavbarLogin";
+import "./loginstyle.css";
 
 class Register extends Component {
   constructor() {
@@ -62,19 +63,20 @@ class Register extends Component {
     return (
       <>
       <NavbarLogin />
-      <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
+      <div className="container border rounded border-dark" id="register">
+        <div style={{ marginTop: "1rem" }} className="row">
           <div className="col s8 offset-s2">
             
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <div className="col s12" style={{ paddingBottom: "11.250px"}}>
               <br></br>
               <h4>
-                <b>Register</b>
+                <b style={{ fontSize: "50px"}}>Register</b>
               </h4>
             </div>
 
             <form noValidate onSubmit={this.onSubmit}>
 
+                <label htmlFor="name">Name</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -86,10 +88,10 @@ class Register extends Component {
                     invalid: errors.name
                   })}
                 />
-                <label htmlFor="name">Name</label>
                 <span className="red-text">{errors.name}</span>
               </div>
 
+                <label htmlFor="username">Username</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -101,10 +103,10 @@ class Register extends Component {
                     invalid: errors.username
                   })}
                 />
-                <label htmlFor="username">Username</label>
                 <span className="red-text">{errors.username}</span>
               </div>
 
+                <label htmlFor="password">Password</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -116,10 +118,10 @@ class Register extends Component {
                     invalid: errors.password
                   })}
                 />
-                <label htmlFor="password">Password</label>
                 <span className="red-text">{errors.password}</span>
               </div>
 
+                <label htmlFor="password2">Confirm Password</label>
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -131,13 +133,12 @@ class Register extends Component {
                     invalid: errors.password2
                   })}
                 />
-                <label htmlFor="password2">Confirm Password</label>
                 <span className="red-text">{errors.password2}</span>
               </div>
 
               <div className="custom-control custom-checkbox">
-                  <input type="checkbox" className="custom-control-input" id="defaultUnchecked" value={this.state.isMaster} onChange={this.onCheck}/>
                   <label className="custom-control-label" htmlFor="defaultUnchecked">Dungeon Master</label>
+                  <input type="checkbox" className="custom-control-input" id="defaultUnchecked" value={this.state.isMaster} onChange={this.onCheck}/>
               </div>
 
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -154,7 +155,7 @@ class Register extends Component {
                   Register
                 </button>
 
-                <p className="grey-text text-darken-1">
+                <p className="grey-text text-darken-1" style={{ paddingTop: "11.250px"}}>
                 Already have an account? <Link to="/login">Login</Link>
                 </p>
 
