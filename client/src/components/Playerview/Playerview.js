@@ -22,11 +22,11 @@ class Playerview extends Component {
                 {attrName: "Charisma", attrValue: 4}  
             ]
             },
-            {name: "Test Character 2", 
-            attributes: [{attrName: "Class", attrValue: 1},]},
-            {name: "Test Character 3", 
-            attributes: [{attrName: "Class", attrValue: 1}, 
-            {attrName: "Level", attrValue: 2}, ]},
+            // {name: "Test Character 2", 
+            // attributes: [{attrName: "Class", attrValue: 1},]},
+            // {name: "Test Character 3", 
+            // attributes: [{attrName: "Class", attrValue: 1}, 
+            // {attrName: "Level", attrValue: 2}, ]},
             {name: "Test Character 4",
             attributes: [
                 {attrName: "Class", attrValue: 1}, 
