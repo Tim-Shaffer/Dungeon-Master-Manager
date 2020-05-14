@@ -12,7 +12,10 @@ class DMview extends Component {
                 {attrName: "Class", attrValue: 1}, 
                 {attrName: "Level", attrValue: 2}, 
                 {attrName: "Background", attrValue: 3}, 
-                {attrName: "Race", attrValue: 4} 
+                {attrName: "Race", attrValue: 4},
+                {attrName: "Race", attrValue: 4}, 
+                {attrName: "Race", attrValue: 4}, 
+                {attrName: "Race", attrValue: 4}  
             ]
             },
             {name: "Test Character 2", attributes: [{attrName: "Class", attrValue: 1},]},
