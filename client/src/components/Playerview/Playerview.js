@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./playerstyle.css";
 import PlayerCard from "../PlayerCard/Playercard";
 
+
 class Playerview extends Component {
 
     state = {

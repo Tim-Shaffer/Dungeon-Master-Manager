@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./dmstyle.css";
 import PlayerCard from "../PlayerCard/Playercard";
 
-
 class DMview extends Component {
 
     state = {
