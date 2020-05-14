@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../Playerview/playerstyle.css";
+import "./CreatePlyr.css";
 
 
 class CreatePlyr extends Component {

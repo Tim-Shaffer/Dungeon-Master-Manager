@@ -1,6 +1,7 @@
 import React from "react";
 import "./playerstyle.css";
 
+
 function Playerview() {
 
   return (

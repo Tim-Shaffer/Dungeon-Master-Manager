@@ -28,8 +28,14 @@ body {
     background-image: url('https://wallpapercave.com/wp/wp2227193.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: center;   
+}
 
-    
-    
+a {
+    color: inherit;
+    text-decoration-line: none;
+}
+
+a:hover {
+    color: inherit;
 }
