@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./playerstyle.css";
 import PlayerCard from "../PlayerCard/Playercard";
-
+import { findCharacter } from "../../controllers/character_controller";
 
 class Playerview extends Component {
 
@@ -47,6 +47,18 @@ class Playerview extends Component {
         ]
         //   characters: []
     };
+
+    componentDidMount() {
+        //-- I know I am executing this function!
+        
+        const user = this.props.user;
+
+        findCharacter(user.id).then(res => {
+          this.setState({ isMaster: res.data.isMaster});
+        })
+        .catch(err => console.log(err));
+    
+      }
 
     render() {
         return (
