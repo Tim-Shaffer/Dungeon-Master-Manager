@@ -53,7 +53,7 @@ class CreatePlyr extends Component {
     render() {
         return (          
                 <div>
-                        <Navbar />
+                        {/* <Navbar /> */}
                     <div className="container-fluid" id="body">
                         <br/>
                         <br/>
@@ -62,7 +62,7 @@ class CreatePlyr extends Component {
                             <div className="col-4">
                                 <div className="card border border-dark">
                                     <div className="card-header">
-                                    Player 1
+                                    Create New Character for {this.props.userName.split(" ")[0]}
                                     </div>
                                     <div className="card-body">
                                     <h5 className="card-title">
