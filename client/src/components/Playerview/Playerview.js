@@ -47,8 +47,8 @@ class Playerview extends Component {
         //     ]
         //     }
         // ]
-           characters: []
-
+           characters: [],
+           showCreate: false
     };
 
     componentDidMount() {
@@ -70,21 +70,26 @@ class Playerview extends Component {
     
       };
 
-    createPlayer() {
-        
+    createCharacter(e){
+        e.preventDefault();
+        console.log("Button was Clicked");
+        this.setState({ showCreate: true})
     };
 
     render() {
+
+        const userName = this.props.user.name;
     
         return (
         
             <div>
             <div className="container-fluid" id="body">
                 <div className="row">
-                    {this.state.characters.length === 0 ?
-                        <div className="col-12" id="campaign">
-                            <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" onclick={this.createPlayer()}>Create Character</button>
-                        </div>
+                    {this.state.characters.length === 0 && !this.state.showCreate ?
+                         
+                            <div className="col-12" id="campaign">
+                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" onClick={this.createCharacter.bind(this)}>Create Character</button>
+                            </div>
                     :
                     null
                     }
@@ -92,7 +97,7 @@ class Playerview extends Component {
                 </div>
                 <br/>
 
-                {this.state.characters.length > 0 ?
+                {this.state.characters.length > 0 && !this.state.showCreate ?
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
                             this.state.characters.map(character => 
@@ -122,6 +127,12 @@ class Playerview extends Component {
                     </div>
                 :
                     null
+                }
+
+                { this.state.showCreate ? 
+                    <CreatePlyr userName={userName}/>
+                :
+                null
                 }
 
                 </div>
