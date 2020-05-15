@@ -6,51 +6,51 @@ import PlayerCard from "../PlayerCard/Playercard";
 class Playerview extends Component {
 
     state = {
-        characters: [
-            {name: "Test Character 1",
-            attributes: [
-                {attrName: "Class", attrValue: 1}, 
-                {attrName: "Level", attrValue: 2}, 
-                {attrName: "Background", attrValue: 3}, 
-                {attrName: "Race", attrValue: 4},
-                {attrName: "Alignment", attrValue: 1}, 
-                {attrName: "Experience", attrValue: 2}, 
-                {attrName: "Strength", attrValue: 3}, 
-                {attrName: "Dexterity", attrValue: 4}, 
-                {attrName: "Constitution", attrValue: 1}, 
-                {attrName: "Intelligence", attrValue: 2}, 
-                {attrName: "Wisdom", attrValue: 3}, 
-                {attrName: "Charisma", attrValue: 4}  
-            ]
-            },
+        // characters: [
+        //     {name: "Test Character 1",
+        //     attributes: [
+        //         {attrName: "Class", attrValue: 1}, 
+        //         {attrName: "Level", attrValue: 2}, 
+        //         {attrName: "Background", attrValue: 3}, 
+        //         {attrName: "Race", attrValue: 4},
+        //         {attrName: "Alignment", attrValue: 1}, 
+        //         {attrName: "Experience", attrValue: 2}, 
+        //         {attrName: "Strength", attrValue: 3}, 
+        //         {attrName: "Dexterity", attrValue: 4}, 
+        //         {attrName: "Constitution", attrValue: 1}, 
+        //         {attrName: "Intelligence", attrValue: 2}, 
+        //         {attrName: "Wisdom", attrValue: 3}, 
+        //         {attrName: "Charisma", attrValue: 4}  
+        //     ]
+        //     },
             // {name: "Test Character 2", 
             // attributes: [{attrName: "Class", attrValue: 1},]},
             // {name: "Test Character 3", 
             // attributes: [{attrName: "Class", attrValue: 1}, 
             // {attrName: "Level", attrValue: 2}, ]},
-            {name: "Test Character 4",
-            attributes: [
-                {attrName: "Class", attrValue: 1}, 
-                {attrName: "Level", attrValue: 2}, 
-                {attrName: "Background", attrValue: 3}, 
-                {attrName: "Race", attrValue: 4},
-                {attrName: "Alignment", attrValue: 1}, 
-                {attrName: "Experience", attrValue: 2}, 
-                {attrName: "Strength", attrValue: 3}, 
-                {attrName: "Dexterity", attrValue: 4}, 
-                {attrName: "Constitution", attrValue: 1}, 
-                {attrName: "Intelligence", attrValue: 2}, 
-                {attrName: "Wisdom", attrValue: 3}, 
-                {attrName: "Charisma", attrValue: 4}  
-            ]
-            }
-        ]
-        //   characters: []
+        //     {name: "Test Character 4",
+        //     attributes: [
+        //         {attrName: "Class", attrValue: 1}, 
+        //         {attrName: "Level", attrValue: 2}, 
+        //         {attrName: "Background", attrValue: 3}, 
+        //         {attrName: "Race", attrValue: 4},
+        //         {attrName: "Alignment", attrValue: 1}, 
+        //         {attrName: "Experience", attrValue: 2}, 
+        //         {attrName: "Strength", attrValue: 3}, 
+        //         {attrName: "Dexterity", attrValue: 4}, 
+        //         {attrName: "Constitution", attrValue: 1}, 
+        //         {attrName: "Intelligence", attrValue: 2}, 
+        //         {attrName: "Wisdom", attrValue: 3}, 
+        //         {attrName: "Charisma", attrValue: 4}  
+        //     ]
+        //     }
+        // ]
+           characters: []
     };
 
     render() {
         return (
-            <body>
+        
             <div>
             <div className="container-fluid" id="body">
                 <div className="row">
@@ -104,7 +104,7 @@ class Playerview extends Component {
 
                 </div>
             </div>
-        </body>
+        
         )
     }
 

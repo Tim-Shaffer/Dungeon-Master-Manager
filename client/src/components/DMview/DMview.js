@@ -50,8 +50,7 @@ class DMview extends Component {
     render() {
 
     return (
-        <body>
-
+        
         <div>
             <div className="container-fluid" id="body">
                 
@@ -109,7 +108,7 @@ class DMview extends Component {
 
             </div>
         </div>
-        </body>
+        
         );
     }
 }
