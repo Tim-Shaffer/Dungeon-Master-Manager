@@ -2,24 +2,39 @@ import React, { Component } from "react";
 import "../Playerview/playerstyle.css";
 import Navbar from "../Navbar/Navbar";
 import "./CreatePlyr.css";
+import { findUser } from "../../actions/authActions";
 
 
 class CreatePlyr extends Component {
     state = {
-        characterName: "",
-        classType: "",
-        background: "",
-        playerName: "",
-        race: "",
-        alignment: "",
-        exp: "",
-        strength: "",
-        dexterity: "",
-        constitution: "",
-        intelligence: "",
-        wisdom: "",
-        charisma: ""
-    };
+            userName: "",
+            characterName: "",
+            classType: "",
+            background: "",
+            playerName: "",
+            race: "",
+            alignment: "",
+            exp: "",
+            strength: "",
+            dexterity: "",
+            constitution: "",
+            intelligence: "",
+            wisdom: "",
+            charisma: ""
+        };
+
+    // componentDidMount() {
+    //     //-- I know I am executing this function!
+    //     const user = this.props.user;
+    //     console.log(JSON.stringify(user));
+    
+    //     // findUser(user.id);
+    //     findUser(user.id).then(res => {
+    //       this.setState({ userName: res.data.name});
+    //     })
+    //     .catch(err => console.log(err));
+    
+    // }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -36,19 +51,10 @@ class CreatePlyr extends Component {
     }
 
     render() {
-        return (
-                <body>           
+        return (          
                 <div>
                         <Navbar />
                     <div className="container-fluid" id="body">
-                        {/* <div className="row">
-                            <div className="col-6" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" >Create Character</button>
-                            </div>
-                            <div className="col-6" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Characters</button>
-                            </div>
-                        </div> */}
                         <br/>
                         <br/>
                         <br/>
@@ -174,7 +180,6 @@ class CreatePlyr extends Component {
                         </div>
                     </div>
                 </div>
-                </body>
               );
     }
 }

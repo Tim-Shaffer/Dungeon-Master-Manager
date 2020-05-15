@@ -11,7 +11,7 @@ const CharacterSchema = new Schema({
   
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "users"
   },
 
   attributes: {
@@ -21,4 +21,4 @@ const CharacterSchema = new Schema({
   
 });
 
-module.exports = Character = mongoose.model("character", CharacterSchema);
+module.exports = Character = mongoose.model("characters", CharacterSchema);

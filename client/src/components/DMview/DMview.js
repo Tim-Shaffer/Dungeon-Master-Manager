@@ -50,8 +50,7 @@ class DMview extends Component {
     render() {
 
     return (
-        <body>
-
+        
         <div>
             <div className="container-fluid" id="body">
                 
@@ -83,7 +82,7 @@ class DMview extends Component {
                                 <div className="card border border-dark">
                                     <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                     <div className="butt">
-                                        <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a>
+                                        <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Save</a>
                                         <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
                                     </div>
                                 </div>
@@ -109,7 +108,7 @@ class DMview extends Component {
 
             </div>
         </div>
-        </body>
+        
         );
     }
 }
