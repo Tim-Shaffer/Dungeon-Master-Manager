@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../Playerview/playerstyle.css";
+import Navbar from "../Navbar/Navbar";
 import "./CreatePlyr.css";
 
 
@@ -38,15 +39,16 @@ class CreatePlyr extends Component {
         return (
                 <body>           
                 <div>
+                        <Navbar />
                     <div className="container-fluid" id="body">
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-6" id="campaign">
                                 <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" >Create Character</button>
                             </div>
                             <div className="col-6" id="campaign">
                                 <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Characters</button>
                             </div>
-                        </div>
+                        </div> */}
                         <br/>
                         <br/>
                         <br/>
