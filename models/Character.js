@@ -11,7 +11,7 @@ const CharacterSchema = new Schema({
   
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "users"
   },
 
   attributes: {

@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import "./playerstyle.css";
 import PlayerCard from "../PlayerCard/Playercard";
 import { findCharacter } from "../../controllers/character_controller";
+import CreatePlyr from "../CreatePlyr/CreatePlyr";
 
 class Playerview extends Component {
 
-    state = {
+        state = {
+            userName: "",
         // characters: [
         //     {name: "Test Character 1",
         //     attributes: [
@@ -46,22 +48,34 @@ class Playerview extends Component {
         //     }
         // ]
            characters: []
+
     };
 
     componentDidMount() {
         //-- I know I am executing this function!
         const user = this.props.user;
 
-        findCharacter(user.id).
-            then(res => {
-            console.log(JSON.stringify(res));
-        //   this.setState({ characters: res.data});
+        findCharacter(user.id)
+        .then(res => {
+            let charArray = [];
+            for (let i=0; i < res.data.length; i++) {
+                charArray.push({
+                    name: res.data[i].name,
+                    attributes: res.data[i].attributes   
+                })
+            }
+            this.setState({ characters: charArray, userName: user });
         })
         .catch(err => console.log(err));
     
-      }
+      };
+
+    createPlayer() {
+        
+    };
 
     render() {
+    
         return (
         
             <div>
@@ -69,17 +83,12 @@ class Playerview extends Component {
                 <div className="row">
                     {this.state.characters.length === 0 ?
                         <div className="col-12" id="campaign">
-                            <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Create Character</button>
+                            <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" onclick={this.createPlayer()}>Create Character</button>
                         </div>
                     :
                     null
                     }
-                    {/* <div className="col-6" id="campaign">
-                        <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Create Character</button>
-                    </div>
-                    <div className="col-6" id="campaign">
-                        <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Characters</button>
-                    </div> */}
+
                 </div>
                 <br/>
 
