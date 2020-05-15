@@ -30,7 +30,7 @@ body {
 .red-text {
     font-family: 'Permanent Marker', cursive;
     color: red;
-    font-size: x-small;
+    font-size: small;
     position: relative;
     bottom: 7px;
 }

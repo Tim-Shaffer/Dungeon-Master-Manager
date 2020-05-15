@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 const users = require("./routes/api/users");
-const character = require("./routes/api/character");
-const campaign = require("./routes/api/campaign");
+const characters = require("./routes/api/character");
+const campaigns = require("./routes/api/campaign");
 
 const app = express();
 
@@ -31,8 +31,8 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
-app.use("/api/character", character);
-app.use("/api/campaign", campaign);
+app.use("/api/character", characters);
+app.use("/api/campaign", campaigns);
 
 const PORT = process.env.PORT || 3001;
 

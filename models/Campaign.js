@@ -21,4 +21,4 @@ const CampaignSchema = new Schema({
   
 });
 
-module.exports = Campaign = mongoose.model("Campaign", CampaignSchema);
+module.exports = Campaign = mongoose.model("campaigns", CampaignSchema);

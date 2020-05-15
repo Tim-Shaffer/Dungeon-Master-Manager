@@ -21,4 +21,4 @@ const CharacterSchema = new Schema({
   
 });
 
-module.exports = Character = mongoose.model("character", CharacterSchema);
+module.exports = Character = mongoose.model("characters", CharacterSchema);

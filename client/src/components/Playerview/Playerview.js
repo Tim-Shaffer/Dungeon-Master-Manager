@@ -50,11 +50,12 @@ class Playerview extends Component {
 
     componentDidMount() {
         //-- I know I am executing this function!
-        
         const user = this.props.user;
 
-        findCharacter(user.id).then(res => {
-          this.setState({ isMaster: res.data.isMaster});
+        findCharacter(user.id).
+            then(res => {
+            console.log(JSON.stringify(res));
+        //   this.setState({ characters: res.data});
         })
         .catch(err => console.log(err));
     
