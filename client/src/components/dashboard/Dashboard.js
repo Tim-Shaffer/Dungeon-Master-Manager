@@ -27,6 +27,7 @@ class Dashboard extends Component {
   componentDidMount() {
     //-- I know I am executing this function!
     const { user } = this.props.auth;
+    console.log(JSON.stringify(user));
 
     // findUser(user.id);
     findUser(user.id).then(res => {
@@ -57,7 +58,7 @@ class Dashboard extends Component {
 
       { this.state.isMaster ? 
         <Master />
-      : <Player />}
+      : <Player user={user}/>}
       </>
     );
   }
