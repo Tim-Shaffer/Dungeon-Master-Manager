@@ -16,16 +16,15 @@ class PlayerCard extends Component {
           {this.props.attributes.length > 0 ?
             <List>
               {this.props.attributes.map(attribute =>
-<<<<<<< HEAD
                 <div className="row">
                   <div className="col">
-                  <ListItem >
+                  <ListItem>
                     <div className="row">
                       <IncrementButton></IncrementButton>
                         <div className="col-3 border border-dark rounded mb-0 bg-white text-dark">
                           <span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span>
                         </div>
-                        <DecrementButton></DecrementButton>
+                      <DecrementButton></DecrementButton>
                     </div>
                   </ListItem>
                   </div>
@@ -41,10 +40,6 @@ class PlayerCard extends Component {
                 //   </div>
                 // </div>
                 )}
-=======
-              <ListItem key={attribute.attrName}><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> </ListItem>
-              )}
->>>>>>> c0945feee9f756907ebaafc1362e8d71e868d74c
             </List>
             :
             <div>No Attributes</div>
