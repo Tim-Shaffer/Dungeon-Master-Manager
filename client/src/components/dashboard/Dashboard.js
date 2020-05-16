@@ -39,7 +39,7 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth;
-    console.log(JSON.stringify(user));
+
     return (
       <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">

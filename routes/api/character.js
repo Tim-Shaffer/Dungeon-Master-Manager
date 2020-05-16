@@ -3,8 +3,6 @@ const mongojs = require("mongojs");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-// Load User model
-// const Character = require("../../models/Character");
 // Require the models
 var db = require("../../models/");
 
@@ -18,7 +16,6 @@ router.get("/:id", (req, res) => {
     db.Character.find({ userId: req.params.id })
       // .populate("User")
       .then(dbChar => {
-        console.log(JSON.stringify(dbChar));
         // return res.status(200).json(dbChar)
         return res.json(dbChar)
       })
@@ -30,7 +27,6 @@ router.get("/:id", (req, res) => {
 // @access Public
 router.get("/", (req, res) => {
 
-  // console.log(count);
   db.Character.find()
     .then(dbChar => {
       // return res.status(200).json(dbChar)
@@ -41,8 +37,6 @@ router.get("/", (req, res) => {
 
 // @route POST api/character/:id
 router.post("/:id", (req, res) => {
-
-  console.log(JSON.stringify(req.body));
 
   let newChar = {};
   newChar = {
