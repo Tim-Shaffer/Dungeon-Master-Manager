@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { createCharacter } from "../../controllers/character_controller";
 import "../Playerview/playerstyle.css";
+import Navbar from "../Navbar/Navbar";
 import "./CreatePlyr.css";
 
 
@@ -18,53 +18,65 @@ class CreatePlyr extends Component {
         constitution: "",
         intelligence: "",
         wisdom: "",
-        charisma: "",
-        level: "",
-        userId: ""
+        charisma: ""
     };
 
-
     handleInputChange = event => {
-        // Pull the name and value properties off of the event.target (the element which triggered the event)
-        const { name, value } = event.target;
-    
-        // Set the state for the appropriate input field
-        this.setState({
-          [name]: value
-        });
-      };
-
+       this.setState({
+           characterName: event.target.value,
+           classType: event.target.value,
+           background: event.target.value,
+           playerName: event.target.value,
+           race: event.target.value,
+           alignment: event.target.value,
+           exp: event.target.value,
+           strength: event.target.value,
+           dexterity: event.target.value,
+           constitution: event.target.value,
+           intelligence: event.target.value,
+           wisdom: event.target.value,
+           charisma: event.target.value
+       });
+    };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        const user = this.props.user;
-        console.log(user);
-        const userId = user.id;
-        const plyr = {
-        name: this.state.characterName,
-        attributes: [
-            {attrName: "Class", attrValue: this.state.classType}, 
-            {attrName: "Level", attrValue: this.state.level}, 
-            {attrName: "Background", attrValue: this.state.background}, 
-            {attrName: "Race", attrValue: this.state.race},
-            {attrName: "Alignment", attrValue: this.state.alignment}, 
-            {attrName: "Experience", attrValue: this.state.exp}, 
-            {attrName: "Strength", attrValue: this.state.strength}, 
-            {attrName: "Dexterity", attrValue: this.state.dexterity}, 
-            {attrName: "Constitution", attrValue: this.state.constituion}, 
-            {attrName: "Intelligence", attrValue: this.state.intelligence}, 
-            {attrName: "Wisdom", attrValue: this.state.wisdom}, 
-            {attrName: "Charisma", attrValue: this.state.charisma}  
-        ]
-        }
+        
+        const characterName = this.characterName.value;
+        const classType = this.classType.value;
+        const background = this.background.value;
+        const playerName = this.playerName.value;
+        const race = this.race.value;
+        const alignment = this.alignment.value;
+        const exp = this.exp.value;
+        const strength = this.strength.value;
+        const dexterity = this.dexterity.value;
+        const constitution = this.constitution.value;
+        const intelligence = this.intelligence.value;
+        const wisdom = this.wisdom.value;
+        const charisma = this.charisma.value;
 
-        createCharacter(userId)
-        .then(res =>  {
-            console.log(JSON.stringify(res));
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        const plyr = {
+            characterName: characterName,
+            classType: classType,
+            background: background,
+            playerName: playerName,
+            race: race,
+            alignment: alignment,
+            exp: exp,
+            strength: strength,
+            dexterity: dexterity,
+            constituion: constitution,
+            intelligence: intelligence,
+            wisdom: wisdom,
+            charisma: charisma
+        };
+
+        const data = [...this.state.data, plyr];
+
+        this.setState({
+            data: data
+        });
     };
 
     render() {
@@ -187,15 +199,6 @@ class CreatePlyr extends Component {
                                     onChange={this.handleInputChange}
                                     type="text"
                                     placeholder="Charisma"
-                                     />
-                                    </p>
-                                    <p className="card-text">
-                                    <input
-                                    value={this.state.level}
-                                    name="level"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    placeholder="Level"
                                      />
                                     </p>
                                     </div>                    
