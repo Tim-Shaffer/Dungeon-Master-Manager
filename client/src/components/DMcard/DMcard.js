@@ -5,7 +5,7 @@ import DecrementButton from "../IncrementDecrementButton/DecrementButton";
 
 import "./style.css";
 
-class PlayerCard extends Component {
+class DMcard extends Component {
 
   render() {
     return (
@@ -18,7 +18,15 @@ class PlayerCard extends Component {
               {this.props.attributes.map(attribute =>
                 <div className="row">
                   <div className="col">
-                  <ListItem key={attribute.attrName}><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> </ListItem>
+                  <ListItem>
+                    <div className="row">
+                        <div className="col-3 border border-dark rounded mb-0 bg-white text-dark">
+                          
+                          <span className="attr-name">{attribute.attrName}:</span> <DecrementButton></DecrementButton> <span className="attr-value">{attribute.attrValue}</span><IncrementButton></IncrementButton>
+                        </div>
+                      
+                    </div>
+                  </ListItem>
                   </div>
                 </div>
                 
@@ -43,4 +51,4 @@ class PlayerCard extends Component {
 
 }
 
-export default PlayerCard;
+export default DMcard;
