@@ -49,5 +49,20 @@ router.post("/:id", (req, res) => {
     .catch( (err) => {res.json(err)})
 
 });
+
+// @route POST api/character/:id
+router.put("/:id", (req, res) => {
+
+  let updateChar = {};
+  updateChar = { 
+    attributes: req.body.attributes
+  }
+  db.Character.findOneAndUpdate({_id: req.params.id}, updateChar, {new: true})
+    .then( (dbChar) => {
+      console.log(dbChar);
+      return res.status(200).json(dbChar)})
+    .catch( (err) => {res.json(err)})
+
+});
   
   module.exports = router;
