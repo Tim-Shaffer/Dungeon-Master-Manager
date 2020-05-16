@@ -1,15 +1,16 @@
 #decbutt {
   position: relative;
   bottom: 1px;
-  height: 26px;
-  margin-left: 5px;
+  height: 24px;
+  left: 10px;
+
 }
 
 #incbutt {
   position: relative;
   bottom: 1px;
-  height: 26px;
-  margin-right: 5px;
+  height: 24px;
+  right: 47px;
 }
 
 #symbol{
