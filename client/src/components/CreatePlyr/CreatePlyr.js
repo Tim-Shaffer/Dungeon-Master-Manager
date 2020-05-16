@@ -1,52 +1,75 @@
 import React, { Component } from "react";
+import { createCharacter } from "../../controllers/character_controller";
 import "../Playerview/playerstyle.css";
 import "./CreatePlyr.css";
 
 
 class CreatePlyr extends Component {
     state = {
+        playerName: "",
         characterName: "",
         classType: "",
         background: "",
-        playerName: "",
         race: "",
         alignment: "",
-        exp: "",
-        strength: "",
-        dexterity: "",
-        constitution: "",
-        intelligence: "",
-        wisdom: "",
-        charisma: ""
+        exp: 0,
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0,
+        level: 0,
+        userId: ""
     };
+
 
     handleInputChange = event => {
+        // Pull the name and value properties off of the event.target (the element which triggered the event)
         const { name, value } = event.target;
-
+    
+        // Set the state for the appropriate input field
         this.setState({
-            [name]: value
+          [name]: value
         });
-    };
+      };
+
 
     handleFormSubmit = event => {
         event.preventDefault();
+        const user = this.props.user;
+        const userId = user.id;
+        const plyr = {
+            name: this.state.characterName,
+            attributes: [
+                {attrName: "Class", attrValue: this.state.classType}, 
+                {attrName: "Level", attrValue: this.state.level}, 
+                {attrName: "Background", attrValue: this.state.background}, 
+                {attrName: "Race", attrValue: this.state.race},
+                {attrName: "Alignment", attrValue: this.state.alignment}, 
+                {attrName: "Experience", attrValue: this.state.exp}, 
+                {attrName: "Strength", attrValue: this.state.strength}, 
+                {attrName: "Dexterity", attrValue: this.state.dexterity}, 
+                {attrName: "Constitution", attrValue: this.state.constituion}, 
+                {attrName: "Intelligence", attrValue: this.state.intelligence}, 
+                {attrName: "Wisdom", attrValue: this.state.wisdom}, 
+                {attrName: "Charisma", attrValue: this.state.charisma}  
+            ]
+        };
 
-
-    }
+        createCharacter(userId, plyr)
+        .then(res =>  {
+            this.props.handleSubmit(res.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    };
 
     render() {
-        return (
-                <body>           
+        return (        
                 <div>
                     <div className="container-fluid" id="body">
-                        <div className="row">
-                            <div className="col-6" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" >Create Character</button>
-                            </div>
-                            <div className="col-6" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Characters</button>
-                            </div>
-                        </div>
                         <br/>
                         <br/>
                         <br/>
@@ -54,12 +77,13 @@ class CreatePlyr extends Component {
                             <div className="col-4">
                                 <div className="card border border-dark">
                                     <div className="card-header">
-                                    Player 1
+                                    Create New Character for {this.props.userName.split(" ")[0]}
                                     </div>
                                     <div className="card-body">
                                     <h5 className="card-title">
                                     <input
-                                     value={this.state.characterName}
+                                    value={this.state.characterName}
+                                    id="name"
                                     name="characterName"
                                     onChange={this.handleInputChange}
                                     type="text"
@@ -165,14 +189,26 @@ class CreatePlyr extends Component {
                                     placeholder="Charisma"
                                      />
                                     </p>
+                                    <p className="card-text">
+                                    <input
+                                    value={this.state.level}
+                                    name="level"
+                                    onChange={this.handleInputChange}
+                                    type="text"
+                                    placeholder="Level"
+                                     />
+                                    </p>
                                     </div>                    
-                                    <button onClick={this.handleFormSubmit}>Submit</button>
+                                        <a href="/dashboard">
+                                    <button onClick={this.handleFormSubmit} >
+                                        Submit
+                                        </button>
+                                        </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </body>
               );
     }
 }

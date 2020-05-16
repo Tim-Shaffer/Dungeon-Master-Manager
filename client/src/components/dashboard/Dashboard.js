@@ -6,17 +6,16 @@ import { findUser } from "../../actions/authActions";
 import "./style.css";
 import Master from "../DMview/DMview";
 import Player from "../Playerview/Playerview";
+import CreatePlyr from "../CreatePlyr/CreatePlyr";
 // import Nav from "../Nav/Nav"
 
 class Dashboard extends Component {
 
-  constructor() {
-    super();
-    this.state = {
+  state = {
       isMaster: false,
+      showPlayer: true,
       errors: {}
     };
-  }
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -27,6 +26,7 @@ class Dashboard extends Component {
   componentDidMount() {
     //-- I know I am executing this function!
     const { user } = this.props.auth;
+    // console.log(JSON.stringify(user));
 
     // findUser(user.id);
     findUser(user.id).then(res => {
@@ -57,7 +57,7 @@ class Dashboard extends Component {
 
       { this.state.isMaster ? 
         <Master />
-      : <Player />}
+      : this.state.showPlayer ? <Player user={user} /> : <CreatePlyr user={user} /> }
       </>
     );
   }
