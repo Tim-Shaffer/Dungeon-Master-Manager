@@ -6,20 +6,20 @@ import "./CreatePlyr.css";
 
 class CreatePlyr extends Component {
     state = {
+        playerName: "",
         characterName: "",
         classType: "",
         background: "",
-        playerName: "",
         race: "",
         alignment: "",
-        exp: "",
-        strength: "",
-        dexterity: "",
-        constitution: "",
-        intelligence: "",
-        wisdom: "",
-        charisma: "",
-        level: "",
+        exp: 0,
+        strength: 0,
+        dexterity: 0,
+        constitution: 0,
+        intelligence: 0,
+        wisdom: 0,
+        charisma: 0,
+        level: 0,
         userId: ""
     };
 
@@ -38,29 +38,28 @@ class CreatePlyr extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         const user = this.props.user;
-        console.log(user);
         const userId = user.id;
         const plyr = {
-        name: this.state.characterName,
-        attributes: [
-            {attrName: "Class", attrValue: this.state.classType}, 
-            {attrName: "Level", attrValue: this.state.level}, 
-            {attrName: "Background", attrValue: this.state.background}, 
-            {attrName: "Race", attrValue: this.state.race},
-            {attrName: "Alignment", attrValue: this.state.alignment}, 
-            {attrName: "Experience", attrValue: this.state.exp}, 
-            {attrName: "Strength", attrValue: this.state.strength}, 
-            {attrName: "Dexterity", attrValue: this.state.dexterity}, 
-            {attrName: "Constitution", attrValue: this.state.constituion}, 
-            {attrName: "Intelligence", attrValue: this.state.intelligence}, 
-            {attrName: "Wisdom", attrValue: this.state.wisdom}, 
-            {attrName: "Charisma", attrValue: this.state.charisma}  
-        ]
-        }
+            name: this.state.characterName,
+            attributes: [
+                {attrName: "Class", attrValue: this.state.classType}, 
+                {attrName: "Level", attrValue: this.state.level}, 
+                {attrName: "Background", attrValue: this.state.background}, 
+                {attrName: "Race", attrValue: this.state.race},
+                {attrName: "Alignment", attrValue: this.state.alignment}, 
+                {attrName: "Experience", attrValue: this.state.exp}, 
+                {attrName: "Strength", attrValue: this.state.strength}, 
+                {attrName: "Dexterity", attrValue: this.state.dexterity}, 
+                {attrName: "Constitution", attrValue: this.state.constituion}, 
+                {attrName: "Intelligence", attrValue: this.state.intelligence}, 
+                {attrName: "Wisdom", attrValue: this.state.wisdom}, 
+                {attrName: "Charisma", attrValue: this.state.charisma}  
+            ]
+        };
 
-        createCharacter(userId)
+        createCharacter(userId, plyr)
         .then(res =>  {
-            console.log(JSON.stringify(res));
+            this.props.handleSubmit(res.data);
         })
         .catch(err => {
             console.log(err);
@@ -83,7 +82,8 @@ class CreatePlyr extends Component {
                                     <div className="card-body">
                                     <h5 className="card-title">
                                     <input
-                                     value={this.state.characterName}
+                                    value={this.state.characterName}
+                                    id="name"
                                     name="characterName"
                                     onChange={this.handleInputChange}
                                     type="text"

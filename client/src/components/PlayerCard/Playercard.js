@@ -13,7 +13,7 @@ class PlayerCard extends Component {
           {this.props.attributes.length > 0 ?
             <List>
               {this.props.attributes.map(attribute =>
-              <ListItem ><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> </ListItem>
+              <ListItem key={attribute.attrName}><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> </ListItem>
               )}
             </List>
             :

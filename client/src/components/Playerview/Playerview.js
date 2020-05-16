@@ -68,13 +68,19 @@ class Playerview extends Component {
         })
         .catch(err => console.log(err));
     
-      };
+    };
 
     createCharacter(e){
         e.preventDefault();
-        console.log("Button was Clicked");
         this.setState({ showCreate: true})
     };
+
+    handleSubmit(charData) {
+        const charArray = this.state.characters;
+        charArray.push(charData);
+
+        this.setState({ showCreate: false, characters: charArray});
+    }
 
     render() {
 
@@ -102,7 +108,7 @@ class Playerview extends Component {
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
                             this.state.characters.map(character => 
-                            <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
+                            <div key={character.name} className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
                                 <div className="card border border-dark">
                                     <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                     <div className="butt">
@@ -131,7 +137,7 @@ class Playerview extends Component {
                 }
 
                 { this.state.showCreate ? 
-                    <CreatePlyr userName={userName} user={user}/>
+                    <CreatePlyr userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
                 :
                 null
                 }
