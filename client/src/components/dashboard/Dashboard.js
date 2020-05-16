@@ -48,6 +48,7 @@ class Dashboard extends Component {
           <button
               onClick={this.onLogoutClick}
               className="btn logout-btn"
+              id="logout"
             >
               Logout
             </button>
