@@ -79,7 +79,9 @@ class Playerview extends Component {
     render() {
 
         const userName = this.props.user.name;
-    
+        console.log(JSON.stringify(this.props.user));
+        
+        
         return (
         
             <div>
