@@ -79,6 +79,7 @@ class Playerview extends Component {
     render() {
 
         const userName = this.props.user.name;
+        const user = this.props.user;
     
         return (
         
@@ -130,7 +131,7 @@ class Playerview extends Component {
                 }
 
                 { this.state.showCreate ? 
-                    <CreatePlyr userName={userName}/>
+                    <CreatePlyr userName={userName} user={user}/>
                 :
                 null
                 }
