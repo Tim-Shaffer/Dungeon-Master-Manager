@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./dmstyle.css";
-import PlayerCard from "../PlayerCard/Playercard";
+import DMcard from "../DMcard/DMcard";
 
 class DMview extends Component {
 
@@ -80,7 +80,7 @@ class DMview extends Component {
                             this.state.characters.map(character => 
                             <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
                                 <div className="card border border-dark">
-                                    <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
+                                    <DMcard character={character.name} attributes={character.attributes}></DMcard>                
                                     <div className="butt">
                                         <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Save</a>
                                         <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
@@ -92,7 +92,7 @@ class DMview extends Component {
                                  
                                 <div className="col-6">
                                     <div className="card border border-dark">
-                                        <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
+                                        <DMcard character={character.name} attributes={character.attributes}></DMcard>                
                                         <div className="butt">
                                             <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a>
                                             <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
