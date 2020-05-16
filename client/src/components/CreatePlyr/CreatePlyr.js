@@ -1,59 +1,75 @@
 import React, { Component } from "react";
+import { createCharacter } from "../../controllers/character_controller";
 import "../Playerview/playerstyle.css";
-import Navbar from "../Navbar/Navbar";
 import "./CreatePlyr.css";
-import { findUser } from "../../actions/authActions";
 
 
 class CreatePlyr extends Component {
     state = {
-            userName: "",
-            characterName: "",
-            classType: "",
-            background: "",
-            playerName: "",
-            race: "",
-            alignment: "",
-            exp: "",
-            strength: "",
-            dexterity: "",
-            constitution: "",
-            intelligence: "",
-            wisdom: "",
-            charisma: ""
-        };
+        characterName: "",
+        classType: "",
+        background: "",
+        playerName: "",
+        race: "",
+        alignment: "",
+        exp: "",
+        strength: "",
+        dexterity: "",
+        constitution: "",
+        intelligence: "",
+        wisdom: "",
+        charisma: "",
+        level: "",
+        userId: ""
+    };
 
-    // componentDidMount() {
-    //     //-- I know I am executing this function!
-    //     const user = this.props.user;
-    //     console.log(JSON.stringify(user));
-    
-    //     // findUser(user.id);
-    //     findUser(user.id).then(res => {
-    //       this.setState({ userName: res.data.name});
-    //     })
-    //     .catch(err => console.log(err));
-    
-    // }
 
     handleInputChange = event => {
+        // Pull the name and value properties off of the event.target (the element which triggered the event)
         const { name, value } = event.target;
-
+    
+        // Set the state for the appropriate input field
         this.setState({
-            [name]: value
+          [name]: value
         });
-    };
+      };
+
 
     handleFormSubmit = event => {
         event.preventDefault();
+        const user = this.props.user;
+        console.log(user);
+        const userId = user.id;
+        const plyr = {
+        name: this.state.characterName,
+        attributes: [
+            {attrName: "Class", attrValue: this.state.classType}, 
+            {attrName: "Level", attrValue: this.state.level}, 
+            {attrName: "Background", attrValue: this.state.background}, 
+            {attrName: "Race", attrValue: this.state.race},
+            {attrName: "Alignment", attrValue: this.state.alignment}, 
+            {attrName: "Experience", attrValue: this.state.exp}, 
+            {attrName: "Strength", attrValue: this.state.strength}, 
+            {attrName: "Dexterity", attrValue: this.state.dexterity}, 
+            {attrName: "Constitution", attrValue: this.state.constituion}, 
+            {attrName: "Intelligence", attrValue: this.state.intelligence}, 
+            {attrName: "Wisdom", attrValue: this.state.wisdom}, 
+            {attrName: "Charisma", attrValue: this.state.charisma}  
+        ]
+        }
 
-
-    }
+        createCharacter(userId)
+        .then(res =>  {
+            console.log(JSON.stringify(res));
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    };
 
     render() {
-        return (          
+        return (        
                 <div>
-                        {/* <Navbar /> */}
                     <div className="container-fluid" id="body">
                         <br/>
                         <br/>
@@ -173,8 +189,21 @@ class CreatePlyr extends Component {
                                     placeholder="Charisma"
                                      />
                                     </p>
+                                    <p className="card-text">
+                                    <input
+                                    value={this.state.level}
+                                    name="level"
+                                    onChange={this.handleInputChange}
+                                    type="text"
+                                    placeholder="Level"
+                                     />
+                                    </p>
                                     </div>                    
-                                    <button onClick={this.handleFormSubmit}>Submit</button>
+                                        <a href="/dashboard">
+                                    <button onClick={this.handleFormSubmit} >
+                                        Submit
+                                        </button>
+                                        </a>
                                 </div>
                             </div>
                         </div>
