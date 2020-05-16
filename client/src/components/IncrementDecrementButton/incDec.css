@@ -1,0 +1,18 @@
+#decbutt {
+  position: relative;
+  bottom: 1px;
+  height: 26px;
+  margin-left: 5px;
+}
+
+#incbutt {
+  position: relative;
+  bottom: 1px;
+  height: 26px;
+  margin-right: 5px;
+}
+
+#symbol{
+  position: relative;
+  bottom:8px ;
+}
