@@ -43,10 +43,10 @@ class CreatePlyr extends Component {
             name: this.state.characterName,
             attributes: [
                 {attrName: "Class", attrValue: this.state.classType}, 
-                {attrName: "Level", attrValue: this.state.level}, 
                 {attrName: "Background", attrValue: this.state.background}, 
                 {attrName: "Race", attrValue: this.state.race},
                 {attrName: "Alignment", attrValue: this.state.alignment}, 
+                {attrName: "Level", attrValue: this.state.level}, 
                 {attrName: "Experience", attrValue: this.state.exp}, 
                 {attrName: "Strength", attrValue: this.state.strength}, 
                 {attrName: "Dexterity", attrValue: this.state.dexterity}, 
