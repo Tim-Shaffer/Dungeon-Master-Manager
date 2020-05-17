@@ -8,7 +8,7 @@ class CreatePlyr extends Component {
     state = {
         playerName: "",
         characterName: "",
-        class: "",
+        classType: "",
         background: "",
         race: "",
         alignment: "",
@@ -79,138 +79,140 @@ class CreatePlyr extends Component {
                                     <div className="card-header">
                                     Create New Character for {this.props.userName.split(" ")[0]}
                                     </div>
-                                    <div className="card-body">
-                                    <h5 className="card-title">
-                                    <label htmlFor="name" id="lablename">Name</label>
-                                    <input
-                                    value={this.state.characterName}
-                                    id="name"
-                                    name="characterName"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Character Name"
-                                    />
-                                    </h5>
-                                    <p className="card-text">
-                                    <label htmlFor="class" id="lablename">Class</label>
-                                    <input
-                                    value={this.state.class}
-                                    name="class"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Class"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="background" id="lablename">Background</label>
-                                    <input
-                                     value={this.state.background}
-                                     name="background"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Background"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="race" id="lablename">Race</label>
-                                    <input
-                                     value={this.state.race}
-                                        name="race"
+                                    <div className="card-body create-character">
+                                        <h5 className="card-title">
+                                        <label htmlFor="name" id="lablename">Name</label>
+                                        <input
+                                        value={this.state.characterName}
+                                        id="name"
+                                        name="characterName"
                                         onChange={this.handleInputChange}
                                         type="text"
-                                        // placeholder="Race"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="alignment" id="lablename">Alignment</label>
-                                    <input
-                                    value={this.state.alignment}
-                                    name="alignment"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    //  placeholder="Alignment"
-                                    />
-                                    <p className="card-text">
-                                    <label htmlFor="level" id="lablename">Level</label>
-                                    <input
-                                    value={this.state.level}
-                                    name="level"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Level"
-                                     />
-                                    </p>
-                                     </p>
-                                    <p className="card-text">
-                                    <label htmlFor="experience" id="lablename">Experience</label>
-                                    <input
-                                    value={this.state.exp}
-                                    name="experience"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="EXP"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="strength" id="lablename">Strength</label>
-                                    <input
-                                    value={this.state.strength}
-                                    name="strength"
-                                    onChange={this.handleInputChange}
-                                     type="text"
-                                    // placeholder="Strength"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="dexterity" id="lablename">Dexterity</label>
-                                    <input
-                                    value={this.state.dexterity}
-                                    name="dexterity"
-                                     onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Dexterity"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="constitution" id="lablename">Constitution</label>
-                                    <input
-                                    value={this.state.constitution}
-                                    name="constitution"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Constitution"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="intelligence" id="lablename">Intelligence</label>
-                                    <input
-                                    value={this.state.intelligence}
-                                    name="intelligence"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Intelligence"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="wisdom" id="lablename">Wisdom</label>
-                                    <input
-                                    value={this.state.wisdom}
-                                    name="wisdom"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Wisdom"
-                                    />
-                                    </p>
-                                    <p className="card-text">
-                                    <label htmlFor="charisma" id="lablename">Charisma</label>
-                                    <input
-                                    value={this.state.charisma}
-                                    name="charisma"
-                                    onChange={this.handleInputChange}
-                                    type="text"
-                                    // placeholder="Charisma"
-                                     />
-                                    </p>
+                                        // placeholder="Character Name"
+                                        />
+                                        </h5>
+                                        <p className="card-text">
+                                        <label htmlFor="class" id="lablename">Class</label>
+                                        <input
+                                        value={this.state.class}
+                                        name="class"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Class"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="background" id="lablename">Background</label>
+                                        <input
+                                        value={this.state.background}
+                                        name="background"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Background"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="race" id="lablename">Race</label>
+                                        <input
+                                        value={this.state.race}
+                                            name="race"
+                                            onChange={this.handleInputChange}
+                                            type="text"
+                                            // placeholder="Race"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="alignment" id="lablename">Alignment</label>
+                                        <input
+                                        value={this.state.alignment}
+                                        name="alignment"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        //  placeholder="Alignment"
+                                        />
+                                        </p>
+                                        
+                                        <p className="card-text">
+                                        <label htmlFor="level" id="lablename">Level</label>
+                                        <input
+                                        value={this.state.level}
+                                        name="level"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Level"
+                                        />
+                                        </p>
+                                        
+                                        <p className="card-text">
+                                        <label htmlFor="experience" id="lablename">Experience</label>
+                                        <input
+                                        value={this.state.exp}
+                                        name="experience"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="EXP"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="strength" id="lablename">Strength</label>
+                                        <input
+                                        value={this.state.strength}
+                                        name="strength"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Strength"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="dexterity" id="lablename">Dexterity</label>
+                                        <input
+                                        value={this.state.dexterity}
+                                        name="dexterity"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Dexterity"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="constitution" id="lablename">Constitution</label>
+                                        <input
+                                        value={this.state.constitution}
+                                        name="constitution"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Constitution"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="intelligence" id="lablename">Intelligence</label>
+                                        <input
+                                        value={this.state.intelligence}
+                                        name="intelligence"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Intelligence"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="wisdom" id="lablename">Wisdom</label>
+                                        <input
+                                        value={this.state.wisdom}
+                                        name="wisdom"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Wisdom"
+                                        />
+                                        </p>
+                                        <p className="card-text">
+                                        <label htmlFor="charisma" id="lablename">Charisma</label>
+                                        <input
+                                        value={this.state.charisma}
+                                        name="charisma"
+                                        onChange={this.handleInputChange}
+                                        type="text"
+                                        // placeholder="Charisma"
+                                        />
+                                        </p>
                                     </div>                    
                                         <a href="/dashboard">
                                     <button onClick={this.handleFormSubmit} >
