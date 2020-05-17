@@ -94,11 +94,12 @@ class DMcard extends Component {
         <div className="card-header"><h5 className="card-title">{this.state.name}</h5></div>
         <div className="card-body">
           {this.props.attributes.length > 0 ?
+          <form>
             <List>
-              {this.props.attributes.map(attribute =>
-                <div className="row">
+              {this.props.attributes.map((attribute, index) =>
+                <div className="row" key={index}>
                   <div className="col">
-                  <ListItem key={attribute.index}>
+                  <ListItem >
                     <div className="row">
                         <div className="col border border-dark rounded mb-0 bg-white text-dark">
                           <div className="row">
@@ -108,7 +109,7 @@ class DMcard extends Component {
                               {!isNaN(attribute.attrValue) ? 
                               <>
                                 <div className="col-2">
-                                  <DecrementButton></DecrementButton>                  
+                                  <DecrementButton key={index}></DecrementButton>                  
                                 </div>
                                 
 
@@ -173,6 +174,7 @@ class DMcard extends Component {
                 // </div>
                 )}
             </List>
+            </form>
             :
             <div>No Attributes</div>
             }

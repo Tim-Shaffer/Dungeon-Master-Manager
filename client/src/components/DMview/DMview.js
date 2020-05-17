@@ -101,8 +101,8 @@ class DMview extends Component {
                 {this.state.characters.length > 0 ?
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
-                            this.state.characters.map(character => 
-                            <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
+                            this.state.characters.map((character, index) => 
+                            <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"} key={index}>
                                 <div className="card border border-dark">
                                     <DMcard character={character.name} attributes={character.attributes}></DMcard>                
                                     <div className="butt">
@@ -112,11 +112,11 @@ class DMview extends Component {
                                 </div>
                             </div>)
                         :
-                            this.state.characters.map(character =>
+                            this.state.characters.map((character, index) =>
                                  
-                                <div className="col-6">
+                                <div className="col-6" key={index}>
                                     <div className="card border border-dark">
-                                        <DMcard character={character.name} attributes={character.attributes}></DMcard>                
+                                        <DMcard character={character.name} attributes={character.attributes} ></DMcard>                
                                         <div className="butt">
                                             <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a>
                                             {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}

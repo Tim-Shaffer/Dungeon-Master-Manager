@@ -15,9 +15,9 @@ class PlayerCard extends Component {
         <div className="card-body">
           {this.props.attributes.length > 0 ?
             <List>
-              {this.props.attributes.map(attribute =>
-                <div className="row">
-                  <div className="col">
+              {this.props.attributes.map((attribute, index) =>
+                <div className="row" key={index}>
+                  <div className="col" key={index}>
                   <ListItem key={attribute.attrName}><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> </ListItem>
                   </div>
                 </div>
