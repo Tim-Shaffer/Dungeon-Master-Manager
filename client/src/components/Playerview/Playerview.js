@@ -74,7 +74,7 @@ class Playerview extends Component {
                                     <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                     <div className="butt">
                                         {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                        <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
+                                        {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
                                     </div>
                                 </div>
                             </div>)
@@ -86,7 +86,7 @@ class Playerview extends Component {
                                         <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                         <div className="butt">
                                             {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                            <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
+                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
                                         </div>
                                     </div>
                                 </div>)

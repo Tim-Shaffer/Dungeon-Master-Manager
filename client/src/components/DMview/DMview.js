@@ -107,7 +107,7 @@ class DMview extends Component {
                                     <DMcard character={character.name} attributes={character.attributes}></DMcard>                
                                     <div className="butt">
                                         <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Save</a>
-                                        <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
+                                        {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
                                     </div>
                                 </div>
                             </div>)
@@ -119,7 +119,7 @@ class DMview extends Component {
                                         <DMcard character={character.name} attributes={character.attributes}></DMcard>                
                                         <div className="butt">
                                             <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a>
-                                            <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
+                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
                                         </div>
                                     </div>
                                 </div>)

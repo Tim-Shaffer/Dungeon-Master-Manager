@@ -117,24 +117,24 @@ class DMcard extends Component {
                                        type="text"
                                        name={attribute.attrName}
                                        onChange={this.handleInputChange.bind(this)}
-                                      //  defaultValue={attribute.attrName === "Level" ? this.state.level : 
-                                      //                 attribute.attrName === "Experience" ? this.state.experience : 
-                                      //                 attribute.attrName === "Strength" ? this.state.strength : 
-                                      //                 attribute.attrName === "Dexterity" ? this.state.dexterity : 
-                                      //                 attribute.attrName === "Constitution" ? this.state.constitution: 
-                                      //                 attribute.attrName === "Intelligence" ? this.state.intelligence : 
-                                      //                 attribute.attrName === "Wisdom" ? this.state.wisdom : 
-                                      //                 attribute.attrName === "Charisma" ? this.state.charisma : 
-                                      //                 null}
-                                        value={attribute.attrName === "Level" ? this.state.level : 
-                                                attribute.attrName === "Experience" ? this.state.experience : 
-                                                attribute.attrName === "Strength" ? this.state.strength : 
-                                                attribute.attrName === "Dexterity" ? this.state.dexterity : 
-                                                attribute.attrName === "Constitution" ? this.state.constitution: 
-                                                attribute.attrName === "Intelligence" ? this.state.intelligence : 
-                                                attribute.attrName === "Wisdom" ? this.state.wisdom : 
-                                                attribute.attrName === "Charisma" ? this.state.charisma : 
-                                                null}
+                                       defaultValue={attribute.attrName === "Level" ? this.state.level : 
+                                                      attribute.attrName === "Experience" ? this.state.experience : 
+                                                      attribute.attrName === "Strength" ? this.state.strength : 
+                                                      attribute.attrName === "Dexterity" ? this.state.dexterity : 
+                                                      attribute.attrName === "Constitution" ? this.state.constitution: 
+                                                      attribute.attrName === "Intelligence" ? this.state.intelligence : 
+                                                      attribute.attrName === "Wisdom" ? this.state.wisdom : 
+                                                      attribute.attrName === "Charisma" ? this.state.charisma : 
+                                                      null}
+                                        // value={attribute.attrName === "Level" ? this.state.level : 
+                                        //         attribute.attrName === "Experience" ? this.state.experience : 
+                                        //         attribute.attrName === "Strength" ? this.state.strength : 
+                                        //         attribute.attrName === "Dexterity" ? this.state.dexterity : 
+                                        //         attribute.attrName === "Constitution" ? this.state.constitution: 
+                                        //         attribute.attrName === "Intelligence" ? this.state.intelligence : 
+                                        //         attribute.attrName === "Wisdom" ? this.state.wisdom : 
+                                        //         attribute.attrName === "Charisma" ? this.state.charisma : 
+                                        //         null}
                                        />
                                   
                                 </div>
