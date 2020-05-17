@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
+import { findCharacter } from "../../controllers/character_controller";
 
 class DMview extends Component {
 
     state = {
-        characters: [
-            {name: "Test Character 1",
-            attributes: [
-                {attrName: "Class", attrValue: "Rouge"}, 
-                {attrName: "Background", attrValue: "Thief"}, 
-                {attrName: "Race", attrValue: "Elf"},
-                {attrName: "Alignment", attrValue: "Chaotic Good"}, 
-                {attrName: "Level", attrValue: 2}, 
-                {attrName: "Experience", attrValue: 2}, 
-                {attrName: "Strength", attrValue: 3}, 
-                {attrName: "Dexterity", attrValue: 4}, 
-                {attrName: "Constitution", attrValue: 1}, 
-                {attrName: "Intelligence", attrValue: 2}, 
-                {attrName: "Wisdom", attrValue: 3}, 
-                {attrName: "Charisma", attrValue: 4}  
-            ]
-            }
+        // characters: [
+            // {name: "Test Character 1",
+            // attributes: [
+            //     {attrName: "Class", attrValue: "Rouge"}, 
+            //     {attrName: "Background", attrValue: "Thief"}, 
+            //     {attrName: "Race", attrValue: "Elf"},
+            //     {attrName: "Alignment", attrValue: "Chaotic Good"}, 
+            //     {attrName: "Level", attrValue: 2}, 
+            //     {attrName: "Experience", attrValue: 2}, 
+            //     {attrName: "Strength", attrValue: 3}, 
+            //     {attrName: "Dexterity", attrValue: 4}, 
+            //     {attrName: "Constitution", attrValue: 1}, 
+            //     {attrName: "Intelligence", attrValue: 2}, 
+            //     {attrName: "Wisdom", attrValue: 3}, 
+            //     {attrName: "Charisma", attrValue: 4}  
+            // ]
+            // }
             // {name: "Test Character 2", 
             // attributes: [{attrName: "Class", attrValue: 1},]},
             // {name: "Test Character 3", 
@@ -43,9 +44,32 @@ class DMview extends Component {
             //     {attrName: "Charisma", attrValue: 4}  
             // ]
             // }
-        ]
-        //  characters: []
+        // ],
+        characters: [],
+        username: ""
     };
+
+    componentDidMount () {
+        // Just for testing 
+        //-- I know I am executing this function!
+        const user = this.props.user;
+        console.log(user);
+
+        findCharacter(user.id)
+        .then(res => {
+            let charArray = [];
+            for (let i=0; i < res.data.length; i++) {
+                charArray.push({
+                    name: res.data[i].name,
+                    attributes: res.data[i].attributes   
+                })
+            }
+            this.setState({ characters: charArray, userName: user });
+        })
+        .catch(err => console.log(err));
+
+
+    }
 
     render() {
 
