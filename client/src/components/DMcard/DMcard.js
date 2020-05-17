@@ -28,11 +28,34 @@ class DMcard extends Component {
     };
 
   componentDidMount () {
+    const name = this.props.character;
     const attributes = this.props.attributes;
     this.setState({name: name, attributes: attributes})
+
+    // moved to a function call since we may need to access it again
+    this.setStateAttributes(attributes);
+    
+    // for (let i=0; i < attributes.length; i++) {
+    //   if (attributes[i].attrName === "Class" ) { this.setState({classType: attributes[i].attrValue}) }  
+    //   else if (attributes[i].attrName === "Background") {this.setState({background: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Race") {this.setState({race: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Alignment") {this.setState({alignment: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Level") {this.setState({level: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Experience") {this.setState({experience: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Strength") {this.setState({strength: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Dexterity") {this.setState({dexterity: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Constitution") {this.setState({constitution: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Intelligence") {this.setState({intelligence: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Wisdom") {this.setState({wisdom: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Charisma") {this.setState({charisma: attributes[i].attrValue}) } 
+    // }
+
     // console.log("props" + JSON.stringify(this.props.attributes));
     // console.log("attr" + JSON.stringify(attributes));
-    const name = this.props.character;
+  }
+
+  setStateAttributes (attributes) {
+    
     for (let i=0; i < attributes.length; i++) {
       if (attributes[i].attrName === "Class" ) { this.setState({classType: attributes[i].attrValue}) }  
       else if (attributes[i].attrName === "Background") {this.setState({background: attributes[i].attrValue}) } 
@@ -47,18 +70,21 @@ class DMcard extends Component {
       else if (attributes[i].attrName === "Wisdom") {this.setState({wisdom: attributes[i].attrValue}) } 
       else if (attributes[i].attrName === "Charisma") {this.setState({charisma: attributes[i].attrValue}) } 
     }
-    
-    // console.log("STATE" + JSON.stringify(this.state));
-    // console.log(this.state.attributes.indexOf("Level"));
+
   }
+
   handleInputChange = event => {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
+    console.log(event.target);
 
     // Set the state for the appropriate input field
     this.setState({
       [name]: value
     });
+
+    console.log("STATE: " + JSON.stringify(this.state));
+
   };
 
   render() {
@@ -68,11 +94,12 @@ class DMcard extends Component {
         <div className="card-header"><h5 className="card-title">{this.state.name}</h5></div>
         <div className="card-body">
           {this.props.attributes.length > 0 ?
+          <form>
             <List>
-              {this.props.attributes.map(attribute =>
-                <div className="row">
+              {this.props.attributes.map((attribute, index) =>
+                <div className="row" key={index}>
                   <div className="col">
-                  <ListItem>
+                  <ListItem >
                     <div className="row">
                         <div className="col border border-dark rounded mb-0 bg-white text-dark">
                           <div className="row">
@@ -82,12 +109,12 @@ class DMcard extends Component {
                               {!isNaN(attribute.attrValue) ? 
                               <>
                                 <div className="col-2">
-                                  <DecrementButton></DecrementButton>                  
+                                  <DecrementButton key={index}></DecrementButton>                  
                                 </div>
                                 
 
                                 <div className="col">
-                                <input id="number"
+                                <input className="number"
                                        type="text"
                                        name={attribute.attrName}
                                        onChange={this.handleInputChange.bind(this)}
@@ -100,6 +127,15 @@ class DMcard extends Component {
                                                       attribute.attrName === "Wisdom" ? this.state.wisdom : 
                                                       attribute.attrName === "Charisma" ? this.state.charisma : 
                                                       null}
+                                        // value={attribute.attrName === "Level" ? this.state.level : 
+                                        //         attribute.attrName === "Experience" ? this.state.experience : 
+                                        //         attribute.attrName === "Strength" ? this.state.strength : 
+                                        //         attribute.attrName === "Dexterity" ? this.state.dexterity : 
+                                        //         attribute.attrName === "Constitution" ? this.state.constitution: 
+                                        //         attribute.attrName === "Intelligence" ? this.state.intelligence : 
+                                        //         attribute.attrName === "Wisdom" ? this.state.wisdom : 
+                                        //         attribute.attrName === "Charisma" ? this.state.charisma : 
+                                        //         null}
                                        />
                                   
                                 </div>
@@ -138,6 +174,7 @@ class DMcard extends Component {
                 // </div>
                 )}
             </List>
+            </form>
             :
             <div>No Attributes</div>
             }

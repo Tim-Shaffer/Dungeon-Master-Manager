@@ -14,6 +14,7 @@ import store from "./store";
 
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import NotFound from "./components/NotFound/NotFound";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -40,13 +41,16 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Route exact path="/" component={Landing} />
-            {/* <Route exact path="/create" component={CreatePlyr} /> */}
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Switch>
+          <Switch>
+              <Route exact path="/" component={Landing} />
+              {/* <Route exact path="/create" component={CreatePlyr} /> */}
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <Route component={NotFound} /> 
             </Switch>
+            
           </div>
         </Router>
       </Provider>

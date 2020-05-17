@@ -57,7 +57,7 @@ class Dashboard extends Component {
       {/* <Nav /> */}
 
       { this.state.isMaster ? 
-        <Master />
+        <Master user={user}/>
       : this.state.showPlayer ? <Player user={user} /> : <CreatePlyr user={user} /> }
       </>
     );

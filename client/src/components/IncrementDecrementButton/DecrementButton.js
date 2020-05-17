@@ -18,15 +18,15 @@ class DecrementButton extends Component {
   render() {
     return (
       <div>
-        <div class="input-group">
-          <span class="input-group-btn">
+        <div className="input-group">
+          <span className="input-group-btn">
               <button type="button" className="quantity-left-minus btn btn-danger btn-number" id="decbutt" data-type="minus" data-field="" onClick={this.IncrementItem}>
                 <span className="glyphicon glyphicon-minus" id="symbol">-</span>
               </button>
           </span>
         </div>
         
-        {/* <button class="incDecButt" onClick={this.DecreaseItem}>-</button> */}
+        {/* <button className="incDecButt" onClick={this.DecreaseItem}>-</button> */}
       </div>
     );
   }

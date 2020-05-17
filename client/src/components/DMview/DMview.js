@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
+import { findCharacter } from "../../controllers/character_controller";
 
 class DMview extends Component {
 
     state = {
-        characters: [
-            {name: "Test Character 1",
-            attributes: [
-                {attrName: "Class", attrValue: "Rouge"}, 
-                {attrName: "Background", attrValue: "Thief"}, 
-                {attrName: "Race", attrValue: "Elf"},
-                {attrName: "Alignment", attrValue: "Chaotic Good"}, 
-                {attrName: "Level", attrValue: 2}, 
-                {attrName: "Experience", attrValue: 2}, 
-                {attrName: "Strength", attrValue: 3}, 
-                {attrName: "Dexterity", attrValue: 4}, 
-                {attrName: "Constitution", attrValue: 1}, 
-                {attrName: "Intelligence", attrValue: 2}, 
-                {attrName: "Wisdom", attrValue: 3}, 
-                {attrName: "Charisma", attrValue: 4}  
-            ]
-            }
+        // characters: [
+            // {name: "Test Character 1",
+            // attributes: [
+            //     {attrName: "Class", attrValue: "Rouge"}, 
+            //     {attrName: "Background", attrValue: "Thief"}, 
+            //     {attrName: "Race", attrValue: "Elf"},
+            //     {attrName: "Alignment", attrValue: "Chaotic Good"}, 
+            //     {attrName: "Level", attrValue: 2}, 
+            //     {attrName: "Experience", attrValue: 2}, 
+            //     {attrName: "Strength", attrValue: 3}, 
+            //     {attrName: "Dexterity", attrValue: 4}, 
+            //     {attrName: "Constitution", attrValue: 1}, 
+            //     {attrName: "Intelligence", attrValue: 2}, 
+            //     {attrName: "Wisdom", attrValue: 3}, 
+            //     {attrName: "Charisma", attrValue: 4}  
+            // ]
+            // }
             // {name: "Test Character 2", 
             // attributes: [{attrName: "Class", attrValue: 1},]},
             // {name: "Test Character 3", 
@@ -43,9 +44,32 @@ class DMview extends Component {
             //     {attrName: "Charisma", attrValue: 4}  
             // ]
             // }
-        ]
-        //  characters: []
+        // ],
+        characters: [],
+        username: ""
     };
+
+    componentDidMount () {
+        // Just for testing 
+        //-- I know I am executing this function!
+        const user = this.props.user;
+        console.log(user);
+
+        findCharacter(user.id)
+        .then(res => {
+            let charArray = [];
+            for (let i=0; i < res.data.length; i++) {
+                charArray.push({
+                    name: res.data[i].name,
+                    attributes: res.data[i].attributes   
+                })
+            }
+            this.setState({ characters: charArray, userName: user });
+        })
+        .catch(err => console.log(err));
+
+
+    }
 
     render() {
 
@@ -77,25 +101,25 @@ class DMview extends Component {
                 {this.state.characters.length > 0 ?
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
-                            this.state.characters.map(character => 
-                            <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
+                            this.state.characters.map((character, index) => 
+                            <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"} key={index}>
                                 <div className="card border border-dark">
                                     <DMcard character={character.name} attributes={character.attributes}></DMcard>                
                                     <div className="butt">
                                         <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Save</a>
-                                        <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
+                                        {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
                                     </div>
                                 </div>
                             </div>)
                         :
-                            this.state.characters.map(character =>
+                            this.state.characters.map((character, index) =>
                                  
-                                <div className="col-6">
+                                <div className="col-6" key={index}>
                                     <div className="card border border-dark">
-                                        <DMcard character={character.name} attributes={character.attributes}></DMcard>                
+                                        <DMcard character={character.name} attributes={character.attributes} ></DMcard>                
                                         <div className="butt">
                                             <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a>
-                                            <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
+                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
                                         </div>
                                     </div>
                                 </div>)

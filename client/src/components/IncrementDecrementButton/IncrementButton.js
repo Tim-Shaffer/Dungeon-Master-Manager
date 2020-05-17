@@ -17,15 +17,15 @@ class IncrementButton extends Component {
   render() {
     return (
       <div>
-        <div class="input-group">
-          <span class="input-group-btn">
+        <div className="input-group">
+          <span className="input-group-btn">
               <button type="button" className="quantity-left-minus btn btn-success btn-number" id="incbutt" data-type="plus" data-field="" onClick={this.IncrementItem}>
                 <span className="glyphicon glyphicon-plus" id="symbol">+</span>
               </button>
           </span>
         </div>
         
-        {/* <button class="incDecButt" onClick={this.IncrementItem}>+</button> */}
+        {/* <button className="incDecButt" onClick={this.IncrementItem}>+</button> */}
       </div>
     );
   }
