@@ -9,19 +9,47 @@ class DMcard extends Component {
 
   
     state = {
-          name: "",
-          attributes: []
+        name: "",
+        attributes: [],
+        classType: "",
+        background: "",
+        race: "",
+        alignment: "",
+        level: "",
+        experience: "",
+        strength: "",
+        dexterity: "",
+        constitution: "",
+        intelligence: "",
+        wisdom: "",
+        charisma: "",
+        chracterId: ""
           
     };
 
   componentDidMount () {
     const attributes = this.props.attributes;
-    console.log("props" + JSON.stringify(this.props.attributes));
-    console.log("attr" + JSON.stringify(attributes));
-    const name = this.props.character;
     this.setState({name: name, attributes: attributes})
-    console.log("STATE" + JSON.stringify(this.state));
-    console.log(this.state.attributes.indexOf("Level"));
+    // console.log("props" + JSON.stringify(this.props.attributes));
+    // console.log("attr" + JSON.stringify(attributes));
+    const name = this.props.character;
+    for (let i=0; i < attributes.length; i++) {
+      if (attributes[i].attrName === "Class" ) { this.setState({classType: attributes[i].attrValue}) }  
+      else if (attributes[i].attrName === "Background") {this.setState({background: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Race") {this.setState({race: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Alignment") {this.setState({alignment: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Level") {this.setState({level: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Experience") {this.setState({experience: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Strength") {this.setState({strength: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Dexterity") {this.setState({dexterity: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Constitution") {this.setState({constitution: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Intelligence") {this.setState({intelligence: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Wisdom") {this.setState({wisdom: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Charisma") {this.setState({charisma: attributes[i].attrValue}) } 
+    }
+    
+    // console.log("STATE" + JSON.stringify(this.state));
+    // console.log(this.state.attributes.indexOf("Level"));
   }
   handleInputChange = event => {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
@@ -63,7 +91,15 @@ class DMcard extends Component {
                                        type="text"
                                        name={attribute.attrName}
                                        onChange={this.handleInputChange.bind(this)}
-                                       defaultValue={this.state.attributes.indexOf(attribute.attrName) !== -1 ? this.state.attributes[this.state.attributes.indexOf(attribute.attrName)].attrValue : null}
+                                       defaultValue={attribute.attrName === "Level" ? this.state.level : 
+                                                      attribute.attrName === "Experience" ? this.state.experience : 
+                                                      attribute.attrName === "Strength" ? this.state.strength : 
+                                                      attribute.attrName === "Dexterity" ? this.state.dexterity : 
+                                                      attribute.attrName === "Constitution" ? this.state.constitution: 
+                                                      attribute.attrName === "Intelligence" ? this.state.intelligence : 
+                                                      attribute.attrName === "Wisdom" ? this.state.wisdom : 
+                                                      attribute.attrName === "Charisma" ? this.state.charisma : 
+                                                      null}
                                        />
                                   
                                 </div>

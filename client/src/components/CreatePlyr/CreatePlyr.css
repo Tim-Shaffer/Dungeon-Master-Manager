@@ -9,3 +9,11 @@ button {
     background-color: darkred ;
     border-color: black;
 }
+
+/* .create-character input {
+        float: right;
+} */
+
+.create-character label {
+    float: left;
+}
