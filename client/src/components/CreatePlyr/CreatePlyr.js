@@ -12,7 +12,7 @@ class CreatePlyr extends Component {
         background: "",
         race: "",
         alignment: "",
-        exp: 0,
+        experience: 0,
         strength: 0,
         dexterity: 0,
         constitution: 0,
@@ -50,7 +50,7 @@ class CreatePlyr extends Component {
                 {attrName: "Experience", attrValue: this.state.experience}, 
                 {attrName: "Strength", attrValue: this.state.strength}, 
                 {attrName: "Dexterity", attrValue: this.state.dexterity}, 
-                {attrName: "Constitution", attrValue: this.state.constituion}, 
+                {attrName: "Constitution", attrValue: this.state.constitution}, 
                 {attrName: "Intelligence", attrValue: this.state.intelligence}, 
                 {attrName: "Wisdom", attrValue: this.state.wisdom}, 
                 {attrName: "Charisma", attrValue: this.state.charisma}  
@@ -131,7 +131,7 @@ class CreatePlyr extends Component {
                                         //  placeholder="Alignment"
                                         />
                                         </p>
-                                        
+
                                         <p className="card-text">
                                         <label htmlFor="level" id="lablename">Level</label>
                                         <input
@@ -146,7 +146,7 @@ class CreatePlyr extends Component {
                                         <p className="card-text">
                                         <label htmlFor="experience" id="lablename">Experience</label>
                                         <input
-                                        value={this.state.exp}
+                                        value={this.state.experience}
                                         name="experience"
                                         onChange={this.handleInputChange}
                                         type="text"
@@ -214,11 +214,10 @@ class CreatePlyr extends Component {
                                         />
                                         </p>
                                     </div>                    
-                                        <a href="/dashboard">
+                                     
                                     <button onClick={this.handleFormSubmit} >
                                         Submit
-                                        </button>
-                                        </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
