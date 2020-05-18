@@ -1,74 +1,48 @@
 import React, { Component } from "react";
 import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
-import { findCharacter } from "../../controllers/character_controller";
+import { findCampaign } from "../../controllers/campaign_controller";
+import AddPlayer from "../AddPlayer/AddPlayer";
 
 class DMview extends Component {
 
     state = {
-        // characters: [
-            // {name: "Test Character 1",
-            // attributes: [
-            //     {attrName: "Class", attrValue: "Rouge"}, 
-            //     {attrName: "Background", attrValue: "Thief"}, 
-            //     {attrName: "Race", attrValue: "Elf"},
-            //     {attrName: "Alignment", attrValue: "Chaotic Good"}, 
-            //     {attrName: "Level", attrValue: 2}, 
-            //     {attrName: "Experience", attrValue: 2}, 
-            //     {attrName: "Strength", attrValue: 3}, 
-            //     {attrName: "Dexterity", attrValue: 4}, 
-            //     {attrName: "Constitution", attrValue: 1}, 
-            //     {attrName: "Intelligence", attrValue: 2}, 
-            //     {attrName: "Wisdom", attrValue: 3}, 
-            //     {attrName: "Charisma", attrValue: 4}  
-            // ]
-            // }
-            // {name: "Test Character 2", 
-            // attributes: [{attrName: "Class", attrValue: 1},]},
-            // {name: "Test Character 3", 
-            // attributes: [{attrName: "Class", attrValue: 1}, 
-            // {attrName: "Level", attrValue: 2}, ]},
-            // {name: "Test Character 4",
-            // attributes: [
-            //     {attrName: "Class", attrValue: 1}, 
-            //     {attrName: "Level", attrValue: 2}, 
-            //     {attrName: "Background", attrValue: 3}, 
-            //     {attrName: "Race", attrValue: 4},
-            //     {attrName: "Alignment", attrValue: 1}, 
-            //     {attrName: "Experience", attrValue: 2}, 
-            //     {attrName: "Strength", attrValue: 3}, 
-            //     {attrName: "Dexterity", attrValue: 4}, 
-            //     {attrName: "Constitution", attrValue: 1}, 
-            //     {attrName: "Intelligence", attrValue: 2}, 
-            //     {attrName: "Wisdom", attrValue: 3}, 
-            //     {attrName: "Charisma", attrValue: 4}  
-            // ]
-            // }
-        // ],
         characters: [],
-        username: ""
+        user: "",
+        showCreate: false,
+        campaigns:[]
     };
 
     componentDidMount () {
         // Just for testing 
         //-- I know I am executing this function!
         const user = this.props.user;
-        console.log(user);
 
-        findCharacter(user.id)
+        findCampaign(user.id)
         .then(res => {
             let charArray = [];
-            for (let i=0; i < res.data.length; i++) {
+            for (let i=0; i < res.data.characters.length; i++) {
                 charArray.push({
-                    name: res.data[i].name,
-                    attributes: res.data[i].attributes   
+                    _id: res.data.characters[i]._id,
+                    name: res.data.characters[i].name,
+                    attributes: res.data.characters[i].attributes   
                 })
             }
-            this.setState({ characters: charArray, userName: user });
+            this.setState({ characters: charArray, user: user });
+            // console.log(JSON.stringify(res));
         })
         .catch(err => console.log(err));
 
+    }
+    createCampaign(e){
+        e.preventDefault();
+        this.setState({ showCreate: true})
+    };
 
+    handleSubmit() {
+        
+
+        this.setState({ showCreate: false});
     }
 
     render() {
@@ -81,19 +55,20 @@ class DMview extends Component {
                     {this.state.characters.length === 0 ?
                         <div className="row justify-content-center">
                             <div className="col-4" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Create Campaign</button>
+                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark"  onClick={this.createCampaign.bind(this)}>Create Campaign</button>
                             </div>
                         </div>
                     :
-                    <div className="row">
-                        <div className="col-6" id="campaign">
-                            <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">New Campaign</button>
-                        </div>
+                    // <div className="row">
+                    //     <div className="col-6" id="campaign">
+                    //         <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">New Campaign</button>
+                    //     </div>
                         
-                        <div className="col-6" id="campaign">
-                            <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">End Campaign</button>
-                        </div>
-                    </div>
+                    //     <div className="col-6" id="campaign">
+                    //         <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">End Campaign</button>
+                    //     </div>
+                    // </div>
+                    null
                     }
                     
                 <br/>
@@ -104,11 +79,7 @@ class DMview extends Component {
                             this.state.characters.map((character, index) => 
                             <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"} key={index}>
                                 <div className="card border border-dark">
-                                    <DMcard character={character.name} attributes={character.attributes}></DMcard>                
-                                    <div className="butt">
-                                        <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Save</a>
-                                        {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
-                                    </div>
+                                    <DMcard character={character.name} attributes={character.attributes} id={character._id}></DMcard>                
                                 </div>
                             </div>)
                         :
@@ -117,10 +88,6 @@ class DMview extends Component {
                                 <div className="col-6" key={index}>
                                     <div className="card border border-dark">
                                         <DMcard character={character.name} attributes={character.attributes} ></DMcard>                
-                                        <div className="butt">
-                                            <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a>
-                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
-                                        </div>
                                     </div>
                                 </div>)
                         }                   
@@ -129,6 +96,14 @@ class DMview extends Component {
                 :
                     null
                 }
+
+                { this.state.showCreate ? 
+                    <AddPlayer handleSubmit={this.handleSubmit.bind(this)}/>
+                :
+                null
+                }
+
+                <AddPlayer></AddPlayer>
 
             </div>
         </div>

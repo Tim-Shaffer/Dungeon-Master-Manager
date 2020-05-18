@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { List, ListItem } from "../List";
 import IncrementButton from "../IncrementDecrementButton/IncrementButton";
 import DecrementButton from "../IncrementDecrementButton/DecrementButton";
+import { updateCharacter } from "../../controllers/character_controller";
 
 import "./style.css";
 
@@ -15,14 +16,14 @@ class DMcard extends Component {
         background: "",
         race: "",
         alignment: "",
-        level: "",
-        experience: "",
-        strength: "",
-        dexterity: "",
-        constitution: "",
-        intelligence: "",
-        wisdom: "",
-        charisma: "",
+        Level: "",
+        Experience: "",
+        Strength: "",
+        Dexterity: "",
+        Constitution: "",
+        Intelligence: "",
+        Wisdom: "",
+        Charisma: "",
         chracterId: ""
           
     };
@@ -35,23 +36,6 @@ class DMcard extends Component {
     // moved to a function call since we may need to access it again
     this.setStateAttributes(attributes);
     
-    // for (let i=0; i < attributes.length; i++) {
-    //   if (attributes[i].attrName === "Class" ) { this.setState({classType: attributes[i].attrValue}) }  
-    //   else if (attributes[i].attrName === "Background") {this.setState({background: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Race") {this.setState({race: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Alignment") {this.setState({alignment: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Level") {this.setState({level: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Experience") {this.setState({experience: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Strength") {this.setState({strength: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Dexterity") {this.setState({dexterity: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Constitution") {this.setState({constitution: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Intelligence") {this.setState({intelligence: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Wisdom") {this.setState({wisdom: attributes[i].attrValue}) } 
-    //   else if (attributes[i].attrName === "Charisma") {this.setState({charisma: attributes[i].attrValue}) } 
-    // }
-
-    // console.log("props" + JSON.stringify(this.props.attributes));
-    // console.log("attr" + JSON.stringify(attributes));
   }
 
   setStateAttributes (attributes) {
@@ -61,14 +45,14 @@ class DMcard extends Component {
       else if (attributes[i].attrName === "Background") {this.setState({background: attributes[i].attrValue}) } 
       else if (attributes[i].attrName === "Race") {this.setState({race: attributes[i].attrValue}) } 
       else if (attributes[i].attrName === "Alignment") {this.setState({alignment: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Level") {this.setState({level: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Experience") {this.setState({experience: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Strength") {this.setState({strength: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Dexterity") {this.setState({dexterity: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Constitution") {this.setState({constitution: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Intelligence") {this.setState({intelligence: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Wisdom") {this.setState({wisdom: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Charisma") {this.setState({charisma: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Level") {this.setState({Level: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Experience") {this.setState({Experience: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Strength") {this.setState({Strength: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Dexterity") {this.setState({Dexterity: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Constitution") {this.setState({Constitution: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Intelligence") {this.setState({Intelligence: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Wisdom") {this.setState({Wisdom: attributes[i].attrValue}) } 
+      else if (attributes[i].attrName === "Charisma") {this.setState({Charisma: attributes[i].attrValue}) } 
     }
 
   }
@@ -80,11 +64,36 @@ class DMcard extends Component {
 
     // Set the state for the appropriate input field
     this.setState({
-      [name]: value
+      [name]: parseInt(value)
     });
 
-    console.log("STATE: " + JSON.stringify(this.state));
+  };
 
+  handleFormSubmit = event => {
+    event.preventDefault();
+
+    // console.log(this.props);
+    const charData = {
+      attributes: [
+        {attrName: "Class", attrValue: this.state.classType}, 
+        {attrName: "Background", attrValue: this.state.background}, 
+        {attrName: "Race", attrValue: this.state.race},
+        {attrName: "Alignment", attrValue: this.state.alignment}, 
+        {attrName: "Level", attrValue: this.state.Level}, 
+        {attrName: "Experience", attrValue: this.state.Experience}, 
+        {attrName: "Strength", attrValue: this.state.Strength}, 
+        {attrName: "Dexterity", attrValue: this.state.Dexterity}, 
+        {attrName: "Constitution", attrValue: this.state.Constitution}, 
+        {attrName: "Intelligence", attrValue: this.state.Intelligence}, 
+        {attrName: "Wisdom", attrValue: this.state.Wisdom}, 
+        {attrName: "Charisma", attrValue: this.state.Charisma} 
+      ]
+    }
+    updateCharacter(this.props.id, charData) 
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => console.log(err));
   };
 
   render() {
@@ -118,14 +127,14 @@ class DMcard extends Component {
                                        type="text"
                                        name={attribute.attrName}
                                        onChange={this.handleInputChange.bind(this)}
-                                       defaultValue={attribute.attrName === "Level" ? this.state.level : 
-                                                      attribute.attrName === "Experience" ? this.state.experience : 
-                                                      attribute.attrName === "Strength" ? this.state.strength : 
-                                                      attribute.attrName === "Dexterity" ? this.state.dexterity : 
-                                                      attribute.attrName === "Constitution" ? this.state.constitution: 
-                                                      attribute.attrName === "Intelligence" ? this.state.intelligence : 
-                                                      attribute.attrName === "Wisdom" ? this.state.wisdom : 
-                                                      attribute.attrName === "Charisma" ? this.state.charisma : 
+                                       defaultValue={attribute.attrName === "Level" ? this.state.Level : 
+                                                      attribute.attrName === "Experience" ? this.state.Experience : 
+                                                      attribute.attrName === "Strength" ? this.state.Strength : 
+                                                      attribute.attrName === "Dexterity" ? this.state.Dexterity : 
+                                                      attribute.attrName === "Constitution" ? this.state.Constitution: 
+                                                      attribute.attrName === "Intelligence" ? this.state.Intelligence : 
+                                                      attribute.attrName === "Wisdom" ? this.state.Wisdom : 
+                                                      attribute.attrName === "Charisma" ? this.state.Charisma : 
                                                       null}
                                         // value={attribute.attrName === "Level" ? this.state.level : 
                                         //         attribute.attrName === "Experience" ? this.state.experience : 
@@ -178,6 +187,12 @@ class DMcard extends Component {
             :
             <div>No Attributes</div>
             }
+
+              <div className="butt">
+                <button className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn" onClick={this.handleFormSubmit.bind(this)}>Save</button>
+                {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
+              </div>
+
         </div>
       </>
     );
