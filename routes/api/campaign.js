@@ -1,21 +1,42 @@
 const express = require("express");
 const mongojs = require("mongojs");
 const router = express.Router();
+const mongoose = require("mongoose");
 
-// Load User model
-const Campaign = require("../../models/Campaign");
+// Require the models
+var db = require("../../models/");
 
-// @route GET api/users/:id
-// @desc Get User information from id found in token!
+// @route GET api/campaign/:id
+// @desc Get Campaign information from id 
 // @access Public
 router.get("/:id", (req, res) => {
       
     // Grab the user based on the id from the token
-    Campaign.findOne({ userId: req.params.id })
+    db.Campaign.findOne({ userId: req.params.id })
     .populate("characters")  
-    .then( (dbUser) => {return res.status(200).json(dbUser)})
-      .catch( (err) => {res.json(err)})
+    .then( (dbCampaign) => {
+      return res.status(200).json(dbCampaign)})
+    .catch( (err) => {res.json(err)})
   
   });
+
+// @route POST api/campaign/:id
+router.post("/:id", (req, res) => {
+
+  let newCampaign = {};
+  const campChars = []
+  for (let i=0; i < req.body.characters.length; i++) {
+    campChars.push(mongoose.Types.ObjectId(req.body.characters[i]))
+  }
+  newCampaign = {
+    name: req.body.name, 
+    userId: mongoose.Types.ObjectId(req.params.id),
+    characters: campChars
+  }
+  db.Campaign.create(newCampaign)
+    .then( (dbCampaign) => {return res.status(200).json(dbCampaign)})
+    .catch( (err) => {res.json(err)})
+
+});
   
-  module.exports = router;
+module.exports = router;
