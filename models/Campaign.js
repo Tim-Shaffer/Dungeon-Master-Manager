@@ -11,12 +11,12 @@ const CampaignSchema = new Schema({
   
   userId: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "users"
   },
 
   characters: [{
       type: Schema.Types.ObjectId,
-      ref: "Character"
+      ref: "characters"
   }],
   
 });
