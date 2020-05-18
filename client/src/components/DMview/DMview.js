@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
 import { findCampaign } from "../../controllers/campaign_controller";
+import AddPlayer from "../AddPlayer/AddPlayer";
 
 class DMview extends Component {
 
     state = {
         characters: [],
         user: "",
+        showCreate: false,
+        campaigns:[]
     };
 
     componentDidMount () {
@@ -31,6 +34,16 @@ class DMview extends Component {
         .catch(err => console.log(err));
 
     }
+    createCampaign(e){
+        e.preventDefault();
+        this.setState({ showCreate: true})
+    };
+
+    handleSubmit() {
+        
+
+        this.setState({ showCreate: false});
+    }
 
     render() {
 
@@ -42,7 +55,7 @@ class DMview extends Component {
                     {this.state.characters.length === 0 ?
                         <div className="row justify-content-center">
                             <div className="col-4" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Create Campaign</button>
+                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark"  onClick={this.createCampaign.bind(this)}>Create Campaign</button>
                             </div>
                         </div>
                     :
@@ -83,6 +96,14 @@ class DMview extends Component {
                 :
                     null
                 }
+
+                { this.state.showCreate ? 
+                    <AddPlayer handleSubmit={this.handleSubmit.bind(this)}/>
+                :
+                null
+                }
+
+                <AddPlayer></AddPlayer>
 
             </div>
         </div>
