@@ -17,3 +17,8 @@ export const updateCharacter = (charId, charData) => {
     // console.log(charData); - I know I have made it here!
     return axios.put("/api/character/" + charId, charData);
 };
+
+export const getCharacters = () => {
+    // console.log(charData); - I know I have made it here!
+    return axios.get("/api/character/");
+};
