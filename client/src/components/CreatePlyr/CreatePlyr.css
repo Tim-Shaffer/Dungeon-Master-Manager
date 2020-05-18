@@ -10,10 +10,8 @@ button {
     border-color: black;
 }
 
-/* .create-character input {
+.create-character input {
         float: right;
-} */
-
-.create-character label {
-    float: left;
 }
+
+
