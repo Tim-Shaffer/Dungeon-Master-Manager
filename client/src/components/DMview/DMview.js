@@ -10,12 +10,20 @@ class DMview extends Component {
         characters: [],
         user: "",
         showCreate: false,
-        campaigns:[]
     };
 
     componentDidMount () {
         // Just for testing 
         //-- I know I am executing this function!
+        this.getUserCampaign();
+
+    }
+    createCampaign(e){
+        e.preventDefault();
+        this.setState({ showCreate: true})
+    };
+
+    getUserCampaign() {
         const user = this.props.user;
 
         findCampaign(user.id)
@@ -32,27 +40,24 @@ class DMview extends Component {
             // console.log(JSON.stringify(res));
         })
         .catch(err => console.log(err));
-
     }
-    createCampaign(e){
-        e.preventDefault();
-        this.setState({ showCreate: true})
-    };
 
-    handleSubmit() {
-        
+    handleSubmit() {   
 
-        this.setState({ showCreate: false});
+        this.setState({ showCreate: false})
+        this.getUserCampaign();
     }
 
     render() {
+        const userName = this.props.user.name;
+        const user = this.props.user;
 
     return (
         
         <div>
             <div className="container-fluid" id="body">
                 
-                    {this.state.characters.length === 0 ?
+                    {this.state.characters.length === 0 && !this.state.showCreate ?
                         <div className="row justify-content-center">
                             <div className="col-4" id="campaign">
                                 <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark"  onClick={this.createCampaign.bind(this)}>Create Campaign</button>
@@ -98,12 +103,12 @@ class DMview extends Component {
                 }
 
                 { this.state.showCreate ? 
-                    <AddPlayer handleSubmit={this.handleSubmit.bind(this)}/>
+                    <AddPlayer userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
                 :
                 null
                 }
 
-                <AddPlayer></AddPlayer>
+                {/* <AddPlayer></AddPlayer> */}
 
             </div>
         </div>
