@@ -3,13 +3,13 @@
     height: 25em;
     background-color: rgba(128, 128, 128, 0.122);
     border-radius: 12px;
-    margin-top: 260px;
-    margin-left: 70px;
     font-weight: 2;
+    margin: auto;
+    margin-top: 260px;
 }
 
 p {
     font-size: 0.9em;
-    color: black;
+    color: white;
     font-weight: 700;
 }
