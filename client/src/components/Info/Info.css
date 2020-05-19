@@ -13,6 +13,8 @@ p {
     font-size: 0.9em;
     color: white;
     font-weight: 700;
+    font-family: 'Rock Salt', cursive;
+    line-height: 1.5rem;
 }
 
 #lastline {
