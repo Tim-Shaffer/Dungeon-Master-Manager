@@ -3,6 +3,7 @@ import "./playerstyle.css";
 import PlayerCard from "../PlayerCard/Playercard";
 import { findCharacter } from "../../controllers/character_controller";
 import CreatePlyr from "../CreatePlyr/CreatePlyr";
+import { deleteCharacter } from "../../controllers/character_controller";
 
 class Playerview extends Component {
 
@@ -21,6 +22,7 @@ class Playerview extends Component {
             let charArray = [];
             for (let i=0; i < res.data.length; i++) {
                 charArray.push({
+                    _id: res.data[i]._id,
                     name: res.data[i].name,
                     attributes: res.data[i].attributes   
                 })
@@ -36,6 +38,31 @@ class Playerview extends Component {
         this.setState({ showCreate: true})
     };
 
+    delChar(e, id){
+        // e.preventDefault(); 
+
+        deleteCharacter(id)
+        .then(res => {
+            console.log(res);
+            let charArray = [];
+            if (res.data.length !== 1){
+            for (let i=0; i < res.data.length; i++) {
+                charArray.push({
+                    _id: res.data[i]._id,
+                    name: res.data[i].name,
+                    attributes: res.data[i].attributes,
+                    
+                })
+                
+            }}
+            
+            this.setState({ characters: charArray });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    };
+
     handleSubmit(charData) {
         const charArray = this.state.characters;
         charArray.push(charData);
@@ -47,7 +74,7 @@ class Playerview extends Component {
 
         const userName = this.props.user.name;
         const user = this.props.user;
-    
+
         return (
         
             <div>
@@ -74,7 +101,7 @@ class Playerview extends Component {
                                     <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                     <div className="butt">
                                         {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                        <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a>
+                                        {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn" onClick={this.delChar.bind(this, character._id)}>Remove</a> */}
                                     </div>
                                 </div>
                             </div>)
@@ -86,7 +113,7 @@ class Playerview extends Component {
                                         <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                         <div className="butt">
                                             {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
+                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn" onClick={this.delChar.bind(this, character._id)}>Remove</a> */}
                                         </div>
                                     </div>
                                 </div>)

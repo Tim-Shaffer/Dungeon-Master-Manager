@@ -17,6 +17,11 @@ const CharacterSchema = new Schema({
   attributes: {
       type: Array,
       required: true
+  },
+  
+  isDeleted: {
+    type: Boolean,
+    default: false
   }
   
 });
