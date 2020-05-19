@@ -23,8 +23,14 @@
 
 .roll-text-black {
     color: black;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
 }
 
 .roll-text-red {
     color: darkred;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
 }
