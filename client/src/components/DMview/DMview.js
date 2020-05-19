@@ -3,6 +3,7 @@ import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
 import { findCampaign } from "../../controllers/campaign_controller";
 import AddPlayer from "../AddPlayer/AddPlayer";
+import DiceRoll from "../DiceRoll";
 
 class DMview extends Component {
 
@@ -59,16 +60,18 @@ class DMview extends Component {
                             </div>
                         </div>
                     :
-                    // <div className="row">
-                    //     <div className="col-6" id="campaign">
-                    //         <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">New Campaign</button>
-                    //     </div>
+                    <div className="row">
+                        <div className="col-6" id="campaign">
+                            <a class="button" className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</a>
+
+                            {/* <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Roll Dice</button> */}
+                        </div>
                         
-                    //     <div className="col-6" id="campaign">
-                    //         <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">End Campaign</button>
-                    //     </div>
-                    // </div>
-                    null
+                        {/* <div className="col-6" id="campaign">
+                            <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">End Campaign</button>
+                        </div> */}
+                    </div>
+                    // null
                     }
                     
                 <br/>
@@ -104,6 +107,8 @@ class DMview extends Component {
                 }
 
                 <AddPlayer></AddPlayer>
+
+                <DiceRoll></DiceRoll>
 
             </div>
         </div>
