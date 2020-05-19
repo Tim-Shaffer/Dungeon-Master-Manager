@@ -13,7 +13,7 @@ router.get("/:id", (req, res) => {
 
     // Grab the Character based on the userId 
     // db.Character.findOne({ userId: mongoose.Types.ObjectId(req.params.id) })
-    db.Character.find({ userId: req.params.id })
+    db.Character.find({ userId: req.params.id, isDeleted: false })
       // .populate("User")
       .then(dbChar => {
         // return res.status(200).json(dbChar)
@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
 // @access Public
 router.get("/", (req, res) => {
 
-  db.Character.find()
+  db.Character.find({ isDeleted: false })
     .then(dbChar => {
       // return res.status(200).json(dbChar)
       return res.json(dbChar)
@@ -42,7 +42,8 @@ router.post("/:id", (req, res) => {
   newChar = {
     userId: mongoose.Types.ObjectId(req.params.id),
     name: req.body.name,  
-    attributes: req.body.attributes
+    attributes: req.body.attributes, 
+    isDeleted: false
   }
   db.Character.create(newChar)
     .then( (dbChar) => {return res.status(200).json(dbChar)})
@@ -50,7 +51,7 @@ router.post("/:id", (req, res) => {
 
 });
 
-// @route POST api/character/:id
+// @route PUT api/character/:id
 router.put("/:id", (req, res) => {
 
   let updateChar = {};
@@ -59,10 +60,24 @@ router.put("/:id", (req, res) => {
   }
   db.Character.findOneAndUpdate({_id: req.params.id}, updateChar, {new: true})
     .then( (dbChar) => {
-      console.log(dbChar);
       return res.status(200).json(dbChar)})
     .catch( (err) => {res.json(err)})
 
+});
+
+// @route DELETE api/character/:id
+router.delete("/:id", (req, res) => {
+
+  let updateChar = {};
+  updateChar = { 
+    isDeleted: true
+  }
+  db.Character.findOneAndUpdate({_id: req.params.id}, updateChar, {new: true})
+    .then( (dbChar) => {
+      // return res.status(200).json(dbChar)})
+      return res.json(dbChar)})
+    .catch( (err) => {res.json(err)})
+    
 });
   
   module.exports = router;

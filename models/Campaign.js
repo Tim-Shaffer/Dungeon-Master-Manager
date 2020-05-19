@@ -19,6 +19,11 @@ const CampaignSchema = new Schema({
       ref: "characters"
   }],
   
+  isActive: {
+    type: Boolean,
+    default: true
+  }
+  
 });
 
 module.exports = Campaign = mongoose.model("campaigns", CampaignSchema);
