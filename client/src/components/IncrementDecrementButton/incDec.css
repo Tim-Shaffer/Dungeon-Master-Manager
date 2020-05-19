@@ -3,6 +3,9 @@
   bottom: 1px;
   height: 24px;
   left: 10px;
+  color: #fff;
+  background-color: darkred;
+  border-color: darkred;
 
 }
 
@@ -12,6 +15,8 @@
   height: 24px;
   right: 47px;
   background-color: gold;
+  border-color: gold;
+  color: black
 }
 
 #symbol{
