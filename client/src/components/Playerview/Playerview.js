@@ -8,7 +8,7 @@ import { deleteCharacter } from "../../controllers/character_controller";
 class Playerview extends Component {
 
         state = {
-           userName: "",
+           user: "",
            characters: [],
            showCreate: false
     };
@@ -27,7 +27,7 @@ class Playerview extends Component {
                     attributes: res.data[i].attributes   
                 })
             }
-            this.setState({ characters: charArray, userName: user });
+            this.setState({ characters: charArray, user: user });
         })
         .catch(err => console.log(err));
     
@@ -38,12 +38,14 @@ class Playerview extends Component {
         this.setState({ showCreate: true})
     };
 
-    delChar(e, id){
-        // e.preventDefault(); 
+    delChar(id){
+
+        console.log(this.state);
+        console.log(id);
 
         deleteCharacter(id)
         .then(res => {
-            console.log(res);
+            // console.log(res);
             let charArray = [];
             if (res.data.length !== 1){
             for (let i=0; i < res.data.length; i++) {
@@ -101,7 +103,7 @@ class Playerview extends Component {
                                     <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                     <div className="butt">
                                         {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                        {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn" onClick={this.delChar.bind(this, character._id)}>Remove</a> */}
+                                        <button className="btn btn-primary btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button>
                                     </div>
                                 </div>
                             </div>)
@@ -113,7 +115,7 @@ class Playerview extends Component {
                                         <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                         <div className="butt">
                                             {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn" onClick={this.delChar.bind(this, character._id)}>Remove</a> */}
+                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</a> */}
                                         </div>
                                     </div>
                                 </div>)

@@ -112,7 +112,7 @@ class AddPlayer extends Component {
             </form>
                 </div>
               </div>
-              <button className="btn btn-primary btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} >
+              <button className="btn btn-primary btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} disabled={!this.state.campaignName}>
                 Submit
               </button>
             </div>
