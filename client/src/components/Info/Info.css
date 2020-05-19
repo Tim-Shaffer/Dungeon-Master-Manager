@@ -1,15 +1,22 @@
 .jumbotron {
     width: 35em;
-    height: 25em;
+    height: 28em;
     background-color: rgba(128, 128, 128, 0.122);
     border-radius: 12px;
     font-weight: 2;
     margin: auto;
     margin-top: 260px;
+    padding-bottom: 25em;
 }
 
 p {
     font-size: 0.9em;
     color: white;
     font-weight: 700;
+}
+
+#lastline {
+    color: white;
+    font-weight: 700;
+    font-size: 1.5em;
 }
