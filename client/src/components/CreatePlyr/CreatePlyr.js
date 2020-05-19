@@ -212,7 +212,7 @@ class CreatePlyr extends Component {
                                         </p>
                                     </div>                    
                                      
-                                    <button onClick={this.handleFormSubmit} >
+                                    <button onClick={this.handleFormSubmit} disabled={!(this.state.characterName)}>
                                         Submit
                                     </button>
                                 </div>
