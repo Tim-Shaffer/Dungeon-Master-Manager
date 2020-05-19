@@ -12,7 +12,7 @@ var db = require("../../models/");
 router.get("/:id", (req, res) => {
       
     // Grab the user based on the id from the token
-    db.Campaign.findOne({ userId: req.params.id })
+    db.Campaign.findOne({ userId: req.params.id, isActive: true })
     .populate("characters")  
     .then( (dbCampaign) => {
       return res.status(200).json(dbCampaign)})
@@ -31,10 +31,25 @@ router.post("/:id", (req, res) => {
   newCampaign = {
     name: req.body.name, 
     userId: mongoose.Types.ObjectId(req.params.id),
-    characters: campChars
+    characters: campChars, 
+    isActive: true,
   }
   db.Campaign.create(newCampaign)
     .then( (dbCampaign) => {return res.status(200).json(dbCampaign)})
+    .catch( (err) => {res.json(err)})
+
+});
+
+// @route DELETE api/character/:id
+router.delete("/:id", (req, res) => {
+
+  let updateCamp = {};
+  updateCamp = { 
+    isActive: false
+  }
+  db.Campaign.findOneAndUpdate({_id: req.params.id}, updateCamp, {new: true})
+    .then( (dbCamp) => {
+      return res.status(200).json(dbCamp)})
     .catch( (err) => {res.json(err)})
 
 });
