@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import NavbarLanding from "../Navbar/NavbarLanding";
-import Jumbo from "../Jumbotron/Jumbotron";
 import Info from "../Info/Info";
 
 class Landing extends Component {
@@ -10,7 +8,13 @@ class Landing extends Component {
       <>
         <NavbarLanding />
         <Info />
-        {/* <Jumbo /> */}
+        <footer id="sticky-footer" className="py-4 border-top border-danger bg-dark text-white-50 sticky">
+          <div className="container text-center">
+            <small>Copyright &copy; Justin Acosta, Helen Maschmeyer,
+            Tim Shaffer, Wayne Wu
+            </small>
+          </div>
+        </footer>
       </>
     );
   }

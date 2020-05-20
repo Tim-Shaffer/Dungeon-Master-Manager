@@ -25,11 +25,17 @@ p {
     font-size: 1.5em;
 }
 
-#footer {
+#sticky-footer {
     background-color: darkgray;
     color: whitesmoke;
     font-family: 'Rock Salt', cursive;
     font-size: 14px;
    
 }
+
+.sticky {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
 
