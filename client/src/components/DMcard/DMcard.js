@@ -91,7 +91,8 @@ class DMcard extends Component {
     }
     updateCharacter(this.props.id, charData) 
         .then(res => {
-            console.log(res);
+            // console.log(res);
+            alert("Character was saved.");
         })
         .catch(err => console.log(err));
   };
