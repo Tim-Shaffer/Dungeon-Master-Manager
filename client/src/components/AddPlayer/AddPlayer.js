@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { getCharacters } from "../../controllers/character_controller";
+import { getCharacters } from "../../utils/character_controller";
 import { List, ListItem } from "../List";
 import "./style.css";
 import Campchars from "../campaign";
-import { createCampaign } from "../../controllers/campaign_controller";
+import { createCampaign } from "../../utils/campaign_controller";
 
 class AddPlayer extends Component {
 

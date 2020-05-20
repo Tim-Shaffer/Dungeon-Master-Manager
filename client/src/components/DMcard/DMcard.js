@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { List, ListItem } from "../List";
 import IncrementButton from "../IncrementDecrementButton/IncrementButton";
 import DecrementButton from "../IncrementDecrementButton/DecrementButton";
-import { updateCharacter } from "../../controllers/character_controller";
+import { updateCharacter } from "../../utils/character_controller";
 
 import "./style.css";
 

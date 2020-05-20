@@ -56,7 +56,6 @@ class Login extends Component {
 
     return (
       <>
-      <body>
 
         <NavbarLogin />
       
@@ -134,7 +133,7 @@ class Login extends Component {
           </div>
         </div>
       </div>
-      </body>
+
       </>
     );
   }

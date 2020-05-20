@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./playerstyle.css";
 import PlayerCard from "../PlayerCard/Playercard";
-import { findCharacter } from "../../controllers/character_controller";
+import { findCharacter } from "../../utils/character_controller";
 import CreatePlyr from "../CreatePlyr/CreatePlyr";
-import { deleteCharacter } from "../../controllers/character_controller";
+import { deleteCharacter } from "../../utils/character_controller";
 
 class Playerview extends Component {
 

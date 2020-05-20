@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createCharacter } from "../../controllers/character_controller";
+import { createCharacter } from "../../utils/character_controller";
 import "../Playerview/playerstyle.css";
 import "./CreatePlyr.css";
 

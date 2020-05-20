@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
-import { findCampaign } from "../../controllers/campaign_controller";
+import { findCampaign } from "../../utils/campaign_controller";
 import AddPlayer from "../AddPlayer/AddPlayer";
 import DiceRoll from "../DiceRoll";
 
