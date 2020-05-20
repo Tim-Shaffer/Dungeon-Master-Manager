@@ -13,7 +13,7 @@ class Campchars extends Component {
         this.setState({isChecked: checked});
         console.log(this.state);
         if (checked) {
-            this.props.charrChecked(this.props.Character.id)
+            this.props.charChecked(this.props.Character.id)
         }
       }
 

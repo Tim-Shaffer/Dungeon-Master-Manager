@@ -8,6 +8,13 @@ h5 {
 
 }
 
+.camp-red-text {
+    font-family: 'Permanent Marker', cursive;
+    color: red;
+    font-size: small;
+    position: relative;
+}
+
 /* #campaignCardBody{
     position: relative;
 }

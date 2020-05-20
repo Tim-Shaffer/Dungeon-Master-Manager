@@ -5,10 +5,13 @@ import "./CreatePlyr.css";
 
 
 class CreatePlyr extends Component {
-    state = {
+
+    constructor() {
+        super();
+        this.state = {
         playerName: "",
-        characterName: "",
-        classType: "",
+        name: "",
+        class: "",
         background: "",
         race: "",
         alignment: "",
@@ -20,50 +23,103 @@ class CreatePlyr extends Component {
         wisdom: 0,
         charisma: 0,
         level: 0,
-        userId: ""
-    };
-
+        userId: "",
+        fields: {},
+        errors: {}
+        };
+    }
 
     handleInputChange = event => {
         // Pull the name and value properties off of the event.target (the element which triggered the event)
         const { name, value } = event.target;
+        let fields = this.state.fields;
+        fields[name] = value;
     
         // Set the state for the appropriate input field
+
         this.setState({
-          [name]: value
+          [name]: value,
+          fields,
+          errors: {}
         });
-      };
+
+    };
 
 
     handleFormSubmit = event => {
         event.preventDefault();
-        const user = this.props.user;
-        const userId = user.id;
-        const plyr = {
-            name: this.state.characterName,
-            attributes: [
-                {attrName: "Class", attrValue: this.state.class}, 
-                {attrName: "Background", attrValue: this.state.background}, 
-                {attrName: "Race", attrValue: this.state.race},
-                {attrName: "Alignment", attrValue: this.state.alignment}, 
-                {attrName: "Level", attrValue: this.state.level}, 
-                {attrName: "Experience", attrValue: this.state.experience}, 
-                {attrName: "Strength", attrValue: this.state.strength}, 
-                {attrName: "Dexterity", attrValue: this.state.dexterity}, 
-                {attrName: "Constitution", attrValue: this.state.constitution}, 
-                {attrName: "Intelligence", attrValue: this.state.intelligence}, 
-                {attrName: "Wisdom", attrValue: this.state.wisdom}, 
-                {attrName: "Charisma", attrValue: this.state.charisma}  
-            ]
-        };
 
-        createCharacter(userId, plyr)
-        .then(res =>  {
-            this.props.handleSubmit(res.data);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        if (this.validateForm()) {
+            const user = this.props.user;
+            const userId = user.id;
+            const plyr = {
+                name: this.state.name,
+                attributes: [
+                    {attrName: "Class", attrValue: this.state.class}, 
+                    {attrName: "Background", attrValue: this.state.background}, 
+                    {attrName: "Race", attrValue: this.state.race},
+                    {attrName: "Alignment", attrValue: this.state.alignment}, 
+                    {attrName: "Level", attrValue: this.state.level}, 
+                    {attrName: "Experience", attrValue: this.state.experience}, 
+                    {attrName: "Strength", attrValue: this.state.strength}, 
+                    {attrName: "Dexterity", attrValue: this.state.dexterity}, 
+                    {attrName: "Constitution", attrValue: this.state.constitution}, 
+                    {attrName: "Intelligence", attrValue: this.state.intelligence}, 
+                    {attrName: "Wisdom", attrValue: this.state.wisdom}, 
+                    {attrName: "Charisma", attrValue: this.state.charisma}  
+                ]
+            };
+
+            let fields = {};
+            this.setState({fields: fields});
+
+            createCharacter(userId, plyr)
+            .then(res =>  {
+                this.props.handleSubmit(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        };
+    };
+
+    validateForm() {
+
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+    
+        if (!fields["name"]) {
+            formIsValid = false;
+            errors["name"] = "Character name is required.";
+        }
+
+        if (!fields["class"]) {
+            formIsValid = false;
+            errors["class"] = "Class is required.";
+        }
+
+        if (!fields["background"]) {
+            formIsValid = false;
+            errors["background"] = "Background is required.";
+        }
+
+        if (!fields["race"]) {
+            formIsValid = false;
+            errors["race"] = "Race is required.";
+        }
+
+        if (!fields["alignment"]) {
+            formIsValid = false;
+            errors["alignment"] = "Alignment is required.";
+        }
+    
+        this.setState({
+            errors: errors
+        });
+
+        return formIsValid;
+    
     };
 
     render() {
@@ -83,13 +139,15 @@ class CreatePlyr extends Component {
                                         <h5 className="card-title">
                                         <label htmlFor="name" id="lablename">Name: </label>
                                         <input
-                                        value={this.state.characterName}
+                                        value={this.state.name}
                                         id="name"
-                                        name="characterName"
+                                        name="name"
                                         onChange={this.handleInputChange}
                                         type="text"
+                                        required
                                         />
                                         </h5>
+                                        <div className="char-red-text">{this.state.errors.name}</div>
 
                                         <p className="card-text">
                                         <label htmlFor="class" id="lablename">Class: </label>
@@ -98,8 +156,10 @@ class CreatePlyr extends Component {
                                         name="class"
                                         onChange={this.handleInputChange}
                                         type="text"
+                                        required
                                         />
                                         </p>
+                                        <div className="char-red-text">{this.state.errors.class}</div>
 
                                         <p className="card-text">
                                         <label htmlFor="background" id="lablename">Background: </label>
@@ -108,8 +168,10 @@ class CreatePlyr extends Component {
                                         name="background"
                                         onChange={this.handleInputChange}
                                         type="text"
+                                        required
                                         />
                                         </p>
+                                        <div className="char-red-text">{this.state.errors.background}</div>
 
                                         <p className="card-text">
                                         <label htmlFor="race" id="lablename">Race: </label>
@@ -118,8 +180,10 @@ class CreatePlyr extends Component {
                                         name="race"
                                         onChange={this.handleInputChange}
                                         type="text"
+                                        required
                                         />
                                         </p>
+                                        <div className="char-red-text">{this.state.errors.race}</div>
 
                                         <p className="card-text">
                                         <label htmlFor="alignment" id="lablename">Alignment: </label>
@@ -128,8 +192,10 @@ class CreatePlyr extends Component {
                                         name="alignment"
                                         onChange={this.handleInputChange}
                                         type="text"
+                                        required
                                         />
                                         </p>
+                                        <div className="char-red-text">{this.state.errors.alignment}</div>
 
                                         <p className="card-text">
                                         <label htmlFor="level" id="lablename">Level: </label>
@@ -212,7 +278,7 @@ class CreatePlyr extends Component {
                                         </p>
                                     </div>                    
                                      
-                                    <button onClick={this.handleFormSubmit} disabled={!(this.state.characterName)}>
+                                    <button onClick={this.handleFormSubmit} >
                                         Submit
                                     </button>
                                 </div>
@@ -225,4 +291,3 @@ class CreatePlyr extends Component {
 }
 
 export default CreatePlyr;
-
