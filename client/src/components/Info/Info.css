@@ -1,12 +1,14 @@
 .jumbotron {
     width: 35em;
-    height: 28em;
+    height: 38em;
     background-color: rgba(128, 128, 128, 0.122);
     border-radius: 12px;
     font-weight: 2;
     margin: auto;
     margin-top: 260px;
     padding-bottom: 25em;
+    position: relative;
+    bottom: 50px;
 }
 
 p {
@@ -22,3 +24,12 @@ p {
     font-weight: 700;
     font-size: 1.5em;
 }
+
+#footer {
+    background-color: darkgray;
+    color: whitesmoke;
+    font-family: 'Rock Salt', cursive;
+    font-size: 14px;
+   
+}
+
