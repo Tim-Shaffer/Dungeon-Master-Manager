@@ -29,8 +29,8 @@ The app is deployed to **Heroku** at the following link:
 * dotenv: a zero-dependency module that loads environment variables from a .env file into process.env 
 * express: a fast, unopinionated, minimalist web framework for node.js
 * is-empty: check to see if a value is empty
-* jsonwebtoken: JSON Web Token (JWT) - used for authorization
-* jwt-decode: a browser library to decode JWTs
+* **jsonwebtoken**: JSON Web Token (JWT) - used for authorization
+* **jwt-decode**: a browser library to decode JWTs
 * mongojs: a module for mongodb that emulates the official mongodb API as much as possible
 * mongoose: a mongodb object modeling tool designed to work in an asynchronous environment
 * passport: an express-compatible authentication middleware
@@ -42,7 +42,7 @@ The app is deployed to **Heroku** at the following link:
 * react-scripts: scripts and configuration used by Create React App
 * redux: a predictable state container for JavaScript apps 
 * redux-thunk: middleware that allows you to write action creators that return a function instead of an action 
-* validator: a library of string validators and sanitizers (ie. confirming passwords match)
+* **validator**: a library of string validators and sanitizers (ie. confirming passwords match)
 
 ## Folder Structure
 

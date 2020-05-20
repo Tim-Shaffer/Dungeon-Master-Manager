@@ -56,6 +56,10 @@ class DiceRoll extends Component {
 
   };
 
+  resetRolls() {
+    this.setState({D4: "", D6: "", D8: "", D10: "", D12: "", D20: ""})
+  };
+
 
   render() {
 
@@ -65,7 +69,7 @@ class DiceRoll extends Component {
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">Click the Die to roll 
-                    <button type="button" className="close" data-dismiss="modal">&times;</button> 
+                    <button type="button" className="close" data-dismiss="modal" onClick={() => this.resetRolls()}>&times;</button> 
                 </div>
                 <div className="modal-body">
 
