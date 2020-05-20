@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
-import { findCampaign } from "../../controllers/campaign_controller";
+import { findCampaign } from "../../utils/campaign_controller";
 import AddPlayer from "../AddPlayer/AddPlayer";
 import DiceRoll from "../DiceRoll";
 
@@ -67,7 +67,7 @@ class DMview extends Component {
                     :
                     <div className="row">
                         <div className="col-6" id="campaign">
-                            <a class="button" className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</a>
+                            <div class="button" className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
 
                             {/* <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Roll Dice</button> */}
                         </div>

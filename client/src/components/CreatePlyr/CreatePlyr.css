@@ -14,4 +14,13 @@ button {
         float: right;
 }
 
+.char-red-text {
+    font-family: 'Permanent Marker', cursive;
+    color: red;
+    font-size: small;
+    position: relative;
+    bottom: 10px;
+    text-align: right;
+}
+
 

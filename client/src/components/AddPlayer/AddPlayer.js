@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { getCharacters } from "../../controllers/character_controller";
+import { getCharacters } from "../../utils/character_controller";
 import { List, ListItem } from "../List";
 import "./style.css";
 import Campchars from "../campaign";
-import { createCampaign } from "../../controllers/campaign_controller";
+import { createCampaign } from "../../utils/campaign_controller";
 
 class AddPlayer extends Component {
 
@@ -11,7 +11,8 @@ class AddPlayer extends Component {
     isOpen: false,
     campaignName: "",
     Characters: [],
-    campaignCharacters: []
+    campaignCharacters: [],
+    errors: {}
   };
 
   componentDidMount = () => {
@@ -30,21 +31,25 @@ class AddPlayer extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const user = this.props.user;
-    const userId = user.id;
-    const campaign = {
-      name: this.state.campaignName,
-      userId: userId,
-      characters: this.state.campaignCharacters
-    }
-    createCampaign(userId,campaign)
-    .then(res =>{
-      // console.log(res);
-      this.props.handleSubmit(res.data);
-    })
-    .catch(err =>{
-      console.log(err);
-    })
+
+    if (this.validateForm()) {
+      const user = this.props.user;
+      const userId = user.id;
+      const campaign = {
+        name: this.state.campaignName,
+        userId: userId,
+        characters: this.state.campaignCharacters
+      }
+      createCampaign(userId,campaign)
+      .then(res =>{
+        // console.log(res);
+        this.props.handleSubmit(res.data);
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+    };
+
   };
 
   handleInputChange = event => {
@@ -53,17 +58,43 @@ class AddPlayer extends Component {
 
     // Set the state for the appropriate input field
     this.setState({
-      [name]: value
+      [name]: value,
+      errors: {}
     });
     console.log(this.state);
   };
 
-  charrChecked = id => {
+  charChecked = id => {
     const campaignCharacters = this.state.campaignCharacters;
     campaignCharacters.push(id);
-    this.setState({campaignCharacters: campaignCharacters});
+    this.setState({campaignCharacters: campaignCharacters, errors: {} });
     console.log(this.state);
   }
+
+  validateForm() {
+
+    let name = this.state.campaignName;
+    let characters = this.state.campaignCharacters;
+    let errors = {};
+    let formIsValid = true;
+
+    if (!name) {
+        formIsValid = false;
+        errors["name"] = "Campaign name is required.";
+    }
+
+    if (characters.length === 0) {
+      formIsValid = false;
+      errors["characters"] = "Campaign needs at least 1 character.";
+  }
+
+    this.setState({
+        errors: errors
+    });
+
+    return formIsValid;
+
+};
 
 
   render() {
@@ -93,8 +124,7 @@ class AddPlayer extends Component {
                     checked={false}
                   />
                 </div>
-
-
+                <div className="camp-red-text">{this.state.errors.name}</div>
 
                 <form>
             <List>
@@ -102,17 +132,19 @@ class AddPlayer extends Component {
                 <div className="row" key={index}>
                   <div className="col">
                   <ListItem >
-                    <Campchars Character={Character} charrChecked={this.charrChecked}></Campchars>
+                    <Campchars Character={Character} charChecked={this.charChecked}></Campchars>
                   </ListItem>
                   </div>
                 </div>
                 
                 )}
             </List>
+            
             </form>
+            <div className="camp-red-text">{this.state.errors.characters}</div>
                 </div>
               </div>
-              <button className="btn btn-primary btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} disabled={!this.state.campaignName}>
+              <button className="btn btn-primary btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} >
                 Submit
               </button>
             </div>
