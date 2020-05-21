@@ -23,11 +23,12 @@ class Annyang {
         }
     }
 
-    addCommands(addStats, removeStats) {
+    addCommands(addStats, removeStats, saveStats) {
         if(annyang) {
             annyang.addCommands({
                 ':player add :number to :stat': () => addStats(),
                 ':player remove :number from :stat': () => removeStats(),
+                'save :player': () => saveStats(),
             });
         }
     }

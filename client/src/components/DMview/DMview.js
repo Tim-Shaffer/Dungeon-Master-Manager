@@ -4,29 +4,58 @@ import DMcard from "../DMcard/DMcard";
 import { findCampaign } from "../../utils/campaign_controller";
 import AddPlayer from "../AddPlayer/AddPlayer";
 import DiceRoll from "../DiceRoll";
-
+// importing annyang
+import annyang from "../Voice/Voice";
 class DMview extends Component {
-
     state = {
         characters: [],
         user: "",
         showCreate: false,
     };
+    //  |----------ANNYANG START----------|
+  componentWillMount() {
+    annyang.abort();
+  }
+  engineCallback = (status) => {
+    // engine status
+  }
 
+  resultCallback = (voiceInput) => {
+    // compares input to DM commands
+    this.setState({
+        voiceInput: voiceInput
+    })
+    console.log(voiceInput);
+    // voiceInput.some(phrase => {
+    //     return this.state
+    // })
+  }
+
+  addStats = () => {
+    // add player stats
+  }
+  removeStats = () => {
+    // remove player stats
+  }
+//  |-----------ANNYANG END------------|
     componentDidMount () {
         // Just for testing 
         //-- I know I am executing this function!
         this.getUserCampaign();
-
+        
+        annyang.addCommands(this.addStats, this.removeStats);
+        annyang.addCallback(this.engineCallback, this.resultCallback);
+        annyang.start();
+        this.setState({
+        voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
+        });
     }
     createCampaign(e){
         e.preventDefault();
         this.setState({ showCreate: true})
     };
-
     getUserCampaign() {
         const user = this.props.user;
-
         findCampaign(user.id)
         .then(res => {
             let charArray = [];
@@ -42,17 +71,13 @@ class DMview extends Component {
         })
         .catch(err => console.log(err));
     }
-
     handleSubmit() {   
-
         this.setState({ showCreate: false})
         this.getUserCampaign();
     }
-
     render() {
         const userName = this.props.user.name;
         const user = this.props.user;
-
     return (
         
         <div>
@@ -65,10 +90,10 @@ class DMview extends Component {
                             </div>
                         </div>
                     :
+                    !this.state.showCreate ? 
                     <div className="row">
                         <div className="col-6" id="campaign">
-                            <div class="button" className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
-
+                            <div className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
                             {/* <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Roll Dice</button> */}
                         </div>
                         
@@ -76,11 +101,11 @@ class DMview extends Component {
                             <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">End Campaign</button>
                         </div> */}
                     </div>
-                    // null
+                    : 
+                    null
                     }
                     
                 <br/>
-
                 {this.state.characters.length > 0 ?
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
@@ -99,27 +124,22 @@ class DMview extends Component {
                                     </div>
                                 </div>)
                         }                   
-
                     </div>
                 :
                     null
                 }
-
                 { this.state.showCreate ? 
                     <AddPlayer userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
                 :
                 null
                 }
-
                 {/* <AddPlayer></AddPlayer> */}
-
                 <DiceRoll></DiceRoll>
-
             </div>
         </div>
         
         );
     }
 }
-
 export default DMview;
+
