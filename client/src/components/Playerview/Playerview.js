@@ -4,6 +4,7 @@ import PlayerCard from "../PlayerCard/Playercard";
 import { findCharacter } from "../../utils/character_controller";
 import CreatePlyr from "../CreatePlyr/CreatePlyr";
 import { deleteCharacter } from "../../utils/character_controller";
+import Music from "../Music/Music";
 
 class Playerview extends Component {
 
@@ -78,10 +79,10 @@ class Playerview extends Component {
         const user = this.props.user;
 
         return (
-        
             <div>
             <div className="container-fluid" id="body">
                 <div className="row">
+            <Music />
                     {this.state.characters.length === 0 && !this.state.showCreate ?
                          
                             <div className="col-12" id="campaign">
