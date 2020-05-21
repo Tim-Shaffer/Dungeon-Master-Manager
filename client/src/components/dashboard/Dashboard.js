@@ -9,6 +9,9 @@ import Player from "../Playerview/Playerview";
 import CreatePlyr from "../CreatePlyr/CreatePlyr";
 // import Nav from "../Nav/Nav"
 
+// // importing annyang
+// import annyang from "../Voice/Voice";
+
 class Dashboard extends Component {
 
   state = {
@@ -16,6 +19,40 @@ class Dashboard extends Component {
       showPlayer: true,
       errors: {}
     };
+
+  //  |----------ANNYANG START----------|
+  // componentDidMount() {
+  //   annyang.addCommands(this.addStats, this.removeStats);
+  //   annyang.addCallback(this.engineCallback, this.resultCallback);
+  //   annyang.start();
+
+  //   this.setState({
+  //     voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
+  //   });
+  // }
+
+//   componentWillMount() {
+//     annyang.abort();
+//   }
+
+//   engineCallback = (status) => {
+//     // engine status
+//   }
+
+//   resultCallback = (voiceInput) => {
+//     // compares input to DM commands
+//   }
+
+//   addStats = () => {
+//     // add player stats
+//   }
+
+//   removeStats = () => {
+//     // remove player stats
+//   }
+
+// //  |-----------ANNYANG END------------|
+
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -31,6 +68,15 @@ class Dashboard extends Component {
     // findUser(user.id);
     findUser(user.id).then(res => {
       this.setState({ isMaster: res.data.isMaster});
+
+      // annyang.addCommands(this.addStats, this.removeStats);
+      // annyang.addCallback(this.engineCallback, this.resultCallback);
+      // annyang.start();
+
+      // this.setState({
+      //   voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
+      // });
+
     })
     .catch(err => console.log(err));
 

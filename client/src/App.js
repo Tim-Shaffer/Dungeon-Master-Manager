@@ -16,9 +16,6 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import NotFound from "./components/NotFound/NotFound";
 
-// importing annyang
-import annyang from "../src/components/Voice/Voice";
-
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -39,39 +36,6 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
-  
-  //  |----------ANNYANG START----------|
-    componentDidMount() {
-      annyang.addCommands(this.addStats, this.removeStats);
-      annyang.addCallback(this.engineCallback, this.resultCallback);
-      annyang.start();
-
-      this.setState({
-        voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
-      });
-    }
-
-    componentWillMount() {
-      annyang.abort();
-    }
-
-    engineCallback = (status) => {
-      // engine status
-    }
-
-    resultCallback = (voiceInput) => {
-      // compares input to DM commands
-    }
-
-    addStats = () => {
-      // add player stats
-    }
-
-    removeStats = () => {
-      // remove player stats
-    }
-  
-  //  |-----------ANNYANG END------------|
 
   render() {
     return (

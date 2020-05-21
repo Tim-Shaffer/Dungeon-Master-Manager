@@ -5,6 +5,9 @@ import { findCampaign } from "../../utils/campaign_controller";
 import AddPlayer from "../AddPlayer/AddPlayer";
 import DiceRoll from "../DiceRoll";
 
+// importing annyang
+import annyang from "../Voice/Voice";
+
 class DMview extends Component {
 
     state = {
@@ -13,12 +16,54 @@ class DMview extends Component {
         showCreate: false,
     };
 
+    //  |----------ANNYANG START----------|
+//   componentDidMount() {
+//     annyang.addCommands(this.addStats, this.removeStats);
+//     annyang.addCallback(this.engineCallback, this.resultCallback);
+//     annyang.start();
+
+//     this.setState({
+//       voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
+//     });
+//   }
+
+  componentWillMount() {
+    annyang.abort();
+  }
+
+  engineCallback = (status) => {
+    // engine status
+  }
+
+  resultCallback = (voiceInput) => {
+    // compares input to DM commands
+  }
+
+  addStats = () => {
+    // add player stats
+  }
+
+  removeStats = () => {
+    // remove player stats
+  }
+
+//  |-----------ANNYANG END------------|
+
     componentDidMount () {
         // Just for testing 
         //-- I know I am executing this function!
         this.getUserCampaign();
 
+        annyang.addCommands(this.addStats, this.removeStats);
+        annyang.addCallback(this.engineCallback, this.resultCallback);
+        annyang.start();
+
+        this.setState({
+        voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
+        });
+
     }
+
     createCampaign(e){
         e.preventDefault();
         this.setState({ showCreate: true})

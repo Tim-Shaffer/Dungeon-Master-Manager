@@ -82,7 +82,7 @@ class Playerview extends Component {
             <div>
             <div className="container-fluid" id="body">
                 <div className="row">
-            <Music />
+            {/* <Music /> */}
                     {this.state.characters.length === 0 && !this.state.showCreate ?
                          
                             <div className="col-12" id="campaign">
@@ -96,6 +96,7 @@ class Playerview extends Component {
                 <br/>
 
                 {this.state.characters.length > 0 && !this.state.showCreate ?
+                    <>
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
                             this.state.characters.map(character => 
@@ -110,7 +111,7 @@ class Playerview extends Component {
                             </div>)
                         :
                             this.state.characters.map(character =>
-                                 
+                                
                                 <div className="col-6">
                                     <div className="card border border-dark">
                                         <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
@@ -121,10 +122,15 @@ class Playerview extends Component {
                                     </div>
                                 </div>)
                         }                   
-
+                    
                     </div>
+                    
+                    <Music />
+                    </>
+                    
                 :
                     null
+                    
                 }
 
                 { this.state.showCreate ? 
