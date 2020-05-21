@@ -2,30 +2,6 @@ import React, { Component } from 'react';
 import "./incDec.css";
 
 class DecrementButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Level: "",
-      Experience: "",
-      Strength: "",
-      Dexterity: "",
-      Constitution: "",
-      Intelligence: "",
-      Wisdom: "",
-      Charisma: "",
-      show: true
-    };
-  }
-
-  currValues(name, value) {
-
-    // Set the state for the appropriate input field
-    this.setState({
-      [name]: parseInt(value)
-    });
-
-  }
-
 
   decreaseItem = attr => {
     // console.log(attr); 

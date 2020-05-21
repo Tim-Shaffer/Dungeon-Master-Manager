@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import "./incDec.css";
 
 class IncrementButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicks: 0,
-      show: true
-    };
-  }
 
   increaseItem = attr => {
     // console.log(attr); 
