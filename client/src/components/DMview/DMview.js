@@ -106,20 +106,20 @@ class DMview extends Component {
                     {this.state.characters.length === 0 && !this.state.showCreate ?
                         <div className="row justify-content-center">
                             <div className="col-4" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark"  onClick={this.createCampaign.bind(this)}>Create Campaign</button>
+                                <button type="button" className="btn btn-lg playerbttn border border-dark"  onClick={this.createCampaign.bind(this)}>Create Campaign</button>
                             </div>
                         </div>
                     :
                     !this.state.showCreate ? 
                     <div className="row">
                         <div className="col-6" id="campaign">
-                            <div className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
+                            <div className="btn btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
 
-                            {/* <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Roll Dice</button> */}
+                            {/* <button type="button" className="btn btn-lg playerbttn border border-dark">Roll Dice</button> */}
                         </div>
                         
                         {/* <div className="col-6" id="campaign">
-                            <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">End Campaign</button>
+                            <button type="button" className="btn btn-lg playerbttn border border-dark">End Campaign</button>
                         </div> */}
                     </div>
                     : 

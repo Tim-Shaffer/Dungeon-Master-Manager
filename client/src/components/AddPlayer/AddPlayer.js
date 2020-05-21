@@ -144,7 +144,7 @@ class AddPlayer extends Component {
             <div className="camp-red-text">{this.state.errors.characters}</div>
                 </div>
               </div>
-              <button className="btn btn-primary btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} >
+              <button className="btn btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} >
                 Submit
               </button>
             </div>
