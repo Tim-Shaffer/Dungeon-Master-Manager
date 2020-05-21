@@ -24,8 +24,6 @@ class DecrementButton extends Component {
               </button>
           </span>
         </div>
-        
-        {/* <button className="incDecButt" onClick={this.decreaseItem}>-</button> */}
       </div>
     );
   }
