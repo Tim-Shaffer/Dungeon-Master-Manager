@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { List, ListItem } from "../List";
-import IncrementButton from "../IncrementDecrementButton/IncrementButton";
-import DecrementButton from "../IncrementDecrementButton/DecrementButton";
 
 import "./style.css";
 
@@ -21,16 +19,6 @@ class PlayerCard extends Component {
                   <ListItem key={attribute.attrName}><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> </ListItem>
                   </div>
                 </div>
-                
-                // <div className="row">
-                //   <div className="col">
-                //     <ListItem >
-                //       <div className="row">
-                //         <IncrementButton></IncrementButton><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> <DecrementButton></DecrementButton>
-                //       </div>
-                //     </ListItem>
-                //   </div>
-                // </div>
                 )}
             </List>
             :
