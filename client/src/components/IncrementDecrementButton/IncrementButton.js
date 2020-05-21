@@ -15,7 +15,7 @@ class IncrementButton extends Component {
       <div>
         <div className="input-group">
           <span className="input-group-btn">
-              <button type="button" className="quantity-left-minus btn btn-success btn-number incbutt" id={this.props.incattr} data-type="plus" 
+              <button type="button" className="quantity-left-minus btn btn-number incbutt" id={this.props.incattr} data-type="plus" 
                       data-field={this.props.incattr} onClick={() => this.increaseItem(this.props.incattr)}>
                 <span className="glyphicon glyphicon-plus" id="symbol">+</span>
               </button>

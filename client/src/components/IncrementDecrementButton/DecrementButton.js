@@ -17,7 +17,7 @@ class DecrementButton extends Component {
       <div>
         <div className="input-group">
           <span className="input-group-btn">
-              <button type="button" className="quantity-left-minus btn btn-danger btn-number decbutt" id={this.props.decattr} data-type="minus" 
+              <button type="button" className="quantity-left-minus btn btn-number decbutt" id={this.props.decattr} data-type="minus" 
                       data-field={this.props.decattr} onClick={() => this.decreaseItem(this.props.decattr)}>
                 <span className="glyphicon glyphicon-minus" id="symbol">-</span>
               </button>

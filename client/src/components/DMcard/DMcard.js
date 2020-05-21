@@ -236,8 +236,8 @@ class DMcard extends Component {
             }
 
               <div className="butt">
-                <button className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn" onClick={this.handleFormSubmit.bind(this)}>Save</button>
-                {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
+                <button className="btn btn-block playerbttn border border-dark" id="playerbttn" onClick={this.handleFormSubmit.bind(this)}>Save</button>
+                {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
               </div>
 
         </div>

@@ -82,11 +82,11 @@ class Playerview extends Component {
             <div>
             <div className="container-fluid" id="body">
                 <div className="row">
-            <Music />
+            {/* <Music /> */}
                     {this.state.characters.length === 0 && !this.state.showCreate ?
                          
                             <div className="col-12" id="campaign">
-                                <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark" onClick={this.createCharacter.bind(this)}>Create Character</button>
+                                <button type="button" className="btn btn-lg playerbttn border border-dark" onClick={this.createCharacter.bind(this)}>Create Character</button>
                             </div>
                     :
                     null
@@ -96,6 +96,7 @@ class Playerview extends Component {
                 <br/>
 
                 {this.state.characters.length > 0 && !this.state.showCreate ?
+                    <>
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
                             this.state.characters.map(character => 
@@ -103,28 +104,33 @@ class Playerview extends Component {
                                 <div className="card border border-dark">
                                     <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                     <div className="butt">
-                                        {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                        {/* <button className="btn btn-primary btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button> */}
+                                        {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
+                                        {/* <button className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button> */}
                                     </div>
                                 </div>
                             </div>)
                         :
                             this.state.characters.map(character =>
-                                 
+                                
                                 <div className="col-6">
                                     <div className="card border border-dark">
                                         <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                         <div className="butt">
-                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                            {/* <a href="#" className="btn btn-primary btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</a> */}
+                                            {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
+                                            {/* <a href="#" className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</a> */}
                                         </div>
                                     </div>
                                 </div>)
                         }                   
-
+                    
                     </div>
+                    
+                    <Music />
+                    </>
+                    
                 :
                     null
+                    
                 }
 
                 { this.state.showCreate ? 
