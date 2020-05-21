@@ -4,11 +4,10 @@ import "./incDec.css";
 class DecrementButton extends Component {
 
   decreaseItem = attr => {
-    // console.log(attr); 
-    console.log(this.props);
+
     let value = this.props.currValue - 1
-    // console.log(value);
     this.props.handleDecrement(attr, value);
+    
   }
 
   render() {

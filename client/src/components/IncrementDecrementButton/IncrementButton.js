@@ -4,11 +4,10 @@ import "./incDec.css";
 class IncrementButton extends Component {
 
   increaseItem = attr => {
-    // console.log(attr); 
-    console.log(this.props);
+
     let value = this.props.currValue + 1
-    // console.log(value);
     this.props.handleIncrement(attr, value);
+    
   }
 
   render() {

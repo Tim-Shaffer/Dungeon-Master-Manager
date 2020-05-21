@@ -25,9 +25,10 @@ class DMcard extends Component {
         Intelligence: "",
         Wisdom: "",
         Charisma: "",
-        chracterId: ""
-          
+        chracterId: ""    
     };
+    this.handleDecrement = this.handleDecrement.bind(this);
+    this.handleIncrement = this.handleIncrement.bind(this);
   };
 
   componentDidMount () {
@@ -100,14 +101,19 @@ class DMcard extends Component {
   };
 
   handleIncrement(attr, value) {
-    console.log(attr, value);
-    console.log(this.state);
+
+    this.setState({
+      [attr]: parseInt(value)
+    });
     
   }
 
   handleDecrement(attr, value) {
-    console.log(attr, value);
-    console.log(this.state);  
+    
+    this.setState({
+      [attr]: parseInt(value)
+    });
+
   }
 
   render() {
