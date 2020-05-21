@@ -61,14 +61,14 @@ class AddPlayer extends Component {
       [name]: value,
       errors: {}
     });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   charChecked = id => {
     const campaignCharacters = this.state.campaignCharacters;
     campaignCharacters.push(id);
     this.setState({campaignCharacters: campaignCharacters, errors: {} });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   validateForm() {

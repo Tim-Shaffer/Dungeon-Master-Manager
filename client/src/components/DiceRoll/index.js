@@ -65,7 +65,7 @@ class DiceRoll extends Component {
 
     return (
 
-    <div id="rollDice" className="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="rollDice" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">Click the Die to roll 

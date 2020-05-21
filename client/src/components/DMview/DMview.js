@@ -65,9 +65,10 @@ class DMview extends Component {
                             </div>
                         </div>
                     :
+                    !this.state.showCreate ? 
                     <div className="row">
                         <div className="col-6" id="campaign">
-                            <div class="button" className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
+                            <div className="btn btn-danger btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
 
                             {/* <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">Roll Dice</button> */}
                         </div>
@@ -76,7 +77,8 @@ class DMview extends Component {
                             <button type="button" className="btn btn-danger btn-lg playerbttn border border-dark">End Campaign</button>
                         </div> */}
                     </div>
-                    // null
+                    : 
+                    null
                     }
                     
                 <br/>

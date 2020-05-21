@@ -8,8 +8,9 @@ import "./style.css";
 
 class DMcard extends Component {
 
-  
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
         name: "",
         attributes: [],
         classType: "",
@@ -27,6 +28,7 @@ class DMcard extends Component {
         chracterId: ""
           
     };
+  };
 
   componentDidMount () {
     const name = this.props.character;
@@ -97,6 +99,17 @@ class DMcard extends Component {
         .catch(err => console.log(err));
   };
 
+  handleIncrement(attr, value) {
+    console.log(attr, value);
+    console.log(this.state);
+    
+  }
+
+  handleDecrement(attr, value) {
+    console.log(attr, value);
+    console.log(this.state);  
+  }
+
   render() {
     return (
       <>
@@ -119,7 +132,21 @@ class DMcard extends Component {
                               {!isNaN(attribute.attrValue) ? 
                               <>
                                 <div className="col-2">
-                                  <DecrementButton key={index}></DecrementButton>                  
+                                  <DecrementButton 
+                                    key={index} 
+                                    decattr={attribute.attrName}  
+                                    handleDecrement={this.handleDecrement}
+                                    currValue={attribute.attrName === "Level" ? this.state.Level : 
+                                                      attribute.attrName === "Experience" ? this.state.Experience : 
+                                                      attribute.attrName === "Strength" ? this.state.Strength : 
+                                                      attribute.attrName === "Dexterity" ? this.state.Dexterity : 
+                                                      attribute.attrName === "Constitution" ? this.state.Constitution: 
+                                                      attribute.attrName === "Intelligence" ? this.state.Intelligence : 
+                                                      attribute.attrName === "Wisdom" ? this.state.Wisdom : 
+                                                      attribute.attrName === "Charisma" ? this.state.Charisma : 
+                                                      null}
+                                  > 
+                                  </DecrementButton>                  
                                 </div>
                                 
 
@@ -152,7 +179,20 @@ class DMcard extends Component {
 
                                 
                                 <div className="col-2">
-                                  <IncrementButton></IncrementButton>
+                                  <IncrementButton key={index} 
+                                    incattr={attribute.attrName}  
+                                    handleIncrement={this.handleIncrement}
+                                    currValue={attribute.attrName === "Level" ? this.state.Level : 
+                                                      attribute.attrName === "Experience" ? this.state.Experience : 
+                                                      attribute.attrName === "Strength" ? this.state.Strength : 
+                                                      attribute.attrName === "Dexterity" ? this.state.Dexterity : 
+                                                      attribute.attrName === "Constitution" ? this.state.Constitution: 
+                                                      attribute.attrName === "Intelligence" ? this.state.Intelligence : 
+                                                      attribute.attrName === "Wisdom" ? this.state.Wisdom : 
+                                                      attribute.attrName === "Charisma" ? this.state.Charisma : 
+                                                      null}
+                                  > 
+                                  </IncrementButton>
                                 </div>
                             </>
                             : 
