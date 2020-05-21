@@ -61,14 +61,14 @@ class AddPlayer extends Component {
       [name]: value,
       errors: {}
     });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   charChecked = id => {
     const campaignCharacters = this.state.campaignCharacters;
     campaignCharacters.push(id);
     this.setState({campaignCharacters: campaignCharacters, errors: {} });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   validateForm() {
@@ -144,7 +144,7 @@ class AddPlayer extends Component {
             <div className="camp-red-text">{this.state.errors.characters}</div>
                 </div>
               </div>
-              <button className="btn btn-primary btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} >
+              <button className="btn btn-block playerbttn border border-dark" id="DMbttn" onClick={this.handleFormSubmit} >
                 Submit
               </button>
             </div>

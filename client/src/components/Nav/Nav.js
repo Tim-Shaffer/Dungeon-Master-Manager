@@ -22,7 +22,7 @@ function Nav() {
                                     <input id="passwordInput" placeholder="Password" className="form-control form-control-sm" type="text" required="" />
                                 </div>
                                 <div className="form-group">
-                                    <button type="submit" className="btn btn-primary btn-block">Login</button>
+                                    <button type="submit" className="btn btn-block">Login</button>
                                 </div>
                                 <div className="form-group text-center">
                                     <small><a href="#" data-toggle="modal" data-target="#createAccount">Create Account</a></small>
@@ -47,7 +47,7 @@ function Nav() {
                         <input id="passwordInput" placeholder="Password" className="form-control form-control-sm" type="text" required=""/>
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary btn-block">Create</button>
+                        <button type="submit" className="btn btn-block">Create</button>
                     </div>
                 </form>
             </div>
