@@ -9,69 +9,56 @@ import DiceRoll from "../DiceRoll";
 import annyang from "../Voice/Voice";
 
 class DMview extends Component {
-
     state = {
         characters: [],
         user: "",
         showCreate: false,
     };
-
     //  |----------ANNYANG START----------|
-//   componentDidMount() {
-//     annyang.addCommands(this.addStats, this.removeStats);
-//     annyang.addCallback(this.engineCallback, this.resultCallback);
-//     annyang.start();
-
-//     this.setState({
-//       voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
-//     });
-//   }
-
   componentWillMount() {
     annyang.abort();
   }
-
   engineCallback = (status) => {
     // engine status
   }
 
   resultCallback = (voiceInput) => {
     // compares input to DM commands
+    this.setState({
+        voiceInput: voiceInput
+    })
+    console.log(voiceInput);
+    // voiceInput.some(phrase => {
+    //     return this.state
+    // })
   }
 
   addStats = () => {
     // add player stats
   }
-
   removeStats = () => {
     // remove player stats
   }
-
 //  |-----------ANNYANG END------------|
-
     componentDidMount () {
         // Just for testing 
         //-- I know I am executing this function!
         this.getUserCampaign();
-
+        
         annyang.addCommands(this.addStats, this.removeStats);
         annyang.addCallback(this.engineCallback, this.resultCallback);
         annyang.start();
-
         this.setState({
         voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
         });
-
     }
 
     createCampaign(e){
         e.preventDefault();
         this.setState({ showCreate: true})
     };
-
     getUserCampaign() {
         const user = this.props.user;
-
         findCampaign(user.id)
         .then(res => {
             let charArray = [];
@@ -87,17 +74,13 @@ class DMview extends Component {
         })
         .catch(err => console.log(err));
     }
-
     handleSubmit() {   
-
         this.setState({ showCreate: false})
         this.getUserCampaign();
     }
-
     render() {
         const userName = this.props.user.name;
         const user = this.props.user;
-
     return (
         
         <div>
@@ -127,7 +110,6 @@ class DMview extends Component {
                     }
                     
                 <br/>
-
                 {this.state.characters.length > 0 ?
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
@@ -146,27 +128,22 @@ class DMview extends Component {
                                     </div>
                                 </div>)
                         }                   
-
                     </div>
                 :
                     null
                 }
-
                 { this.state.showCreate ? 
                     <AddPlayer userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
                 :
                 null
                 }
-
                 {/* <AddPlayer></AddPlayer> */}
-
                 <DiceRoll></DiceRoll>
-
             </div>
         </div>
         
         );
     }
 }
-
 export default DMview;
+

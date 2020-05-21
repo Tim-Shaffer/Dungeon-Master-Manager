@@ -5,19 +5,15 @@ import { findCharacter } from "../../utils/character_controller";
 import CreatePlyr from "../CreatePlyr/CreatePlyr";
 import { deleteCharacter } from "../../utils/character_controller";
 import Music from "../Music/Music";
-
 class Playerview extends Component {
-
         state = {
            user: "",
            characters: [],
            showCreate: false
     };
-
     componentDidMount() {
         //-- I know I am executing this function!
         const user = this.props.user;
-
         findCharacter(user.id)
         .then(res => {
             let charArray = [];
@@ -33,17 +29,13 @@ class Playerview extends Component {
         .catch(err => console.log(err));
     
     };
-
     createCharacter(e){
         e.preventDefault();
         this.setState({ showCreate: true})
     };
-
     delChar(id){
-
         console.log(this.state);
         console.log(id);
-
         deleteCharacter(id)
         .then(res => {
             // console.log(res);
@@ -65,19 +57,14 @@ class Playerview extends Component {
             console.log(err);
         })
     };
-
     handleSubmit(charData) {
         const charArray = this.state.characters;
         charArray.push(charData);
-
         this.setState({ showCreate: false, characters: charArray});
     }
-
     render() {
-
         const userName = this.props.user.name;
         const user = this.props.user;
-
         return (
             <div>
             <div className="container-fluid" id="body">
@@ -91,10 +78,8 @@ class Playerview extends Component {
                     :
                     null
                     }
-
                 </div>
                 <br/>
-
                 {this.state.characters.length > 0 && !this.state.showCreate ?
                     <>
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
@@ -132,19 +117,24 @@ class Playerview extends Component {
                     null
                     
                 }
-
                 { this.state.showCreate ? 
                     <CreatePlyr userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
                 :
                 null
                 }
-
                 </div>
             </div>
         
         )
     }
-
 }
-
 export default Playerview;
+
+
+
+
+
+
+
+
+
