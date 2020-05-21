@@ -4,7 +4,8 @@ h4 {
 }
 
 .logout-btn {
-    background-color: red
+    background-color: darkred;
+    color: white;
 }
 
 
