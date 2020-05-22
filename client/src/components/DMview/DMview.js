@@ -26,17 +26,62 @@ class DMview extends Component {
     // compares input to DM commands
     this.setState({
         voiceInput: voiceInput
-    })
-    console.log(voiceInput);
-    // voiceInput.some(phrase => {
-    //     return this.state
-    // })
+    });
+    let voice = voiceInput[0].split(" ");
+    
+    //if "start" proceed with  
+    if(voice[0].toLowerCase() === "start") {
+        // removing "start" from array
+        let a = voice.shift();
+        // passing in array to playStat function
+        this.playerStats(voice);
+    }
+    else {
+        voice = [];
+    }
+
   }
 
-  addStats = () => {
+  playerStats = (x) => {
     // add player stats
+    let name;
+    let command;
+    let stat;
+    let num;
+    for (let i = 0; i < x.length; i++) {
+        if(i === 0) {
+            name = x[i];
+        }
+        else if (i === 1) {
+            if(x[i].toLowerCase() === "save") {
+                // initialize "save" function to keep user changes
+                console.log("save works!!!");
+            }
+            stat = x[i];
+        }
+        else if (i === 2) {
+            command = x[i];
+            if (command[0] === "+") {
+                console.log("it grabbed");
+                command.shift();
+            }
+        }
+        else if (i === 3) {
+            num = x[i];
+        }
+        else {
+            console.log("this did not work");
+        }
+    }
+    let value = command + num;
+    console.log(value);
+    console.log(stat);
+    console.log(name);
   }
-  removeStats = () => {
+
+
+
+  saveStats = () => {
     // remove player stats
   }
 //  |-----------ANNYANG END------------|
@@ -45,7 +90,7 @@ class DMview extends Component {
         //-- I know I am executing this function!
         this.getUserCampaign();
         
-        annyang.addCommands(this.addStats, this.removeStats);
+        annyang.addCommands(this.playerStats, this.saveStats);
         annyang.addCallback(this.engineCallback, this.resultCallback);
         annyang.start();
         this.setState({
