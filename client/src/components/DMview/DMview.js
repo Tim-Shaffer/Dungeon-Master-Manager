@@ -86,16 +86,10 @@ class DMview extends Component {
 
         }
     }
-    
+
     console.log(value);
     console.log(stat);
     console.log(name);
-  }
-
-
-
-  saveStats = () => {
-    // remove player stats
   }
 //  |-----------ANNYANG END------------|
     componentDidMount () {
