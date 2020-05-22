@@ -11,6 +11,7 @@ class Playerview extends Component {
            characters: [],
            showCreate: false
     };
+
     componentDidMount() {
         //-- I know I am executing this function!
         const user = this.props.user;
@@ -29,13 +30,14 @@ class Playerview extends Component {
         .catch(err => console.log(err));
     
     };
+
     createCharacter(e){
         e.preventDefault();
         this.setState({ showCreate: true})
     };
+
     delChar(id){
-        console.log(this.state);
-        console.log(id);
+       
         deleteCharacter(id)
         .then(res => {
             // console.log(res);
@@ -57,11 +59,13 @@ class Playerview extends Component {
             console.log(err);
         })
     };
+
     handleSubmit(charData) {
         const charArray = this.state.characters;
         charArray.push(charData);
         this.setState({ showCreate: false, characters: charArray});
     }
+
     render() {
         const userName = this.props.user.name;
         const user = this.props.user;
@@ -69,7 +73,6 @@ class Playerview extends Component {
             <div>
             <div className="container-fluid" id="body">
                 <div className="row">
-            {/* <Music /> */}
                     {this.state.characters.length === 0 && !this.state.showCreate ?
                          
                             <div className="col-12" id="campaign">
@@ -89,8 +92,7 @@ class Playerview extends Component {
                                 <div className="card border border-dark">
                                     <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                     <div className="butt">
-                                        {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                        {/* <button className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button> */}
+                                        <button className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button>
                                     </div>
                                 </div>
                             </div>)
@@ -101,8 +103,7 @@ class Playerview extends Component {
                                     <div className="card border border-dark">
                                         <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
                                         <div className="butt">
-                                            {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Edit</a> */}
-                                            {/* <a href="#" className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</a> */}
+                                            <button className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button>
                                         </div>
                                     </div>
                                 </div>)
@@ -128,6 +129,7 @@ class Playerview extends Component {
         )
     }
 }
+
 export default Playerview;
 
 

@@ -11,6 +11,7 @@ export const createCampaign = (userId, campData) => {
 };
 
 // deleteCampaign - delete campaign information
-export const deleteCharacter = (campId, campData) => {
-    return axios.delete("/api/campaign/" + campId, campData);
+export const deleteCampaign = (campId) => {
+    return axios.delete("/api/campaign/" + campId);
 };
+
