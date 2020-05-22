@@ -28,22 +28,80 @@ class DMview extends Component {
   }
 
   resultCallback = (voiceInput) => {
+// syntax is 'start' + "first name of player" + "attribute" + "minus (or) plus" + "num"
+// to save 'start' + "first name of player" + "save" 
+
     // compares input to DM commands
     this.setState({
         voiceInput: voiceInput
-    })
-    console.log(voiceInput);
-    // voiceInput.some(phrase => {
-    //     return this.state
-    // })
+    });
+    let voice = voiceInput[0].split(" ");
+    
+    //if "start" proceed with  
+    if(voice[0].toLowerCase() === "start") {
+        // removing "start" from array
+        let a = voice.shift();
+        // passing in array to playStat function
+        this.playerStats(voice);
+    }
+    else {
+        // if sentence isn't prepended with "start"
+        console.log("You didn't say start");
+        voice = [];
+    }
   }
 
-  addStats = () => {
+  playerStats = (x) => {
     // add player stats
+<<<<<<< HEAD
+    let name;
+    let command;
+    let stat;
+    let num;
+    for (let i = 0; i < x.length; i++) {
+        if(i === 0) {
+            name = x[i];
+        }
+        else if (i === 1) {
+            if(x[i].toLowerCase() === "save") {
+                // initialize "save" function to keep user changes
+                console.log("leads to SAVE!!!");
+            }
+            stat = x[i].charAt(0).toUpperCase();
+        }
+        else if (i === 2) {
+            if (x[0] === "+") {
+                console.log("it grabbed");
+                command = x[1];
+            }
+            command = x[i]
+        }
+        else if (i === 3) {
+            num = x[i];
+        }
+        else {
+            console.log("this did not work");
+        }
+    }
+    let value = parseInt(command + num);
+
+    // find campaign character by chosen name
+    for (let i = 0; i < this.state.characters.length; i++) {
+        if (name === this.state.characters[i].name) {
+            console.log("MATCH!")
+
+        }
+    }
+
+    console.log(value);
+    console.log(stat);
+    console.log(name);
+=======
   }
 
   removeStats = () => {
     // remove player stats
+>>>>>>> origin
   }
 //  |-----------ANNYANG END------------|
 
@@ -52,7 +110,7 @@ class DMview extends Component {
         //-- I know I am executing this function!
         this.getUserCampaign();
         
-        annyang.addCommands(this.addStats, this.removeStats);
+        annyang.addCommands(this.playerStats, this.saveStats);
         annyang.addCallback(this.engineCallback, this.resultCallback);
         annyang.start();
         this.setState({
