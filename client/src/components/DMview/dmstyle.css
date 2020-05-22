@@ -16,6 +16,12 @@
     color: white;
 }
 
+.campbttn {
+    background-color: grey;
+    font-family: 'Rock Salt', cursive;
+    color: darkred;
+}
+
 #body {
     padding-bottom: 20px;
     padding-top: 80px;

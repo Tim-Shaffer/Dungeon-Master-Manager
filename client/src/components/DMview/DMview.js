@@ -4,6 +4,7 @@ import DMcard from "../DMcard/DMcard";
 import { findCampaign } from "../../utils/campaign_controller";
 import AddPlayer from "../AddPlayer/AddPlayer";
 import DiceRoll from "../DiceRoll";
+import { deleteCampaign } from "../../utils/campaign_controller";
 
 // importing annyang
 import annyang from "../Voice/Voice";
@@ -12,12 +13,16 @@ class DMview extends Component {
     state = {
         characters: [],
         user: "",
+        campaign: "",
+        id: "",
         showCreate: false,
     };
-    //  |----------ANNYANG START----------|
+
+//  |----------ANNYANG START----------|
   componentWillMount() {
     annyang.abort();
   }
+
   engineCallback = (status) => {
     // engine status
   }
@@ -36,10 +41,12 @@ class DMview extends Component {
   addStats = () => {
     // add player stats
   }
+
   removeStats = () => {
     // remove player stats
   }
 //  |-----------ANNYANG END------------|
+
     componentDidMount () {
         // Just for testing 
         //-- I know I am executing this function!
@@ -57,10 +64,13 @@ class DMview extends Component {
         e.preventDefault();
         this.setState({ showCreate: true})
     };
+
     getUserCampaign() {
         const user = this.props.user;
         findCampaign(user.id)
         .then(res => {
+            let campaign = res.data.name;
+            let id = res.data._id;
             let charArray = [];
             for (let i=0; i < res.data.characters.length; i++) {
                 charArray.push({
@@ -69,15 +79,32 @@ class DMview extends Component {
                     attributes: res.data.characters[i].attributes   
                 })
             }
-            this.setState({ characters: charArray, user: user });
+            this.setState({ characters: charArray, user: user, campaign: campaign, id: id});
             // console.log(JSON.stringify(res));
         })
         .catch(err => console.log(err));
     }
+
     handleSubmit() {   
         this.setState({ showCreate: false})
         this.getUserCampaign();
     }
+
+    endCampaign(id){
+        console.log(this.state);
+        console.log(id);
+        deleteCampaign(id)
+        .then(res => {
+            console.log(res);
+            let charArray = [];
+            
+            this.setState({ characters: charArray, campaign: "", id: "", showCreate: false });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    };
+
     render() {
         const userName = this.props.user.name;
         const user = this.props.user;
@@ -95,15 +122,17 @@ class DMview extends Component {
                     :
                     !this.state.showCreate ? 
                     <div className="row">
-                        <div className="col-6" id="campaign">
+                        <div className="col-4" id="campaign">
                             <div className="btn btn-lg playerbttn border border-dark" data-toggle="modal" data-target="#rollDice" >Dice</div>
+                        </div>
 
-                            {/* <button type="button" className="btn btn-lg playerbttn border border-dark">Roll Dice</button> */}
+                        <div className="col-4" id="campaign">
+                            <div className="btn btn-lg campbttn border border-dark">{this.state.campaign}</div>
                         </div>
                         
-                        {/* <div className="col-6" id="campaign">
-                            <button type="button" className="btn btn-lg playerbttn border border-dark">End Campaign</button>
-                        </div> */}
+                        <div className="col-4" id="campaign">
+                            <button type="button" className="btn btn-lg playerbttn border border-dark" id={this.state.id} onClick={() => this.endCampaign(this.state.id)}>End Campaign</button>
+                        </div>
                     </div>
                     : 
                     null
@@ -137,7 +166,6 @@ class DMview extends Component {
                 :
                 null
                 }
-                {/* <AddPlayer></AddPlayer> */}
                 <DiceRoll></DiceRoll>
             </div>
         </div>
