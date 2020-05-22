@@ -6,10 +6,11 @@ Dungeons and Dragons is a fantasy tabletop role-playing game that allows players
 Dungeon Master Manager allows the DM to effectively run the campaign, roll dice whenever needed, and efficiently update character stats for each turn in a given campaign.  
 
 # Authors
-> Justin Acosta
-> Helen Maschmeyer 
-> Tim Shaffer
-> Wayne Wu
+* Justin Acosta
+* Helen Maschmeyer
+* Tim Shaffer
+* Wayne Wu
+
 
 ## Contents
 * [Deployment](#deployment)
@@ -23,7 +24,7 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 
 ## Tech Used
 
-* **annyang**:
+* **annyang**: a Speech Recognition library to allow for voice commands to control some actions
 * axios:  promise based HTTP client for the browser and node.js
 * bcryptjs: used to hash passwords before they are stored in the database
 * body-parser: used to parse incoming request bodies in a middleware before the handlers
@@ -31,7 +32,7 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 * concurrently: allows us to run our backend and frontend concurrently and on different ports
 * dotenv: a zero-dependency module that loads environment variables from a .env file into process.env 
 * express: a fast, unopinionated, minimalist web framework for node.js
-* if-env: 
+* if-env: simplify development be able to run the correct script in all environments
 * is-empty: check to see if a value is empty
 * **jsonwebtoken**: JSON Web Token (JWT) - used for authorization
 * **jwt-decode**: a browser library to decode JWTs
@@ -46,7 +47,7 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 * react-scripts: scripts and configuration used by Create React App
 * redux: a predictable state container for JavaScript apps 
 * redux-thunk: middleware that allows you to write action creators that return a function instead of an action 
-* **uifx**:
+* **uifx**: simple library for playing sound effects
 * **validator**: a library of string validators and sanitizers (ie. confirming passwords match)
 
 ## Folder Structure
