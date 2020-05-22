@@ -44,7 +44,6 @@ class DMview extends Component {
         console.log("You didn't say start");
         voice = [];
     }
-
   }
 
   playerStats = (x) => {
@@ -60,9 +59,9 @@ class DMview extends Component {
         else if (i === 1) {
             if(x[i].toLowerCase() === "save") {
                 // initialize "save" function to keep user changes
-                console.log("save works!!!");
+                console.log("leads to SAVE!!!");
             }
-            stat = x[i];
+            stat = x[i].charAt(0).toUpperCase();
         }
         else if (i === 2) {
             if (x[0] === "+") {
@@ -80,26 +79,14 @@ class DMview extends Component {
     }
     let value = parseInt(command + num);
 
-    // adjusting player stat
-    const user = this.props.user;
-    // find campaign character by matching to chosen name
-    let arr = [];
-    findCampaign(user.id) 
-    .then(res => {
-            for(let i = 0; i < res.data.characters.length; i++) {
-                if (name === res.data.characters[i].name) {
-                    arr.push({
-                        _id: res.data.characters[i]._id,
-                        name: res.data.characters[i].name,
-                        attributes: res.data.characters[i].attributes
-                    });
-                }
-            }
-    })
-    .catch(err => console.log(err));
+    // find campaign character by chosen name
+    for (let i = 0; i < this.state.characters.length; i++) {
+        if (name === this.state.characters[i].name) {
+            console.log("MATCH!")
 
-    console.log(arr);
-
+        }
+    }
+    
     console.log(value);
     console.log(stat);
     console.log(name);
