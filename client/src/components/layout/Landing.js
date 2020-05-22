@@ -10,7 +10,7 @@ class Landing extends Component {
         <Info />
         <footer id="sticky-footer" className="py-4 border-top border-danger bg-dark text-white-50 sticky">
           <div className="container text-center">
-            <small>Copyright &copy; Justin Acosta, Helen Maschmeyer,
+            <small>Copyright &copy; 2020 Justin Acosta, Helen Maschmeyer,
             Tim Shaffer, Wayne Wu
             </small>
           </div>

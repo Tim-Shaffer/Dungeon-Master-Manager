@@ -4,8 +4,12 @@ import { List, ListItem } from "../List";
 import "./style.css";
 import Campchars from "../campaign";
 import { createCampaign } from "../../utils/campaign_controller";
+import UIfx from 'uifx'
+import submitFX from './sounds/soundfx.mp3'
 
-class AddPlayer extends Component {
+const createdSound = new UIfx(submitFX)
+
+class CreateCampaign extends Component {
 
   state = {
     isOpen: false,
@@ -43,6 +47,7 @@ class AddPlayer extends Component {
       createCampaign(userId,campaign)
       .then(res =>{
         // console.log(res);
+        createdSound.play();
         this.props.handleSubmit(res.data);
       })
       .catch(err =>{
@@ -61,15 +66,14 @@ class AddPlayer extends Component {
       [name]: value,
       errors: {}
     });
-    // console.log(this.state);
+    
   };
 
   charChecked = id => {
     const campaignCharacters = this.state.campaignCharacters;
     campaignCharacters.push(id);
     this.setState({campaignCharacters: campaignCharacters, errors: {} });
-    // console.log(this.state);
-  }
+  };
 
   validateForm() {
 
@@ -86,7 +90,7 @@ class AddPlayer extends Component {
     if (characters.length === 0) {
       formIsValid = false;
       errors["characters"] = "Campaign needs at least 1 character.";
-  }
+    }
 
     this.setState({
         errors: errors
@@ -94,11 +98,11 @@ class AddPlayer extends Component {
 
     return formIsValid;
 
-};
+  };
 
 
   render() {
-    // const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
+    
     return (
       <div className="container-fluid" id="body">
         <br />
@@ -156,4 +160,4 @@ class AddPlayer extends Component {
 }
 
 
-export default AddPlayer;
+export default CreateCampaign;

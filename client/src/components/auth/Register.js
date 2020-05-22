@@ -153,11 +153,6 @@ class Register extends Component {
                     </div>
               </form>
 
-              {/* <div className="custom-control custom-checkbox">
-                  <label className="custom-control-label" htmlFor="defaultUnchecked">Dungeon Master</label>
-                  <input type="checkbox" className="custom-control-input" id="defaultUnchecked" value={this.state.isMaster} onChange={this.onCheck}/>
-              </div> */}
-
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{

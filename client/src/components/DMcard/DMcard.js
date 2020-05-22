@@ -3,8 +3,11 @@ import { List, ListItem } from "../List";
 import IncrementButton from "../IncrementDecrementButton/IncrementButton";
 import DecrementButton from "../IncrementDecrementButton/DecrementButton";
 import { updateCharacter } from "../../utils/character_controller";
-
 import "./style.css";
+import UIfx from 'uifx'
+import submitFX from './sounds/soundfx.mp3'
+
+const savedSound = new UIfx(submitFX)
 
 class DMcard extends Component {
 
@@ -36,7 +39,6 @@ class DMcard extends Component {
     const attributes = this.props.attributes;
     this.setState({name: name, attributes: attributes})
 
-    // moved to a function call since we may need to access it again
     this.setStateAttributes(attributes);
     
   }
@@ -75,7 +77,6 @@ class DMcard extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    // console.log(this.props);
     const charData = {
       attributes: [
         {attrName: "Class", attrValue: this.state.classType}, 
@@ -95,6 +96,7 @@ class DMcard extends Component {
     updateCharacter(this.props.id, charData) 
         .then(res => {
             // console.log(res);
+            savedSound.play();
             alert("Character was saved.");
         })
         .catch(err => console.log(err));
@@ -170,15 +172,6 @@ class DMcard extends Component {
                                                       attribute.attrName === "Wisdom" ? this.state.Wisdom : 
                                                       attribute.attrName === "Charisma" ? this.state.Charisma : 
                                                       null}
-                                        // value={attribute.attrName === "Level" ? this.state.level : 
-                                        //         attribute.attrName === "Experience" ? this.state.experience : 
-                                        //         attribute.attrName === "Strength" ? this.state.strength : 
-                                        //         attribute.attrName === "Dexterity" ? this.state.dexterity : 
-                                        //         attribute.attrName === "Constitution" ? this.state.constitution: 
-                                        //         attribute.attrName === "Intelligence" ? this.state.intelligence : 
-                                        //         attribute.attrName === "Wisdom" ? this.state.wisdom : 
-                                        //         attribute.attrName === "Charisma" ? this.state.charisma : 
-                                        //         null}
                                        />
                                   
                                 </div>

@@ -3,6 +3,8 @@ const mongojs = require("mongojs");
 const router = express.Router();
 const mongoose = require("mongoose");
 
+mongoose.set('useFindAndModify', false);
+
 // Require the models
 var db = require("../../models/");
 
