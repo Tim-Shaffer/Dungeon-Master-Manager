@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./dmstyle.css";
 import DMcard from "../DMcard/DMcard";
 import { findCampaign } from "../../utils/campaign_controller";
-import AddPlayer from "../AddPlayer/AddPlayer";
+import CreateCampaign from "../CreateCampaign/CreateCampaign";
 import DiceRoll from "../DiceRoll";
 import { deleteCampaign } from "../../utils/campaign_controller";
 
@@ -162,7 +162,7 @@ class DMview extends Component {
                     null
                 }
                 { this.state.showCreate ? 
-                    <AddPlayer userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
+                    <CreateCampaign userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
                 :
                 null
                 }

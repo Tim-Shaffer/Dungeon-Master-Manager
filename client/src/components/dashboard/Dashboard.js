@@ -6,11 +6,7 @@ import { findUser } from "../../actions/authActions";
 import "./style.css";
 import Master from "../DMview/DMview";
 import Player from "../Playerview/Playerview";
-import CreatePlyr from "../CreatePlyr/CreatePlyr";
-// import Nav from "../Nav/Nav"
-
-// // importing annyang
-// import annyang from "../Voice/Voice";
+import CreatePlayer from "../CreatePlayer/CreatePlayer";
 
 class Dashboard extends Component {
 
@@ -20,39 +16,6 @@ class Dashboard extends Component {
       errors: {}
     };
 
-  //  |----------ANNYANG START----------|
-  // componentDidMount() {
-  //   annyang.addCommands(this.addStats, this.removeStats);
-  //   annyang.addCallback(this.engineCallback, this.resultCallback);
-  //   annyang.start();
-
-  //   this.setState({
-  //     voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
-  //   });
-  // }
-
-//   componentWillMount() {
-//     annyang.abort();
-//   }
-
-//   engineCallback = (status) => {
-//     // engine status
-//   }
-
-//   resultCallback = (voiceInput) => {
-//     // compares input to DM commands
-//   }
-
-//   addStats = () => {
-//     // add player stats
-//   }
-
-//   removeStats = () => {
-//     // remove player stats
-//   }
-
-// //  |-----------ANNYANG END------------|
-
 
   onLogoutClick = e => {
     e.preventDefault();
@@ -61,21 +24,12 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    //-- I know I am executing this function!
     const { user } = this.props.auth;
-    // console.log(JSON.stringify(user));
 
     // findUser(user.id);
     findUser(user.id).then(res => {
       this.setState({ isMaster: res.data.isMaster});
 
-      // annyang.addCommands(this.addStats, this.removeStats);
-      // annyang.addCallback(this.engineCallback, this.resultCallback);
-      // annyang.start();
-
-      // this.setState({
-      //   voiceStatus: annyang.isSupported() ? 'Supported' : 'Unsupported'
-      // });
 
     })
     .catch(err => console.log(err));
@@ -100,11 +54,10 @@ class Dashboard extends Component {
             </button>
         </div>
       </nav>
-      {/* <Nav /> */}
 
       { this.state.isMaster ? 
         <Master user={user}/>
-      : this.state.showPlayer ? <Player user={user} /> : <CreatePlyr user={user} /> }
+      : this.state.showPlayer ? <Player user={user} /> : <CreatePlayer user={user} /> }
       </>
     );
   }
