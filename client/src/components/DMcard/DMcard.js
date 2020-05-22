@@ -3,8 +3,11 @@ import { List, ListItem } from "../List";
 import IncrementButton from "../IncrementDecrementButton/IncrementButton";
 import DecrementButton from "../IncrementDecrementButton/DecrementButton";
 import { updateCharacter } from "../../utils/character_controller";
-
 import "./style.css";
+import UIfx from 'uifx'
+import submitFX from './sounds/soundfx.mp3'
+
+const savedSound = new UIfx(submitFX)
 
 class DMcard extends Component {
 
@@ -95,6 +98,7 @@ class DMcard extends Component {
     updateCharacter(this.props.id, charData) 
         .then(res => {
             // console.log(res);
+            savedSound.play();
             alert("Character was saved.");
         })
         .catch(err => console.log(err));

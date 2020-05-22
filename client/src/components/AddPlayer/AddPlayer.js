@@ -4,6 +4,10 @@ import { List, ListItem } from "../List";
 import "./style.css";
 import Campchars from "../campaign";
 import { createCampaign } from "../../utils/campaign_controller";
+import UIfx from 'uifx'
+import submitFX from './sounds/soundfx.mp3'
+
+const createdSound = new UIfx(submitFX)
 
 class AddPlayer extends Component {
 
@@ -43,6 +47,7 @@ class AddPlayer extends Component {
       createCampaign(userId,campaign)
       .then(res =>{
         // console.log(res);
+        createdSound.play();
         this.props.handleSubmit(res.data);
       })
       .catch(err =>{

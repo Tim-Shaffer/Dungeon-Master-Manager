@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { createCharacter } from "../../utils/character_controller";
 import "../Playerview/playerstyle.css";
 import "./CreatePlyr.css";
+import UIfx from 'uifx'
+import submitFX from './sounds/soundfx.mp3'
 
+const createdSound = new UIfx(submitFX)
 
 class CreatePlyr extends Component {
 
@@ -75,6 +78,7 @@ class CreatePlyr extends Component {
 
             createCharacter(userId, plyr)
             .then(res =>  {
+                createdSound.play();
                 this.props.handleSubmit(res.data);
             })
             .catch(err => {
