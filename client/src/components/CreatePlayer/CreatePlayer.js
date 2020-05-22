@@ -25,7 +25,7 @@ class CreatePlayer extends Component {
         intelligence: 0,
         wisdom: 0,
         charisma: 0,
-        level: 0,
+        level: 1,
         userId: "",
         fields: {},
         errors: {}
@@ -45,7 +45,35 @@ class CreatePlayer extends Component {
           errors: {}
         });
 
+        if (name === "class" && value.toLowerCase() === "barbarian" ) {
+            this.setState({ strength: 18, dexterity: 14, constitution: 14, intelligence: 8, wisdom: 12, charisma: 10 })    
+        } else if (name === "class" && value.toLowerCase() === "bard" ) {
+            this.setState({ strength: 9, dexterity: 15, constitution: 14, intelligence: 11, wisdom: 13, charisma: 17 })    
+        } else if (name === "class" && value.toLowerCase() === "cleric" ) {
+            this.setState({ strength: 15, dexterity: 9, constitution: 14, intelligence: 11, wisdom: 17, charisma: 13 })    
+        } else if (name === "class" && value.toLowerCase() === "druid" ) {
+            this.setState({ strength: 8, dexterity: 14, constitution: 14, intelligence: 11, wisdom: 16, charisma: 12 })    
+        } else if (name === "class" && value.toLowerCase() === "fighter" ) {
+            this.setState({ strength: 17, dexterity: 12, constitution: 15, intelligence: 10, wisdom: 13, charisma: 8 })    
+        } else if (name === "class" && value.toLowerCase() === "monk" ) {
+            this.setState({ strength: 13, dexterity: 17, constitution: 14, intelligence: 11, wisdom: 15, charisma: 9 })    
+        } else if (name === "class" && value.toLowerCase() === "paladin" ) {
+            this.setState({ strength: 17, dexterity: 8, constitution: 14, intelligence: 10, wisdom: 12, charisma: 14 })    
+        } else if (name === "class" && value.toLowerCase() === "ranger" ) {
+            this.setState({ strength: 12, dexterity: 17, constitution: 14, intelligence: 10, wisdom: 14, charisma: 8 })    
+        } else if (name === "class" && value.toLowerCase() === "rogue" ) {
+            this.setState({ strength: 8, dexterity: 17, constitution: 14, intelligence: 12, wisdom: 10, charisma: 14 })    
+        } else if (name === "class" && value.toLowerCase() === "sorcerer" ) {
+            this.setState({ strength: 14, dexterity: 11, constitution: 10, intelligence: 10, wisdom: 8, charisma: 20 })    
+        } else if (name === "class" && value.toLowerCase() === "warlock" ) {
+            this.setState({ strength: 10, dexterity: 12, constitution: 11, intelligence: 14, wisdom: 8, charisma: 20 })    
+        } else if (name === "class" && value.toLowerCase() === "wizard" ) {
+            this.setState({ strength: 8, dexterity: 10, constitution: 10, intelligence: 20, wisdom: 11, charisma: 16 })    
+        } 
+
     };
+
+
 
 
     handleFormSubmit = event => {
@@ -69,6 +97,7 @@ class CreatePlayer extends Component {
                     {attrName: "Intelligence", attrValue: this.state.intelligence}, 
                     {attrName: "Wisdom", attrValue: this.state.wisdom}, 
                     {attrName: "Charisma", attrValue: this.state.charisma}  
+
                 ]
             };
 
