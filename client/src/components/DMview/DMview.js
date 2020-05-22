@@ -23,6 +23,9 @@ class DMview extends Component {
   }
 
   resultCallback = (voiceInput) => {
+// syntax is 'start' + "first name of player" + "attribute" + "minus (or) plus" + "num"
+// to save 'start' + "first name of player" + "save" 
+
     // compares input to DM commands
     this.setState({
         voiceInput: voiceInput
@@ -37,6 +40,8 @@ class DMview extends Component {
         this.playerStats(voice);
     }
     else {
+        // if sentence isn't prepended with "start"
+        console.log("You didn't say start");
         voice = [];
     }
 
@@ -60,11 +65,11 @@ class DMview extends Component {
             stat = x[i];
         }
         else if (i === 2) {
-            command = x[i];
-            if (command[0] === "+") {
+            if (x[0] === "+") {
                 console.log("it grabbed");
-                command.shift();
+                command = x[1];
             }
+            command = x[i]
         }
         else if (i === 3) {
             num = x[i];
@@ -73,7 +78,28 @@ class DMview extends Component {
             console.log("this did not work");
         }
     }
-    let value = command + num;
+    let value = parseInt(command + num);
+
+    // adjusting player stat
+    const user = this.props.user;
+    // find campaign character by matching to chosen name
+    let arr = [];
+    findCampaign(user.id) 
+    .then(res => {
+            for(let i = 0; i < res.data.characters.length; i++) {
+                if (name === res.data.characters[i].name) {
+                    arr.push({
+                        _id: res.data.characters[i]._id,
+                        name: res.data.characters[i].name,
+                        attributes: res.data.characters[i].attributes
+                    });
+                }
+            }
+    })
+    .catch(err => console.log(err));
+
+    console.log(arr);
+
     console.log(value);
     console.log(stat);
     console.log(name);
