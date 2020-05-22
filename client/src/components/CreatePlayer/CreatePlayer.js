@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { createCharacter } from "../../utils/character_controller";
 import "../Playerview/playerstyle.css";
-import "./CreatePlyr.css";
+import "./CreatePlayer.css";
 import UIfx from 'uifx'
 import submitFX from './sounds/soundfx.mp3'
 
 const createdSound = new UIfx(submitFX)
 
-class CreatePlyr extends Component {
+class CreatePlayer extends Component {
 
     constructor() {
         super();
@@ -39,7 +39,6 @@ class CreatePlyr extends Component {
         fields[name] = value;
     
         // Set the state for the appropriate input field
-
         this.setState({
           [name]: value,
           fields,
@@ -294,4 +293,4 @@ class CreatePlyr extends Component {
     }
 }
 
-export default CreatePlyr;
+export default CreatePlayer;

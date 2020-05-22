@@ -9,7 +9,7 @@ import submitFX from './sounds/soundfx.mp3'
 
 const createdSound = new UIfx(submitFX)
 
-class AddPlayer extends Component {
+class CreateCampaign extends Component {
 
   state = {
     isOpen: false,
@@ -66,15 +66,14 @@ class AddPlayer extends Component {
       [name]: value,
       errors: {}
     });
-    // console.log(this.state);
+    
   };
 
   charChecked = id => {
     const campaignCharacters = this.state.campaignCharacters;
     campaignCharacters.push(id);
     this.setState({campaignCharacters: campaignCharacters, errors: {} });
-    // console.log(this.state);
-  }
+  };
 
   validateForm() {
 
@@ -91,7 +90,7 @@ class AddPlayer extends Component {
     if (characters.length === 0) {
       formIsValid = false;
       errors["characters"] = "Campaign needs at least 1 character.";
-  }
+    }
 
     this.setState({
         errors: errors
@@ -99,11 +98,11 @@ class AddPlayer extends Component {
 
     return formIsValid;
 
-};
+  };
 
 
   render() {
-    // const menuClass = `dropdown-menu${this.state.isOpen ? " show" : ""}`;
+    
     return (
       <div className="container-fluid" id="body">
         <br />
@@ -161,4 +160,4 @@ class AddPlayer extends Component {
 }
 
 
-export default AddPlayer;
+export default CreateCampaign;

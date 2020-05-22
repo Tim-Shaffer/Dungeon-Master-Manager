@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import "./playerstyle.css";
 import PlayerCard from "../PlayerCard/Playercard";
 import { findCharacter } from "../../utils/character_controller";
-import CreatePlyr from "../CreatePlyr/CreatePlyr";
+import CreatePlayer from "../CreatePlayer/CreatePlayer";
 import { deleteCharacter } from "../../utils/character_controller";
 import Music from "../Music/Music";
+
 class Playerview extends Component {
-        state = {
-           user: "",
-           characters: [],
-           showCreate: false
+    
+    state = {
+        user: "",
+        characters: [],
+        showCreate: false
     };
 
     componentDidMount() {
@@ -40,7 +42,7 @@ class Playerview extends Component {
        
         deleteCharacter(id)
         .then(res => {
-            // console.log(res);
+            
             let charArray = [];
             if (res.data.length !== 1){
             for (let i=0; i < res.data.length; i++) {
@@ -64,7 +66,7 @@ class Playerview extends Component {
         const charArray = this.state.characters;
         charArray.push(charData);
         this.setState({ showCreate: false, characters: charArray});
-    }
+    };
 
     render() {
         const userName = this.props.user.name;
@@ -119,7 +121,7 @@ class Playerview extends Component {
                     
                 }
                 { this.state.showCreate ? 
-                    <CreatePlyr userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
+                    <CreatePlayer userName={userName} user={user} handleSubmit={this.handleSubmit.bind(this)}/>
                 :
                 null
                 }

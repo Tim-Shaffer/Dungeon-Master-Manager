@@ -11,7 +11,6 @@ class DecrementButton extends Component {
   }
 
   render() {
-    // this.currValues(this.props.decattr, this.props.attrValue);
 
     return (
       <div>
