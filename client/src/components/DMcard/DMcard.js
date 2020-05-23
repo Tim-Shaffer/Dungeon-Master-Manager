@@ -4,8 +4,9 @@ import IncrementButton from "../IncrementDecrementButton/IncrementButton";
 import DecrementButton from "../IncrementDecrementButton/DecrementButton";
 import { updateCharacter } from "../../utils/character_controller";
 import "./style.css";
-import UIfx from 'uifx'
-import submitFX from './sounds/soundfx.mp3'
+import UIfx from 'uifx';
+import submitFX from './sounds/soundfx.mp3';
+import SavedModal from '../SavedModal'; 
 
 const savedSound = new UIfx(submitFX)
 
@@ -105,7 +106,7 @@ class DMcard extends Component {
         .then(res => {
             // console.log(res);
             savedSound.play();
-            alert("Character was saved.");
+            // alert("Character was saved.");
         })
         .catch(err => console.log(err));
   };
@@ -237,10 +238,10 @@ class DMcard extends Component {
             }
 
               <div className="butt">
-                <button className="btn btn-block playerbttn border border-dark" id="playerbttn" onClick={this.handleFormSubmit.bind(this)}>Save</button>
+                <button className="btn btn-block playerbttn border border-dark" id="playerbttn" data-toggle="modal" data-target="#savedModal"onClick={this.handleFormSubmit.bind(this)}>Save</button>
                 {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
               </div>
-
+              <SavedModal name={this.state.name}></SavedModal>
         </div>
       </>
     );
