@@ -9,14 +9,17 @@
 .attr-name {
     color: darkred;
     margin-left: 8px;
+    font-size: 1rem;
 }
 
 .attr-value {
     color: black;
+    font-size: 1rem;
 }
 
 .card-title{
     font-family: 'Piedra', cursive;
     color: white;
+    font-size: 2rem;
 }
 
