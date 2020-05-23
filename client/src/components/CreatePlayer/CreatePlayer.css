@@ -3,6 +3,7 @@
 }
 .card-header {
     color: white;
+    font-family: 'Piedra', cursive;
 }
 
 button {
@@ -15,7 +16,7 @@ button {
 }
 
 .char-red-text {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Piedra', cursive;
     color: red;
     font-size: small;
     position: relative;
