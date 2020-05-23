@@ -310,7 +310,7 @@ class CreatePlayer extends Component {
                                         </p>
                                     </div>                    
                                      
-                                    <button onClick={this.handleFormSubmit} >
+                                    <button className="btn btn-block playerbttn border border-dark" onClick={this.handleFormSubmit} >
                                         Submit
                                     </button>
                                 </div>
