@@ -110,7 +110,8 @@ class DMcard extends Component {
         .then(res => {
             savedSound.play();
             const socket = socketIOClient(this.state.endpoint);
-            socket.emit('characterUpdate');
+            // console.log(res.data);
+            socket.emit('characterUpdate', res.data);
         })
         .catch(err => console.log(err));
   };

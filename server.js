@@ -51,8 +51,9 @@ const io = require('socket.io')(server);
 io.on('connection', (client) => { 
   /* Emit events to the client */ 
     
-  client.on('characterUpdate', () => {
-    client.broadcast.emit('characterUpdated');
+  client.on('characterUpdate', (charData) => {
+    // console.log(charData);
+    client.broadcast.emit('characterUpdated', charData);
   });
   
 });

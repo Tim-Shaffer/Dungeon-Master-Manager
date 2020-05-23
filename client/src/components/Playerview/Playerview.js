@@ -40,9 +40,13 @@ class Playerview extends Component {
         this.updateCharacter(user);
 
         const socket = socketIOClient(this.state.endpoint);
-        socket.on('characterUpdated', () => {
-
-            this.updateCharacter(user);
+        socket.on('characterUpdated', (charData) => {
+            // console.log(charData);
+            // console.log(user);
+            if (user.id === charData.userId) {
+                // console.log("Updating!")
+                this.updateCharacter(user);
+            }
 
         });
     
