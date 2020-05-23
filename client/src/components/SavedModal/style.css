@@ -1,0 +1,37 @@
+.dice-image {
+    height: 100px;
+}
+
+.modal-body {
+    font-family: 'Piedra', cursive;
+    background-color: gray; 
+}
+
+.modal-header {
+    font-family: 'Piedra', cursive;
+    background-color:  darkred; 
+    padding: 0;
+    border-bottom: 0;
+    color: white;
+}
+
+.modal-footer {
+    font-family: 'Piedra', cursive;
+    background-color:  darkred; 
+    color: white;
+    border-top: 0;
+}
+
+.roll-text-black {
+    color: black;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+}
+
+.roll-text-red {
+    color: darkred;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+}
