@@ -12,7 +12,8 @@ import socketIOClient from "socket.io-client";
 class Playerview extends Component {
     
     state = {
-        endpoint: "localhost:3001",
+        // endpoint: "localhost:3001", // need to update for Heroku (https://maws-dungeon-master-mgr.herokuapp.com)
+        endpoint: `${process.env.REACT_APP_ENDPOINT}`,
         updateCount: 0,
         user: "",
         characters: [],
@@ -35,17 +36,14 @@ class Playerview extends Component {
         //     this.setState({ characters: charArray, user: user });
         // })
         // .catch(err => console.log(err));
+
         this.updateCharacter(user);
 
         const socket = socketIOClient(this.state.endpoint);
         socket.on('characterUpdated', () => {
-            console.log("character updated recognized");
-            // let count = this.state.updateCount + 1;
-            // console.log("Count = " + count);
-            // this.forceUpdate();
-            // this.setState({ updateCount: count });
-            // console.log("Count = " + count);
+
             this.updateCharacter(user);
+
         });
     
     };
@@ -125,7 +123,7 @@ class Playerview extends Component {
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
                             this.state.characters.map(character => 
-                            <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
+                            <div key={character.name} className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
                                 <div className="card border border-dark">
                                     <PlayerCard key={character.name} character={character.name} attributes={character.attributes} ></PlayerCard>                
                                     <div className="butt">

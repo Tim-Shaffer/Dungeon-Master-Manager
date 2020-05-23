@@ -17,7 +17,8 @@ class DMcard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        endpoint: "localhost:3001",
+        // endpoint: "localhost:3001", // need to update for Heroku (https://maws-dungeon-master-mgr.herokuapp.com)
+        endpoint: `${process.env.REACT_APP_ENDPOINT}`,
         name: "",
         attributes: [],
         classType: "",
@@ -107,9 +108,7 @@ class DMcard extends Component {
     }
     updateCharacter(this.props.id, charData) 
         .then(res => {
-            // console.log(res);
-            // savedSound.play();
-            // alert("Character was saved.");
+            savedSound.play();
             const socket = socketIOClient(this.state.endpoint);
             socket.emit('characterUpdate');
         })
@@ -242,11 +241,16 @@ class DMcard extends Component {
             <div>No Attributes</div>
             }
 
-              <div className="butt">
-                <button className="btn btn-block playerbttn border border-dark" id="playerbttn" data-toggle="modal" data-target="#savedModal"onClick={this.handleFormSubmit.bind(this)}>Save</button>
-                {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
-              </div>
-              <SavedModal name={this.state.name}></SavedModal>
+            <div className="butt">
+                <button className="btn btn-block playerbttn border border-dark" id="playerbttn" 
+                data-toggle="modal" 
+                data-target={"#saved" + this.state.name.split(' ').join('')} 
+                onClick={this.handleFormSubmit.bind(this)}
+                >
+                  Save
+                </button>
+            </div>
+            <SavedModal name={this.state.name}></SavedModal>
         </div>
       </>
     );

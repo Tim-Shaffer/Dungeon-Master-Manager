@@ -50,14 +50,11 @@ const io = require('socket.io')(server);
 
 io.on('connection', (client) => { 
   /* Emit events to the client */ 
-  console.log('a user connected');
-  client.on('disconnect', () => {
-    console.log('user disconnected');
-  });  
+    
   client.on('characterUpdate', () => {
-    console.log("character update recognized");
     client.broadcast.emit('characterUpdated');
   });
+  
 });
 
 server.listen(PORT, () => {
