@@ -46,28 +46,31 @@ class DMview extends Component {
     }
     else {
         // if sentence isn't prepended with "start"
-        console.log("You didn't say start");
+        console.log("You didn't say 'START' to initialize commands");
         voice = [];
     }
   }
-
+//   "start justin"
   playerStats = (x) => {
+    const characters = this.state.characters;
+    console.log(characters);
     // add player stats
-<<<<<<< HEAD
     let name;
     let command;
     let stat;
     let num;
     for (let i = 0; i < x.length; i++) {
         if(i === 0) {
-            name = x[i];
+            let a = x[i].charAt(0).toUpperCase(), b = x[i].slice(1);
+            name = a + b;
         }
         else if (i === 1) {
             if(x[i].toLowerCase() === "save") {
                 // initialize "save" function to keep user changes
                 console.log("leads to SAVE!!!");
             }
-            stat = x[i].charAt(0).toUpperCase();
+            let a = x[i].charAt(0).toUpperCase(), b = x[i].slice(1);
+            stat = a + b;
         }
         else if (i === 2) {
             if (x[0] === "+") {
@@ -86,22 +89,40 @@ class DMview extends Component {
     let value = parseInt(command + num);
 
     // find campaign character by chosen name
-    for (let i = 0; i < this.state.characters.length; i++) {
-        if (name === this.state.characters[i].name) {
-            console.log("MATCH!")
+    let matched = false;
+    let attrMatch = false;
 
+    if (name && value && stat) {
+        for (let i = 0; i < characters.length && !matched; i++) {
+            if (name === characters[i].name) {
+                console.log("MATCH!");
+                matched = true;
+                for (var e = 0; e < characters[i].attributes.length && !attrMatch; e++) {
+                    // console.log(stat);
+                    // console.log(characters[i].attributes[e].attrName);
+                    if (stat === characters[i].attributes[e].attrName) {
+                        attrMatch = true;
+                        let attrValue = parseInt(characters[i].attributes[e].attrValue);
+                        attrValue += value;
+                        characters[i].attributes[e].attrValue = attrValue.toString();
+                        // console.log(characters[i]);
+                    }
+                }
+            }
         }
+    }
+
+    if (matched && attrMatch) {
+        console.log("Matched found!!!");
+        console.log(characters);
+        this.setState({
+            characters: characters
+        });
     }
 
     console.log(value);
     console.log(stat);
     console.log(name);
-=======
-  }
-
-  removeStats = () => {
-    // remove player stats
->>>>>>> origin
   }
 //  |-----------ANNYANG END------------|
 
@@ -203,7 +224,7 @@ class DMview extends Component {
                             this.state.characters.map((character, index) => 
                             <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"} key={index}>
                                 <div className="card border border-dark">
-                                    <DMcard character={character.name} attributes={character.attributes} id={character._id}></DMcard>                
+                                    <DMcard character={character.name} attributes={character.attributes} id={character._id} key={character.name}></DMcard>                
                                 </div>
                             </div>)
                         :
@@ -211,7 +232,7 @@ class DMview extends Component {
                                  
                                 <div className="col-6" key={index}>
                                     <div className="card border border-dark">
-                                        <DMcard character={character.name} attributes={character.attributes} ></DMcard>                
+                                        <DMcard character={character.name} attributes={character.attributes} key={character.name} ></DMcard>                
                                     </div>
                                 </div>)
                         }                   
