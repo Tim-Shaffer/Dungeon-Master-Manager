@@ -7,17 +7,51 @@ import { deleteCharacter } from "../../utils/character_controller";
 import Music from "../Music/Music";
 import Footer from "../Footer/Footer";
 
+import socketIOClient from "socket.io-client";
+
 class Playerview extends Component {
     
     state = {
+        endpoint: "localhost:3001",
+        updateCount: 0,
         user: "",
         characters: [],
         showCreate: false
     };
 
     componentDidMount() {
-        //-- I know I am executing this function!
         const user = this.props.user;
+        
+        // findCharacter(user.id)
+        // .then(res => {
+        //     let charArray = [];
+        //     for (let i=0; i < res.data.length; i++) {
+        //         charArray.push({
+        //             _id: res.data[i]._id,
+        //             name: res.data[i].name,
+        //             attributes: res.data[i].attributes   
+        //         })
+        //     }
+        //     this.setState({ characters: charArray, user: user });
+        // })
+        // .catch(err => console.log(err));
+        this.updateCharacter(user);
+
+        const socket = socketIOClient(this.state.endpoint);
+        socket.on('characterUpdated', () => {
+            console.log("character updated recognized");
+            // let count = this.state.updateCount + 1;
+            // console.log("Count = " + count);
+            // this.forceUpdate();
+            // this.setState({ updateCount: count });
+            // console.log("Count = " + count);
+            this.updateCharacter(user);
+        });
+    
+    };
+
+    updateCharacter(user){
+
         findCharacter(user.id)
         .then(res => {
             let charArray = [];
@@ -31,7 +65,7 @@ class Playerview extends Component {
             this.setState({ characters: charArray, user: user });
         })
         .catch(err => console.log(err));
-    
+
     };
 
     createCharacter(e){
@@ -91,9 +125,9 @@ class Playerview extends Component {
                     <div className={this.state.characters.length === 1 ? "row justify-content-center" : "row"}>
                         {this.state.characters.length !== 2 ?
                             this.state.characters.map(character => 
-                            <div key={character.name} className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
+                            <div className={this.state.characters.length % 4 === 0 ? "col-3" : "col-4"}>
                                 <div className="card border border-dark">
-                                    <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
+                                    <PlayerCard key={character.name} character={character.name} attributes={character.attributes} ></PlayerCard>                
                                     <div className="butt">
                                         <button className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button>
                                     </div>
@@ -104,7 +138,7 @@ class Playerview extends Component {
                                 
                                 <div className="col-6">
                                     <div className="card border border-dark">
-                                        <PlayerCard character={character.name} attributes={character.attributes}></PlayerCard>                
+                                        <PlayerCard key={character.name} character={character.name} attributes={character.attributes}></PlayerCard>                
                                         <div className="butt">
                                             <button className="btn btn-block playerbttn border border-dark" id={character._id} onClick={() => this.delChar(character._id)}>Remove</button>
                                         </div>

@@ -8,6 +8,8 @@ import UIfx from 'uifx';
 import submitFX from './sounds/soundfx.mp3';
 import SavedModal from '../SavedModal'; 
 
+import socketIOClient from "socket.io-client";
+
 const savedSound = new UIfx(submitFX)
 
 class DMcard extends Component {
@@ -15,6 +17,7 @@ class DMcard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        endpoint: "localhost:3001",
         name: "",
         attributes: [],
         classType: "",
@@ -105,8 +108,10 @@ class DMcard extends Component {
     updateCharacter(this.props.id, charData) 
         .then(res => {
             // console.log(res);
-            savedSound.play();
+            // savedSound.play();
             // alert("Character was saved.");
+            const socket = socketIOClient(this.state.endpoint);
+            socket.emit('characterUpdate');
         })
         .catch(err => console.log(err));
   };

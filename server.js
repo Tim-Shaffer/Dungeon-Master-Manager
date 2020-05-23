@@ -40,6 +40,26 @@ const PORT = process.env.PORT || 3001;
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/dmmgr";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true } );
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+// app.listen(PORT, () => {
+//   console.log(`🌎 ==> API server now on port ${PORT}!`);
+// });
+
+// socket io code 
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
+io.on('connection', (client) => { 
+  /* Emit events to the client */ 
+  console.log('a user connected');
+  client.on('disconnect', () => {
+    console.log('user disconnected');
+  });  
+  client.on('characterUpdate', () => {
+    console.log("character update recognized");
+    client.broadcast.emit('characterUpdated');
+  });
+});
+
+server.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
