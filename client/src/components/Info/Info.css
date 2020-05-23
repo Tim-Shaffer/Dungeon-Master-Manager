@@ -1,9 +1,10 @@
 .jumbotron {
     width: 35em;
     height: 38em;
-    background-color: rgba(128, 128, 128, 0.122);
+    background-color: rgba(59, 59, 59, 0.5);
+    
     border-radius: 12px;
-    font-weight: 2;
+    
     margin: auto;
     margin-top: 260px;
     padding-bottom: 25em;
@@ -12,30 +13,28 @@
 }
 
 p {
-    font-size: 0.9em;
+    font-size: 1em;
     color: white;
-    font-weight: 700;
-    font-family: 'Rock Salt', cursive;
+    /* font-weight: 700; */
+    font-family: 'Piedra', cursive;
     line-height: 1.5rem;
 }
 
 #lastline {
     color: white;
-    font-weight: 700;
+    /* font-weight: 700; */
     font-size: 1.5em;
 }
 
-#sticky-footer {
-    background-color: darkgray;
-    color: whitesmoke;
-    font-family: 'Rock Salt', cursive;
-    font-size: 14px;
-   
+.info em{
+    color: darkred;
+    text-shadow: 2px 2px 5px gold;
 }
 
-.sticky {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
+#lastline em{
+    color: darkred;
+    text-shadow: 2px 2px 5px gold;
+}
+
+
 

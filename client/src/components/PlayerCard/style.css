@@ -1,13 +1,14 @@
-.list-overflow-container {
+/* .list-overflow-container {
     border: 1px gray;
 }
 
 .list-group-item {
     background-color: gray; 
-}
+} */
 
 .attr-name {
     color: darkred;
+    margin-left: 8px;
 }
 
 .attr-value {
@@ -15,6 +16,7 @@
 }
 
 .card-title{
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     color: white;
 }
+

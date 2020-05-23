@@ -3,12 +3,12 @@
 }
 
 .modal-body {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     background-color: gray; 
 }
 
 .modal-header {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     background-color:  darkred; 
     padding: 0;
     border-bottom: 0;
@@ -16,7 +16,7 @@
 }
 
 .modal-footer {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     background-color:  darkred; 
     color: white;
     border-top: 0;

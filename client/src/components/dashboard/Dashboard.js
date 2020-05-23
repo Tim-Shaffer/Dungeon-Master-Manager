@@ -42,7 +42,7 @@ class Dashboard extends Component {
 
     return (
       <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+      <nav className="navbar navbar-expand-lg navbar-dark border-bottom border-danger bg-dark fixed-top" role="navigation">
         <div className="container">
           <h4>Welcome {user.name.split(" ")[0]}</h4>
           <button

@@ -1,6 +1,8 @@
 h4 {
     color: darkred;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
+    font-size: 25px;
+    text-shadow: 2px 2px 5px gold;
 }
 
 .login-btn {

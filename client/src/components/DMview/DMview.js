@@ -5,6 +5,7 @@ import { findCampaign } from "../../utils/campaign_controller";
 import CreateCampaign from "../CreateCampaign/CreateCampaign";
 import DiceRoll from "../DiceRoll";
 import { deleteCampaign } from "../../utils/campaign_controller";
+import Footer from "../Footer/Footer";
 
 // importing annyang
 import annyang from "../Voice/Voice";
@@ -218,6 +219,7 @@ class DMview extends Component {
                 null
                 }
                 <DiceRoll></DiceRoll>
+                <Footer/>
             </div>
         </div>
         
