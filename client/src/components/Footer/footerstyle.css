@@ -1,0 +1,22 @@
+#sticky-footer {
+    background-color: darkgray;
+    color: whitesmoke;
+    font-family: 'Piedra', cursive;
+    font-size: 14px;
+   
+}
+
+.sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 40px;
+    
+  }
+
+  #footerText{
+   position: relative;
+   bottom: 8px
+  }

@@ -8,14 +8,14 @@
 
 .attr-name {
     color: darkred;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     font-size: 11px;
     font-weight: bolder;
 }
 
 .attr-value {
     color: black;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     font-size: 11px;
     font-weight: bolder;
 }
@@ -25,7 +25,7 @@
     height: 22px;
     font-size: 10px;
     text-align: center;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     color: darkred;
     font-weight: bolder;
 }
@@ -35,12 +35,12 @@
     height: 22px;
     font-size: 10px;
     text-align: center;
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     color: darkred;
     font-weight: bolder;
 }
 
 .card-title{
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Piedra', cursive;
     color: white;
 }
