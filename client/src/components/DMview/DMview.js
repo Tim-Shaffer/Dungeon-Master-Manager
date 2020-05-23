@@ -53,7 +53,6 @@ class DMview extends Component {
 
   playerStats = (x) => {
     // add player stats
-<<<<<<< HEAD
     let name;
     let command;
     let stat;
@@ -96,12 +95,6 @@ class DMview extends Component {
     console.log(value);
     console.log(stat);
     console.log(name);
-=======
-  }
-
-  removeStats = () => {
-    // remove player stats
->>>>>>> origin
   }
 //  |-----------ANNYANG END------------|
 
