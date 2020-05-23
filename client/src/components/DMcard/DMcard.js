@@ -221,15 +221,6 @@ class DMcard extends Component {
                   </div>
                 </div>
                 
-                // <div className="row">
-                //   <div className="col">
-                //     <ListItem >
-                //       <div className="row">
-                //         <IncrementButton></IncrementButton><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> <DecrementButton></DecrementButton>
-                //       </div>
-                //     </ListItem>
-                //   </div>
-                // </div>
                 )}
             </List>
             </form>
@@ -238,8 +229,13 @@ class DMcard extends Component {
             }
 
               <div className="butt">
-                <button className="btn btn-block playerbttn border border-dark" id="playerbttn" data-toggle="modal" data-target="#savedModal"onClick={this.handleFormSubmit.bind(this)}>Save</button>
-                {/* <a href="#" className="btn btn-block playerbttn border border-dark" id="playerbttn">Remove</a> */}
+                <button className="btn btn-block playerbttn border border-dark" id="playerbttn" 
+                data-toggle="modal" 
+                data-target={"#saved" + this.state.name.split(' ').join('')} 
+                onClick={this.handleFormSubmit.bind(this)}
+                >
+                  Save
+                </button>
               </div>
               <SavedModal name={this.state.name}></SavedModal>
         </div>
