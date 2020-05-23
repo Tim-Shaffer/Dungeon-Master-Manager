@@ -43,6 +43,14 @@ class DMcard extends Component {
     
   }
 
+  componentDidUpdate(props) {
+    if(props !== this.props) {
+      const attributes = this.props.attributes;
+      this.setStateAttributes(attributes);
+    }
+  }
+
+
   setStateAttributes (attributes) {
     
     for (let i=0; i < attributes.length; i++) {
@@ -130,7 +138,7 @@ class DMcard extends Component {
               {this.props.attributes.map((attribute, index) =>
                 <div className="row" key={index}>
                   <div className="col">
-                  <ListItem >
+                  <ListItem key={attribute.attrName}>
                     <div className="row">
                         <div className="col border border-dark rounded mb-0 bg-white text-dark">
                           <div className="row">
