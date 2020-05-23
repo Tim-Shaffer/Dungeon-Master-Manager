@@ -7,7 +7,7 @@ class Info extends Component {
             <>
                 <div className="jumbotron  text-center">   
                     <hr></hr>
-                    <p>Dungeon Master Manager(DMM) is a Dungeon and Dragons campaign manager.    
+                    <p className="info">Dungeon Master Manager(DMM) is a Dungeon and Dragons campaign manager.    
                         With DMM you can perform one of two roles, the position of 
                         <em><strong> DM</strong></em> or <em><strong>PLAYER</strong></em>.
                         <br></br>

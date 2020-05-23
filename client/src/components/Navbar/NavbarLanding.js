@@ -6,7 +6,7 @@ class NavbarLanding extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation" id="navbarlanding">
+        <nav className="navbar navbar-expand-lg navbar-dark border-bottom border-danger bg-dark fixed-top" role="navigation" id="navbarlanding">
           <div className="container">
             <h4>Dungeon Master Manager</h4>
             <button className="btn login-btn">

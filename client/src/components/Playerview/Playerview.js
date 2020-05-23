@@ -5,6 +5,7 @@ import { findCharacter } from "../../utils/character_controller";
 import CreatePlayer from "../CreatePlayer/CreatePlayer";
 import { deleteCharacter } from "../../utils/character_controller";
 import Music from "../Music/Music";
+import Footer from "../Footer/Footer";
 
 class Playerview extends Component {
     
@@ -114,6 +115,7 @@ class Playerview extends Component {
                     </div>
                     
                     <Music />
+                    <Footer/>
                     </>
                     
                 :
@@ -126,6 +128,7 @@ class Playerview extends Component {
                 null
                 }
                 </div>
+                
             </div>
         
         )
