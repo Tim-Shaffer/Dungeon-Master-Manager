@@ -16,7 +16,6 @@ Dungeon Master Manager allows the DM to effectively run the campaign, roll dice 
 * [Deployment](#deployment)
 * [Tech Used](#tech-used)
 * [File Structure](#folder-structure)
-* [Original Design](#original-design-documents)
 
 
 ## Deployment
@@ -26,7 +25,7 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 
 * **annyang**: a Speech Recognition library to allow for voice commands to control some actions
 * axios:  promise based HTTP client for the browser and node.js
-* bcryptjs: used to hash passwords before they are stored in the database
+* **bcryptjs**: used to hash passwords before they are stored in the database
 * body-parser: used to parse incoming request bodies in a middleware before the handlers
 * classnames:  a simple JavaScript utility for conditionally joining classNames together
 * concurrently: allows us to run our backend and frontend concurrently and on different ports
@@ -38,8 +37,8 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 * **jwt-decode**: a browser library to decode JWTs
 * mongojs: a module for mongodb that emulates the official mongodb API as much as possible
 * mongoose: a mongodb object modeling tool designed to work in an asynchronous environment
-* passport: an express-compatible authentication middleware
-* passport-jwt: passport strategy for authenticating with a JWT. 
+* **passport**: an express-compatible authentication middleware
+* **passport-jwt**: passport strategy for authenticating with a JWT. 
 * react: a JavaScript library for creating user interfaces
 * react-dom: a React package that serves as the entry point to the DOM and server renderers
 * react-redux: designed to work with React's component model, creates wrapper components that manage the store interaction logic, automatically implements complex performance optimizations
@@ -47,6 +46,7 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 * react-scripts: scripts and configuration used by Create React App
 * redux: a predictable state container for JavaScript apps 
 * redux-thunk: middleware that allows you to write action creators that return a function instead of an action 
+* **socket.io**: enables real-time bidirectional event-based communication
 * **uifx**: simple library for playing sound effects
 * **validator**: a library of string validators and sanitizers (ie. confirming passwords match)
 
@@ -113,6 +113,9 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 ┃  ┃ ┃ ┣ 📂DMview
 ┃  ┃ ┃ ┃ ┣ 📜dmstyle.css
 ┃  ┃ ┃ ┃ ┗ 📜DMview.js
+┃  ┃ ┃ ┣ 📂Footer
+┃  ┃ ┃ ┃ ┣ 📜Footer.js
+┃  ┃ ┃ ┃ ┗ 📜footerstyle.css
 ┃  ┃ ┃ ┣ 📂IncrementDecrementButton
 ┃  ┃ ┃ ┃ ┣ 📜DecrementButton.js
 ┃  ┃ ┃ ┃ ┣ 📜incDec.css
@@ -146,6 +149,9 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 ┃  ┃ ┃ ┣ 📂RegisterBtn
 ┃  ┃ ┃ ┃ ┣ 📜index.js
 ┃  ┃ ┃ ┃ ┗ 📜style.css
+┃  ┃ ┃ ┣ 📂SavedModal
+┃  ┃ ┃ ┃ ┣ 📜index.js
+┃  ┃ ┃ ┃ ┗ 📜style.css
 ┃  ┃ ┃ ┗ 📂Voice
 ┃  ┃ ┃ ┃ ┗ 📜Voice.js
 ┃  ┃ ┣ 📂reducers
@@ -165,6 +171,7 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 ┃  ┃ ┣ 📜serviceWorker.js
 ┃  ┃ ┣ 📜setupTests.js
 ┃  ┃ ┗ 📜store.js
+┃  ┣ 📜.env
 ┃  ┣ 📜package-lock.json
 ┃  ┣ 📜package.json
 ┃  ┣ 📜React README.md
@@ -195,5 +202,3 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 ┣ 📜README.md
 ┗ 📜server.js
 ```
-
-## Original Design Documents
