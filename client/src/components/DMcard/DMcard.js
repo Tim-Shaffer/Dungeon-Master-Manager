@@ -8,6 +8,8 @@ import UIfx from 'uifx';
 import submitFX from './sounds/soundfx.mp3';
 import SavedModal from '../SavedModal'; 
 
+import socketIOClient from "socket.io-client";
+
 const savedSound = new UIfx(submitFX)
 
 class DMcard extends Component {
@@ -15,6 +17,8 @@ class DMcard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        // endpoint: "localhost:3001", // need to update for Heroku (https://maws-dungeon-master-mgr.herokuapp.com)
+        endpoint: `${process.env.REACT_APP_ENDPOINT}`,
         name: "",
         attributes: [],
         classType: "",
@@ -104,9 +108,10 @@ class DMcard extends Component {
     }
     updateCharacter(this.props.id, charData) 
         .then(res => {
-            // console.log(res);
             savedSound.play();
-            // alert("Character was saved.");
+            const socket = socketIOClient(this.state.endpoint);
+            // console.log(res.data);
+            socket.emit('characterUpdate', res.data);
         })
         .catch(err => console.log(err));
   };
@@ -153,14 +158,14 @@ class DMcard extends Component {
                                     key={index} 
                                     decattr={attribute.attrName}  
                                     handleDecrement={this.handleDecrement}
-                                    currValue={attribute.attrName === "Level" ? this.state.Level : 
-                                                      attribute.attrName === "Experience" ? this.state.Experience : 
-                                                      attribute.attrName === "Strength" ? this.state.Strength : 
-                                                      attribute.attrName === "Dexterity" ? this.state.Dexterity : 
-                                                      attribute.attrName === "Constitution" ? this.state.Constitution: 
-                                                      attribute.attrName === "Intelligence" ? this.state.Intelligence : 
-                                                      attribute.attrName === "Wisdom" ? this.state.Wisdom : 
-                                                      attribute.attrName === "Charisma" ? this.state.Charisma : 
+                                    currValue={attribute.attrName === "Level" ? parseInt(this.state.Level) : 
+                                                      attribute.attrName === "Experience" ? parseInt(this.state.Experience) : 
+                                                      attribute.attrName === "Strength" ? parseInt(this.state.Strength) : 
+                                                      attribute.attrName === "Dexterity" ? parseInt(this.state.Dexterity) : 
+                                                      attribute.attrName === "Constitution" ? parseInt(this.state.Constitution): 
+                                                      attribute.attrName === "Intelligence" ? parseInt(this.state.Intelligence) : 
+                                                      attribute.attrName === "Wisdom" ? parseInt(this.state.Wisdom) : 
+                                                      attribute.attrName === "Charisma" ? parseInt(this.state.Charisma) : 
                                                       null}
                                   > 
                                   </DecrementButton>                  
@@ -190,14 +195,14 @@ class DMcard extends Component {
                                   <IncrementButton key={index} 
                                     incattr={attribute.attrName}  
                                     handleIncrement={this.handleIncrement}
-                                    currValue={attribute.attrName === "Level" ? this.state.Level : 
-                                                      attribute.attrName === "Experience" ? this.state.Experience : 
-                                                      attribute.attrName === "Strength" ? this.state.Strength : 
-                                                      attribute.attrName === "Dexterity" ? this.state.Dexterity : 
-                                                      attribute.attrName === "Constitution" ? this.state.Constitution: 
-                                                      attribute.attrName === "Intelligence" ? this.state.Intelligence : 
-                                                      attribute.attrName === "Wisdom" ? this.state.Wisdom : 
-                                                      attribute.attrName === "Charisma" ? this.state.Charisma : 
+                                    currValue={attribute.attrName === "Level" ? parseInt(this.state.Level) : 
+                                                      attribute.attrName === "Experience" ? parseInt(this.state.Experience) : 
+                                                      attribute.attrName === "Strength" ? parseInt(this.state.Strength) : 
+                                                      attribute.attrName === "Dexterity" ? parseInt(this.state.Dexterity) : 
+                                                      attribute.attrName === "Constitution" ? parseInt(this.state.Constitution): 
+                                                      attribute.attrName === "Intelligence" ? parseInt(this.state.Intelligence) : 
+                                                      attribute.attrName === "Wisdom" ? parseInt(this.state.Wisdom) : 
+                                                      attribute.attrName === "Charisma" ? parseInt(this.state.Charisma) : 
                                                       null}
                                   > 
                                   </IncrementButton>
@@ -221,6 +226,15 @@ class DMcard extends Component {
                   </div>
                 </div>
                 
+                // <div className="row">
+                //   <div className="col">
+                //     <ListItem >
+                //       <div className="row">
+                //         <IncrementButton></IncrementButton><span className="attr-name">{attribute.attrName}:</span>  <span className="attr-value">{attribute.attrValue}</span> <DecrementButton></DecrementButton>
+                //       </div>
+                //     </ListItem>
+                //   </div>
+                // </div>
                 )}
             </List>
             </form>
@@ -228,7 +242,7 @@ class DMcard extends Component {
             <div>No Attributes</div>
             }
 
-              <div className="butt">
+            <div className="butt">
                 <button className="btn btn-block playerbttn border border-dark" id="playerbttn" 
                 data-toggle="modal" 
                 data-target={"#saved" + this.state.name.split(' ').join('')} 
@@ -236,8 +250,8 @@ class DMcard extends Component {
                 >
                   Save
                 </button>
-              </div>
-              <SavedModal name={this.state.name}></SavedModal>
+            </div>
+            <SavedModal name={this.state.name}></SavedModal>
         </div>
       </>
     );
