@@ -123,6 +123,9 @@ The app is deployed to **Heroku** at the following link:  https://maws-dungeon-m
 ┃  ┃ ┃ ┣ 📂Info
 ┃  ┃ ┃ ┃ ┣ 📜Info.css
 ┃  ┃ ┃ ┃ ┗ 📜Info.js
+┃  ┃ ┃ ┣ 📂Instructions
+┃  ┃ ┃ ┃ ┣ 📜Instructions.css
+┃  ┃ ┃ ┃ ┗ 📜Instructions.js
 ┃  ┃ ┃ ┣ 📂layout
 ┃  ┃ ┃ ┃ ┗ 📜Landing.js
 ┃  ┃ ┃ ┣ 📂List
