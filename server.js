@@ -36,6 +36,11 @@ app.use("/api/campaign", campaigns);
 
 const PORT = process.env.PORT || 3001;
 
+// added the static to allow the soundfx on Heroku
+app.use(express.static("./client/src/components/CreateCampaign/sounds/"));
+app.use(express.static("./client/src/components/CreatePlayer/sounds/"));
+app.use(express.static("./client/src/components/DMcard/sounds/"));
+
 // establish MongoDB var based on deployed or local
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/dmmgr";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true } );
