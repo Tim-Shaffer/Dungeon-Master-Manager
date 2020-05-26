@@ -29,7 +29,7 @@ router.get("/:id", (req, res) => {
 // @access Public
 router.get("/", (req, res) => {
 
-  db.Character.find({ isDeleted: false })
+  db.Character.find({ isDeleted: false }).sort({ name: 1 })
     .then(dbChar => {
       // return res.status(200).json(dbChar)
       return res.json(dbChar)
