@@ -6,9 +6,11 @@ import CreateCampaign from "../CreateCampaign/CreateCampaign";
 import DiceRoll from "../DiceRoll";
 import { deleteCampaign } from "../../utils/campaign_controller";
 import Footer from "../Footer/Footer";
+import Instructions from "../Instructions/Instructions";
 
 // importing annyang
 import annyang from "../Voice/Voice";
+import { updateCharacter } from "../../utils/character_controller";
 
 class DMview extends Component {
     state = {
@@ -44,6 +46,7 @@ class DMview extends Component {
         let a = voice.shift();
         // passing in array to playStat function
         this.playerStats(voice);
+
     }
     else {
         // if sentence isn't prepended with "start"
@@ -51,6 +54,7 @@ class DMview extends Component {
         voice = [];
     }
   }
+
 //   "start justin"
   playerStats = (x) => {
     const characters = this.state.characters;
@@ -69,6 +73,8 @@ class DMview extends Component {
             if(x[i].toLowerCase() === "save") {
                 // initialize "save" function to keep user changes
                 console.log("leads to SAVE!!!");
+                // experiment 
+
             }
             let a = x[i].charAt(0).toUpperCase(), b = x[i].slice(1);
             stat = a + b;
@@ -99,14 +105,11 @@ class DMview extends Component {
                 console.log("MATCH!");
                 matched = true;
                 for (var e = 0; e < characters[i].attributes.length && !attrMatch; e++) {
-                    // console.log(stat);
-                    // console.log(characters[i].attributes[e].attrName);
                     if (stat === characters[i].attributes[e].attrName) {
                         attrMatch = true;
                         let attrValue = parseInt(characters[i].attributes[e].attrValue);
                         attrValue += value;
                         characters[i].attributes[e].attrValue = attrValue.toString();
-                        // console.log(characters[i]);
                     }
                 }
             }
@@ -247,6 +250,7 @@ class DMview extends Component {
                 null
                 }
                 <DiceRoll></DiceRoll>
+                <Instructions />
                 <Footer/>
             </div>
         </div>

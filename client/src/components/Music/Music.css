@@ -1,5 +1,6 @@
 #spotify {
     margin: auto;
     position: fixed;
+    margin-top: -120px;
     right: 20px;
 }
