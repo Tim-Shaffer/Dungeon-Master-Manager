@@ -251,7 +251,7 @@ class DMview extends Component {
                 }
                 <DiceRoll></DiceRoll>
                 <Instructions />
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         </div>
         

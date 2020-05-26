@@ -151,7 +151,7 @@ class Playerview extends Component {
                     </div>
                     
                     <Music />
-                    <Footer/>
+                    {/* <Footer/> */}
                     </>
                     
                 :
