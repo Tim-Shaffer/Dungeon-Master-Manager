@@ -58,35 +58,75 @@ class DMcard extends Component {
 
   setStateAttributes (attributes) {
 
-    const newAttributes = {};
+    let classType = "",
+      background = "",
+      race =  "",
+      alignment = "",
+      Level = "",
+      Experience = "",
+      Strength = "",
+      Dexterity = "",
+      Constitution = "",
+      Intelligence = "",
+      Wisdom = "",
+      Charisma = "";
     
+    // refactored to only use a single setState method instead of the multiple calls
+    // for (let i=0; i < attributes.length; i++) {
+    //   if (attributes[i].attrName === "Class" ) { this.setState({classType: attributes[i].attrValue}) }  
+    //   else if (attributes[i].attrName === "Background") {this.setState({background: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Race") {this.setState({race: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Alignment") {this.setState({alignment: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Level") {this.setState({Level: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Experience") {this.setState({Experience: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Strength") {this.setState({Strength: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Dexterity") {this.setState({Dexterity: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Constitution") {this.setState({Constitution: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Intelligence") {this.setState({Intelligence: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Wisdom") {this.setState({Wisdom: attributes[i].attrValue}) } 
+    //   else if (attributes[i].attrName === "Charisma") {this.setState({Charisma: attributes[i].attrValue}) } 
+    // }
+
     for (let i=0; i < attributes.length; i++) {
-      if (attributes[i].attrName === "Class" ) { this.setState({classType: attributes[i].attrValue}) }  
-      else if (attributes[i].attrName === "Background") {this.setState({background: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Race") {this.setState({race: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Alignment") {this.setState({alignment: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Level") {this.setState({Level: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Experience") {this.setState({Experience: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Strength") {this.setState({Strength: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Dexterity") {this.setState({Dexterity: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Constitution") {this.setState({Constitution: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Intelligence") {this.setState({Intelligence: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Wisdom") {this.setState({Wisdom: attributes[i].attrValue}) } 
-      else if (attributes[i].attrName === "Charisma") {this.setState({Charisma: attributes[i].attrValue}) } 
+      if (attributes[i].attrName === "Class" ) { classType = attributes[i].attrValue }  
+      else if (attributes[i].attrName === "Background") { background = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Race") { race = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Alignment") { alignment = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Level") { Level = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Experience") { Experience = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Strength") { Strength = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Dexterity") { Dexterity = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Constitution") { Constitution = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Intelligence") { Intelligence = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Wisdom") { Wisdom = attributes[i].attrValue } 
+      else if (attributes[i].attrName === "Charisma") { Charisma = attributes[i].attrValue } 
     }
 
-    // {this.setState({Charisma: attributes[i].attrValue}) }
+    this.setState({
+      classType: classType,
+      background: background,
+      race: race,
+      alignment: alignment,
+      Level: Level,
+      Experience: Experience,
+      Strength: Strength,
+      Dexterity: Dexterity,
+      Constitution: Constitution,
+      Intelligence: Intelligence,
+      Wisdom: Wisdom,
+      Charisma: Charisma
+    }) 
 
   }
 
   handleInputChange = event => {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
-    console.log(event.target);
+    // console.log(event.target);
 
     if(!isNaN(value)) {
 
-      console.log(value);
+      // console.log(value);
       // Set the state for the appropriate input field
       this.setState({
         [name]: value
