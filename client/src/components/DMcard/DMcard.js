@@ -48,15 +48,17 @@ class DMcard extends Component {
     
   }
 
-  componentDidUpdate(props) {
-    if(props !== this.props) {
-      const attributes = this.props.attributes;
-      this.setStateAttributes(attributes);
-    }
-  }
+  // componentDidUpdate(props) {
+  //   if(props !== this.props) {
+  //     const attributes = this.props.attributes;
+  //     this.setStateAttributes(attributes);
+  //   }
+  // }
 
 
   setStateAttributes (attributes) {
+
+    const newAttributes = {};
     
     for (let i=0; i < attributes.length; i++) {
       if (attributes[i].attrName === "Class" ) { this.setState({classType: attributes[i].attrValue}) }  
@@ -73,6 +75,8 @@ class DMcard extends Component {
       else if (attributes[i].attrName === "Charisma") {this.setState({Charisma: attributes[i].attrValue}) } 
     }
 
+    // {this.setState({Charisma: attributes[i].attrValue}) }
+
   }
 
   handleInputChange = event => {
@@ -80,10 +84,19 @@ class DMcard extends Component {
     const { name, value } = event.target;
     console.log(event.target);
 
-    // Set the state for the appropriate input field
-    this.setState({
-      [name]: parseInt(value)
-    });
+    if(!isNaN(value)) {
+
+      console.log(value);
+      // Set the state for the appropriate input field
+      this.setState({
+        [name]: value
+      });
+
+    } else {
+      this.setState({
+        [name]: 0
+      });
+    }
 
   };
 
@@ -138,10 +151,10 @@ class DMcard extends Component {
       {/* {this.state.players.length > 0 ? */}
         <div className="card-header"><h5 className="card-title">{this.state.name}</h5></div>
         <div className="card-body">
-          {this.props.attributes.length > 0 ?
+          {this.state.attributes.length > 0 ?
           <form>
             <List>
-              {this.props.attributes.map((attribute, index) =>
+              {this.state.attributes.map((attribute, index) =>
                 <div className="row" key={index}>
                   <div className="col">
                   <ListItem key={attribute.attrName}>
@@ -155,7 +168,7 @@ class DMcard extends Component {
                               <>
                                 <div className="col-2">
                                   <DecrementButton 
-                                    key={index} 
+                                    key={attribute.attrName} 
                                     decattr={attribute.attrName}  
                                     handleDecrement={this.handleDecrement}
                                     currValue={attribute.attrName === "Level" ? parseInt(this.state.Level) : 
@@ -173,11 +186,12 @@ class DMcard extends Component {
                                 
 
                                 <div className="col">
-                                <input className="number"
+                                <input key={attribute.attrName} 
+                                      className="number"
                                        type="text"
                                        name={attribute.attrName}
                                        onChange={this.handleInputChange.bind(this)}
-                                       defaultValue={attribute.attrName === "Level" ? this.state.Level : 
+                                       value={attribute.attrName === "Level" ? this.state.Level : 
                                                       attribute.attrName === "Experience" ? this.state.Experience : 
                                                       attribute.attrName === "Strength" ? this.state.Strength : 
                                                       attribute.attrName === "Dexterity" ? this.state.Dexterity : 
@@ -192,7 +206,7 @@ class DMcard extends Component {
 
                                 
                                 <div className="col-2">
-                                  <IncrementButton key={index} 
+                                  <IncrementButton key={attribute.attrName}
                                     incattr={attribute.attrName}  
                                     handleIncrement={this.handleIncrement}
                                     currValue={attribute.attrName === "Level" ? parseInt(this.state.Level) : 

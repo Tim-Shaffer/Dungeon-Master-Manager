@@ -250,7 +250,7 @@ class DMview extends Component {
                 null
                 }
                 <DiceRoll></DiceRoll>
-                <Instructions />
+                {this.state.characters.length !== 0 ? <Instructions /> : null}
                 {/* <Footer/> */}
             </div>
         </div>
