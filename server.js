@@ -45,6 +45,14 @@ app.use(express.static("./client/src/components/DMcard/sounds/"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/dmmgr";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true } );
 
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, './client/public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+});
+
 // app.listen(PORT, () => {
 //   console.log(`🌎 ==> API server now on port ${PORT}!`);
 // });
