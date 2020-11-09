@@ -43,8 +43,11 @@ app.use(express.static("./client/src/components/CreatePlayer/sounds/"));
 app.use(express.static("./client/src/components/DMcard/sounds/"));
 
 // establish MongoDB var based on deployed or local
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/dmmgr";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true } );
+// 11-09-20 Updates to migrate from mLab
+//var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/dmmgr";
+var DB_URI = process.env.DB_URI || "mongodb://localhost/dmmgr";
+//mongoose.connect(MONGODB_URI, { useNewUrlParser: true } );
+mongoose.connect(DB_URI, { useNewUrlParser: true } );
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, './client/public/index.html'), function(err) {
